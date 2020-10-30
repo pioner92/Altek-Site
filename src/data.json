@@ -1,0 +1,287 @@
+{
+  "url": "https://sms.green-node.ru",
+  "drivers": {
+    "pages_count": 20,
+    "result": [
+      {
+        "all_read": "non",
+        "email": "string",
+        "group": "string",
+        "id": 0,
+        "index": "string",
+        "is_fired": "false",
+        "is_working": "true",
+        "message": { "text": "string", "last_message_time": "string", "count": "string" },
+        "name": "string",
+        "not_working_day": "string",
+        "not_working_time": "string",
+        "number": "string",
+        "sms_id": "string",
+        "veh_id": "string"
+      },
+      {
+        "all_read": "non",
+        "email": "string",
+        "group": "string",
+        "id": 1,
+        "index": "string",
+        "is_fired": "false",
+        "is_working": "true",
+        "message": { "text": "string", "last_message_time": "string", "count": "string" },
+        "name": "string",
+        "not_working_day": "string",
+        "not_working_time": "string",
+        "number": "string",
+        "sms_id": "string",
+        "veh_id": "string"
+      },
+      {
+        "all_read": "non",
+        "email": "string",
+        "group": "string",
+        "id": 2,
+        "index": "string",
+        "is_fired": "false",
+        "is_working": "true",
+        "message": { "text": "string", "last_message_time": "string", "count": "string" },
+        "name": "string",
+        "not_working_day": "string",
+        "not_working_time": "string",
+        "number": "string",
+        "sms_id": "string",
+        "veh_id": "string"
+      },
+      {
+        "all_read": "non",
+        "email": "string",
+        "group": "string",
+        "id": 3,
+        "index": "string",
+        "is_fired": "false",
+        "is_working": "true",
+        "message": { "text": "string", "last_message_time": "string", "count": "string" },
+        "name": "string",
+        "not_working_day": "string",
+        "not_working_time": "string",
+        "number": "string",
+        "sms_id": "string",
+        "veh_id": "string"
+      },
+      {
+        "all_read": "non",
+        "email": "string",
+        "group": "string",
+        "id": 4,
+        "index": "string",
+        "is_fired": "false",
+        "is_working": "true",
+        "message": { "text": "string", "last_message_time": "string", "count": "string" },
+        "name": "string",
+        "not_working_day": "string",
+        "not_working_time": "string",
+        "number": "string",
+        "sms_id": "string",
+        "veh_id": "string"
+      },
+      {
+        "all_read": "non",
+        "email": "string",
+        "group": "string",
+        "id": 5,
+        "index": "string",
+        "is_fired": "false",
+        "is_working": "true",
+        "message": { "text": "string", "last_message_time": "string", "count": "string" },
+        "name": "string",
+        "not_working_day": "string",
+        "not_working_time": "string",
+        "number": "string",
+        "sms_id": "string",
+        "veh_id": "string"
+      },
+      {
+        "all_read": "non",
+        "email": "string",
+        "group": "string",
+        "id": 6,
+        "index": "string",
+        "is_fired": "false",
+        "is_working": "true",
+        "message": { "text": "string", "last_message_time": "string", "count": "string" },
+        "name": "string",
+        "not_working_day": "string",
+        "not_working_time": "string",
+        "number": "string",
+        "sms_id": "string",
+        "veh_id": "string"
+      },
+      {
+        "all_read": "non",
+        "email": "string",
+        "group": "string",
+        "id": 7,
+        "index": "string",
+        "is_fired": "false",
+        "is_working": "true",
+        "message": { "text": "string", "last_message_time": "string", "count": "string" },
+        "name": "string",
+        "not_working_day": "string",
+        "not_working_time": "string",
+        "number": "string",
+        "sms_id": "string",
+        "veh_id": "string"
+      },
+      {
+        "all_read": "non",
+        "email": "string",
+        "group": "string",
+        "id": 8,
+        "index": "string",
+        "is_fired": "false",
+        "is_working": "true",
+        "message": { "text": "string", "last_message_time": "string", "count": "string" },
+        "name": "string",
+        "not_working_day": "string",
+        "not_working_time": "string",
+        "number": "string",
+        "sms_id": "string",
+        "veh_id": "string"
+      }
+    ]
+  },
+  "groups": [
+    {
+      "id": 0,
+      "name": "Test1"
+    },
+    {
+      "id": 1,
+      "name": "Test2"
+    }
+  ],
+  "dispatchers": [
+    {
+      "id": 0,
+      "name": "Test1",
+      "group": "tttt",
+      "login": "test1",
+      "email": "test1@email.com",
+      "phone": "888"
+    },
+    {
+      "id": 1,
+      "name": "Test2",
+      "group": "qqqq",
+      "login": "test2",
+      "email": "test2@email.com",
+      "phone": "777"
+    }
+  ],
+  "callHistory": [
+    {
+      "id": 0,
+      "name": "Alex",
+      "date": "12/12/12",
+      "number": "+3434343434",
+      "link": "http://google.com"
+    },
+    {
+      "id": 1,
+      "name": "Victor",
+      "date": "12/12/12",
+      "number": "+3434343434",
+      "link": "http://google.com"
+    }
+  ],
+  "messages": {
+    "messages": [
+      {
+        "id": 1,
+        "message": "hello",
+        "type": true
+      },
+      {
+        "id": 2,
+        "message": "hello",
+        "type": true
+      },
+      {
+        "id": 3,
+        "message": "hello",
+        "type": true
+      },
+      {
+        "id": 4,
+        "message": "hello",
+        "type": true
+      },
+      {
+        "id": 5,
+        "message": "hello",
+        "type": true
+      },
+      {
+        "id": 6,
+        "message": "hello",
+        "type": true
+      },
+      {
+        "id": 7,
+        "message": "hello",
+        "type": true
+      },
+      {
+        "id": 8,
+        "message": "hello",
+        "type": true
+      }
+
+
+
+    ],
+    "subheader": [{
+      "name": "Alex",
+      "id": "123 user",
+      "phone_number": "+34698779553"
+    }]
+  },
+  "groupData": {
+    "drivers": [
+      {
+        "id": 1,
+        "name": "Alex",
+        "in_group": false
+      },
+      {
+        "id": 2,
+        "name": "Alex2",
+        "in_group": false
+      }
+    ],
+    "dispatchers": [
+      {
+        "id": 3,
+        "name": "Test",
+        "in_group": false
+      },
+      {
+        "id": 4,
+        "name": "Test2",
+        "in_group": true
+      }
+    ]
+  },
+  "history": {
+    "user": [],
+    "history": [
+      {
+        "id": 0,
+        "number": 1111111
+      },
+      {
+        "id": 1,
+        "number": 22222
+      }
+    ]
+  }
+}
