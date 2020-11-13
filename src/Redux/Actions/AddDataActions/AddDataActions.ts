@@ -59,14 +59,19 @@ export const addNewGroupAction = (name:string) => (dispatch:Function) => {
 type addCallHistoryLinkActionDataType = {
     id:string
     link:string
+    from:string
+    to:string
+    status:string
 }
 
-export const addCallHistoryLinkAction = ({ id, link }:addCallHistoryLinkActionDataType) => {
+export const addCallHistoryLinkAction = ({ id, link,from,to,status }:addCallHistoryLinkActionDataType) => {
     const data = {
         action: 'send_link',
         id,
         link,
-        from: 'admin',
+        from,
+        to,
+        status
     };
     return (dispatch:Function) => {
         Ajax({ data }).then((newData) => {
@@ -74,6 +79,7 @@ export const addCallHistoryLinkAction = ({ id, link }:addCallHistoryLinkActionDa
         });
     };
 };
+
 
 export type addMessageType = {
     type: typeof ADDMESSAGE,

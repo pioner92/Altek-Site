@@ -17,42 +17,50 @@ import {
     GETGROUPS,
     GETMESSAGES,
     GETRESPONSIBLE,
+    ISNEWCALLNOTIFICATION,
     ISNEWMESSAGE,
     RESETSTATISNEWMESSAGE,
     SELECTDRIVER,
     SELECTEDALLDRIVERS,
     SETISFETCHING,
-    WRITETOSTOREACTIVEDISPATCHERS, WRITETOSTOREQUEUESTATUS, WRITETOSTORESELECTEDDISPATCHER, WRITETOSTORESELECTEDDRIVER
+    WRITETOSTOREACTIVEDISPATCHERS,
+    WRITETOSTORECALLNOTIFICATION,
+    WRITETOSTOREQUEUESTATUS,
+    WRITETOSTORESELECTEDDISPATCHER,
+    WRITETOSTORESELECTEDDRIVER
 } from "../Constants/Constant";
 
 import {
-    groupDataType, messagesType, messageSubheaderType,
+    groupDataType,
+    messagesType,
+    messageSubheaderType,
     responseDispatchersDataType,
     responseDriverDataType,
     writeResponsibleDispatcherActionDataType,
     writeToStoreCallHistoryActionDataType,
 } from "../Actions/WriteToStoreActions/WriteToStoreActions";
 import {ImportTypesData} from "./importTypes";
-import Data from '../../data.json'
+import { getCallNotificationResponse} from "../Actions/GetDataActions/GetDataActions";
+
 
 const initialState = {
-    drivers:[] as Array<responseDriverDataType>,
+    drivers: [] as Array<responseDriverDataType>,
     driversPagesCount: [] as string[],
     callHistoryPageCount: [] as Array<number>,
     groups: [],
     dispatchers: [] as Array<responseDispatchersDataType>,
     // dispatchers: Data.dispatchers as Array<responseDispatchersDataType>,
-    selectedDriver:{} as responseDriverDataType,
-    selectedDispatcher:{} as responseDispatchersDataType,
-    activeDispatchers:[] as Array<writeResponsibleDispatcherActionDataType>,
+    selectedDriver: {} as responseDriverDataType,
+    selectedDispatcher: {} as responseDispatchersDataType,
+    activeDispatchers: [] as Array<writeResponsibleDispatcherActionDataType>,
     callHistory: {
         history: [],
         user: [],
-        pages_count:0
+        pages_count: 0
     } as writeToStoreCallHistoryActionDataType,
     deleteItemName: '',
     messages: [] as Array<messagesType>,
-    messagesSubheader: {id:'',name:'',phone_number:''} as messageSubheaderType,
+    messagesSubheader: {id: '', name: '', phone_number: ''} as messageSubheaderType,
     driversList: [] as Array<responseDriverDataType>,
     inputFilterValue: '',
     selectedId: [],
@@ -62,8 +70,10 @@ const initialState = {
     isFetching: false,
     isNewMessage: false,
     isSelectedAll: false,
-    responsibleData:{} as writeResponsibleDispatcherActionDataType,
-    queueStatus:false
+    responsibleData: {} as writeResponsibleDispatcherActionDataType,
+    queueStatus: false,
+    isNewCallNotification: false,
+    callNotificationContent: {content:[],unread_count:0} as getCallNotificationResponse
 }
 
 export type initialStateType = typeof initialState
@@ -71,7 +81,7 @@ export type initialStateType = typeof initialState
 type actionsType = ImportTypesData
 
 
-const Reducer = (state:initialStateType = initialState, action:actionsType) => {
+const Reducer = (state: initialStateType = initialState, action: actionsType) => {
     switch (action.type) {
         // Init
         case  GETDRIVERS :
@@ -89,7 +99,7 @@ const Reducer = (state:initialStateType = initialState, action:actionsType) => {
             return {...state, driversList: [...driverListFilter], inputFilterValue: action.text}
         // Select all drivers
         case SELECTEDALLDRIVERS:
-            let ids:number[] = []
+            let ids: number[] = []
             if (action.isChecked) {
                 state.drivers.forEach((el) => ids.push(el.id))
             }
@@ -105,7 +115,7 @@ const Reducer = (state:initialStateType = initialState, action:actionsType) => {
             let pagesArrCallHistory = Array.from(Array(action.pages_count + 1).keys()).slice(1)
             return {
                 ...state,
-                callHistory: {history: [...action.history], user: [...action.user], pages_count:0},
+                callHistory: {history: [...action.history], user: [...action.user], pages_count: 0},
                 callHistoryPageCount: [...pagesArrCallHistory]
             }
         case GETGROUPS:
@@ -151,14 +161,15 @@ const Reducer = (state:initialStateType = initialState, action:actionsType) => {
         case SETISFETCHING:
             return {...state, isFetching: action.status}
         case ISNEWMESSAGE:
-            console.log(action.status)
-            console.log(action.msg)
             return {...state, isNewMessage: action.status, newMessage: [...action.msg]}
         case DELETECALLHISTORYITEMFROMLIST:
             const newCallHistoryList = [...state.callHistory.history]
             const callHistoryFiltered = newCallHistoryList.filter((el) => el.id !== action.id)
             console.log(callHistoryFiltered)
-            return {...state, callHistory: {user: [...state.callHistory.user], history: [...callHistoryFiltered], pages_count:0}}
+            return {
+                ...state,
+                callHistory: {user: [...state.callHistory.user], history: [...callHistoryFiltered], pages_count: 0}
+            }
         case  RESETSTATISNEWMESSAGE:
             return {...state, isNewMessage: false}
         case CLEARMESSAGESLIST:
@@ -168,15 +179,19 @@ const Reducer = (state:initialStateType = initialState, action:actionsType) => {
         case CLEARFILTERSTATUSDRIVERS:
             return {...state, filterStatusTitle: ''}
         case GETRESPONSIBLE:
-            return {...state,responsibleData: {...action.data}}
+            return {...state, responsibleData: {...action.data}}
         case WRITETOSTOREACTIVEDISPATCHERS:
-            return {...state,activeDispatchers: [...action.data]}
+            return {...state, activeDispatchers: [...action.data]}
         case WRITETOSTORESELECTEDDISPATCHER:
-            return {...state,selectedDispatcher: action.data}
+            return {...state, selectedDispatcher: action.data}
         case WRITETOSTORESELECTEDDRIVER:
-            return {...state,selectedDriver: action.data}
+            return {...state, selectedDriver: action.data}
         case WRITETOSTOREQUEUESTATUS:
-            return {...state,queueStatus: action.status}
+            return {...state, queueStatus: action.status}
+        case ISNEWCALLNOTIFICATION:
+            return {...state, isNewCallNotification: action.status}
+        case WRITETOSTORECALLNOTIFICATION:
+            return {...state, callNotificationContent: action.content}
         default:
             return state
     }

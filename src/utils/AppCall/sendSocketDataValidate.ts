@@ -1,4 +1,4 @@
-import {SendLog} from './SendLog';
+import {SendLog} from './sendLog';
 
 type directionType = 'OUTGOING' | 'INCOMING'
 type parametersType = {

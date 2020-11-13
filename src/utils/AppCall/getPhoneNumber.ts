@@ -1,10 +1,5 @@
-type arrType = {
-    driver_id:number
-    driver_name:string
-    driver_number:string
-    vehicle_id: string
-}
+import {phoneDataType} from "./AppCallTypes";
 
-export const getPhoneNumber = (number:string, arr:Array<arrType>) => {
+export const getPhoneNumber = (number:string, arr:Array<phoneDataType>) => {
     return  arr.find((el)=>el.driver_number === number)
 };

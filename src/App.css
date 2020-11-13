@@ -1541,7 +1541,7 @@ a.header-btn-blue {
     padding: 40px 80px;
 }
 
-.new-sms-modal select,  
+.new-sms-modal select,
 .new-sms-modal input {
     width: 100%;
 }
@@ -1821,8 +1821,23 @@ a.header-btn-blue {
     transform: translateZ(20px) scale(1);
 
 }
-.dispatcher-list-exit-active {
-    transform: translateZ(0px) scale(0);
-    opacity: 0;
-    transition: 200ms ease-in-out;
+.call-notification-exit-active {
+    transform: translateY(0px);
+    transition: 500ms ease-in-out;
+}
+
+.call-notification-enter {
+    transform: translateY(-700px);
+}
+.call-notification-enter-active {
+    transform: translateY(0px);
+    transition: 500ms ease-in-out;
+}
+.call-notification-exit {
+    transform: translateY(0px);
+
+}
+.call-notification-exit-active {
+    transform: translateY(-700px);
+    transition: 500ms ease-in-out;
 }

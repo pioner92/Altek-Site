@@ -1,43 +1,41 @@
-
 // @ts-ignore
 import {CLEARSELECTEDDRIVERS} from "../../Constants/Constant";
 // @ts-ignore
-
 import {Ajax, Fetch} from '../OtherActions';
 // @ts-ignore
-
-import {dataFnGetDrivers, getDispatchersAction, getDriversAction} from "../GetDataActions/GetDataActions";
-import {resolve} from "dns";
+import {getCallNotificationResponse, getDispatchersAction, getDriversAction} from "../GetDataActions/GetDataActions";
 import {Dispatch} from "redux";
-import {writeToStoreSelectedDispatcher} from "../WriteToStoreActions/WriteToStoreActions";
-
+import {
+    writeToStoreIsNewCallNotificationAction,
+    writeToStoreSelectedDispatcher
+} from "../WriteToStoreActions/WriteToStoreActions";
 
 
 type dataGroup = {
-    action:string,
+    action: string,
     group_name: string,
-    dispatchers:string,
-    drivers:string
+    dispatchers: string,
+    drivers: string
 }
 
 type get_data_drivers = {
-    action:string,
-    page?:string
+    action: string,
+    page?: string
 }
 type dataStatus = {
-    action:string,
-    ids:string,
-    page:string,
-    date_sec?:string
-    date_day:string,
-    date_time:string
+    action: string,
+    ids: string,
+    page: string,
+    date_sec?: string
+    date_day: string,
+    date_time: string
 }
 
 export type updateDriverData = {
-    id:number,
-    phone:string,
-    name:string,
-    veh_id:string
+    id: number,
+    phone: string,
+    name: string,
+    veh_id: string
 }
 
 
@@ -46,32 +44,32 @@ export type clearSelectDriversType = {
 }
 
 export type setResponsibleActionDataType = {
-    driver_id:string
-    dispatcher_id:string
+    driver_id: string
+    dispatcher_id: string
 }
 
-export const clearSelectedDrivers = ():clearSelectDriversType=>{
+export const clearSelectedDrivers = (): clearSelectDriversType => {
     return {
         type: CLEARSELECTEDDRIVERS,
     }
 }
 
-export const updateGroupAction = (data:dataGroup) => {
+export const updateGroupAction = (data: dataGroup) => {
     return () => {
         Ajax({data}).then(() => {
         })
     }
 }
 
-export const setDriverStatusAction = (data:dataStatus)=>{
-    return ()=>{
+export const setDriverStatusAction = (data: dataStatus) => {
+    return () => {
         Ajax({data})
-            .then(()=>{
-                let get_data_drivers:get_data_drivers = {
-                    action:'get_drivers'
+            .then(() => {
+                let get_data_drivers: get_data_drivers = {
+                    action: 'get_drivers'
                 }
-                if(data.page){
-                    get_data_drivers['page']=data.page
+                if (data.page) {
+                    get_data_drivers['page'] = data.page
                 }
                 // @ts-ignore
                 Fetch({action: getDriversAction, get_data_drivers})
@@ -80,8 +78,8 @@ export const setDriverStatusAction = (data:dataStatus)=>{
 }
 
 
-export const updateDriverAction = ({id,phone,name,veh_id}:updateDriverData) => {
-    return (dispatch:Function) => {
+export const updateDriverAction = ({id, phone, name, veh_id}: updateDriverData) => {
+    return (dispatch: Function) => {
         const data = {
             action: 'update_driver',
             id,
@@ -90,66 +88,79 @@ export const updateDriverAction = ({id,phone,name,veh_id}:updateDriverData) => {
             veh_id
         }
         Ajax({data})
-            .then((newData:any) => {
+            .then((newData: any) => {
                 dispatch(getDriversAction({}))
             })
     }
 }
 
-export const markAsReadAction = (ids:string[]) => {
-    return (dispatch:Function) => {
+export const markAsReadAction = (ids: string[]) => {
+    return (dispatch: Function) => {
         const data = {
-            action:'mark_read',
+            action: 'mark_read',
             ids
         }
         Ajax({data})
-            .then((newData)=>{
+            .then((newData) => {
                 dispatch(getDriversAction({}))
             })
     }
 }
 
-export const setResponsibleAction= ({driver_id, dispatcher_id}:setResponsibleActionDataType) =>{
-    return (dispatch:Function) => {
+export const setResponsibleAction = ({driver_id, dispatcher_id}: setResponsibleActionDataType) => {
+    return (dispatch: Function) => {
         const data = {
-            action:'set_responsible',
+            action: 'set_responsible',
             driver_id,
             dispatcher_id
         }
         Ajax({data})
-            .then((newData)=>console.log(newData))
+            .then((newData) => console.log(newData))
     }
 }
 
 export type updateDispatcherDataType = {
-    id:number,
-    login:string,
-    name:string,
-    email:string,
-    ext:string
+    id: number,
+    login: string,
+    name: string,
+    email: string,
+    ext: string
 }
 
-export const updateDispatcherAction = ({id,login,name,email,ext}:updateDispatcherDataType) => {
-    return (dispatch:Function) => {
+export const updateDispatcherAction = ({id, login, name, email, ext}: updateDispatcherDataType) => {
+    return (dispatch: Function) => {
         const data = {
-            action:'update_dispatcher',
+            action: 'update_dispatcher',
             id,
             login,
             name,
             email,
             ext,
         }
-        Ajax<{success:boolean}>({data})
+        Ajax<{ success: boolean }>({data})
             .then((data) => {
                 dispatch(getDispatchersAction())
-                dispatch(writeToStoreSelectedDispatcher({id:0,login:'',name:'',phone:'',group:'',email:''}))
+                dispatch(writeToStoreSelectedDispatcher({id: 0, login: '', name: '', phone: '', group: '', email: ''}))
             })
     }
 }
 
+export type updateCallNotificationAction = ({content}:{content?:string}) =>void
 
-export type setResponsibleActionType  = typeof setResponsibleAction
-export type markAsReadActionType  = typeof markAsReadAction
-export type updateDriverActionType  = typeof updateDriverAction
-export type setDriverStatusActionType  = typeof setDriverStatusAction
-export type updateGroupActionType  = typeof updateGroupAction
+export const updateCallNotificationAction = ({content}: { content?: string }) => {
+    return (dispatch: Dispatch) => {
+        const data: { action: string, content?: string } = {
+            action: 'update_notifications'
+        }
+        content && (data.content = content)
+        Ajax<getCallNotificationResponse>({data})
+            .then((res) =>console.log(res))
+    }
+}
+
+
+export type setResponsibleActionType = typeof setResponsibleAction
+export type markAsReadActionType = typeof markAsReadAction
+export type updateDriverActionType = typeof updateDriverAction
+export type setDriverStatusActionType = typeof setDriverStatusAction
+export type updateGroupActionType = typeof updateGroupAction

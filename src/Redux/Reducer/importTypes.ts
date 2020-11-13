@@ -10,12 +10,12 @@ import {
     clearFilterStatusDriversActionType,
     writeResponsibleDispatcherActionType,
     writeToStoreActiveDispatchersActionType,
-    writeToStoreCallHistoryActionType,
+    writeToStoreCallHistoryActionType, writeToStoreCallNotificationActionType,
     writeToStoreDispatchersActionType,
     writeToStoreDriversActionType,
     writeToStoreFilterStatusDriverActionType,
     writeToStoreGroupDataActionType,
-    writeToStoreGroupsActionType,
+    writeToStoreGroupsActionType, writeToStoreIsNewCallNotificationActionType,
     writeToStoreMessagesActionType,
     writeToStoreQueueStatusType,
     writeToStoreSelectedDispatcherType,
@@ -55,4 +55,6 @@ export type ImportTypesData  =  driverFilterActionType
         | writeToStoreSelectedDispatcherType
         | writeToStoreSelectedDriverType
         | writeToStoreQueueStatusType
+        | writeToStoreIsNewCallNotificationActionType
+        | writeToStoreCallNotificationActionType
 

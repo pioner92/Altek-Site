@@ -1,17 +1,19 @@
-import { Dispatch } from 'redux';
+import {Dispatch} from 'redux';
 import {
     writeResponsibleDispatcherAction,
     writeToStoreActiveDispatchersAction,
     writeToStoreCallHistoryAction,
+    writeToStoreCallNotificationAction,
     writeToStoreDispatchersAction,
     writeToStoreDriversAction,
     writeToStoreGroupDataAction,
     writeToStoreGroupsAction,
+    writeToStoreIsNewCallNotificationAction,
     writeToStoreMessagesAction,
 } from '../WriteToStoreActions/WriteToStoreActions';
-import { Ajax, Fetch } from '../OtherActions';
-import { filterActiveDispatcher } from '../../../utils/callQueu/filterActiveDispatchers';
-import { getDispatcherQueue } from '../../../utils/callQueu/getDispatcherQueue';
+import {Ajax, Fetch} from '../OtherActions';
+import {filterActiveDispatcher} from '../../../utils/callQueu/filterActiveDispatchers';
+import {getDispatcherQueue} from '../../../utils/callQueu/getDispatcherQueue';
 
 export type dataFnGetDrivers = {
     n?: string
@@ -63,7 +65,7 @@ type getMessageFnData = {
     date?: string
 }
 
-export const getDriversAction: actionType<dataFnGetDrivers> = ({ n, inputValue, filterStatusTitle }) => {
+export const getDriversAction: actionType<dataFnGetDrivers> = ({n, inputValue, filterStatusTitle}) => {
     const data: dataDrivers = {
         action: 'get_drivers',
     };
@@ -75,24 +77,24 @@ export const getDriversAction: actionType<dataFnGetDrivers> = ({ n, inputValue, 
     }
     if (filterStatusTitle) {
         switch (filterStatusTitle) {
-        case 'is_working':
-            data.is_working = true;
-            break;
-        case 'not_working':
-            data.not_working = true;
-            break;
-        case 'fired':
-            data.fired = true;
-            break;
-        default:
-            break;
+            case 'is_working':
+                data.is_working = true;
+                break;
+            case 'not_working':
+                data.not_working = true;
+                break;
+            case 'fired':
+                data.fired = true;
+                break;
+            default:
+                break;
         }
     }
     console.log(data);
-    return Fetch({ action: writeToStoreDriversAction, data });
+    return Fetch({action: writeToStoreDriversAction, data});
 };
 
-export const getCallHistoryAction: actionType<callHistoryFnData> = ({ id, n, author_id }) => {
+export const getCallHistoryAction: actionType<callHistoryFnData> = ({id, n, author_id}) => {
     const data: historyData = {
         action: 'get_call_history',
     };
@@ -105,33 +107,33 @@ export const getCallHistoryAction: actionType<callHistoryFnData> = ({ id, n, aut
     if (author_id) {
         data.caller = author_id;
     }
-    return Fetch({ action: writeToStoreCallHistoryAction, data });
+    return Fetch({action: writeToStoreCallHistoryAction, data});
 };
 
 export const getGroupsAction: withoutParamsAction = () => {
     const data: groupData = {
         action: 'get_groups',
     };
-    return Fetch({ action: writeToStoreGroupsAction, data });
+    return Fetch({action: writeToStoreGroupsAction, data});
 };
 
 export const getDispatchersAction: withoutParamsAction = () => {
     const data = {
         action: 'get_dispatchers',
     };
-    return Fetch({ action: writeToStoreDispatchersAction, data });
+    return Fetch({action: writeToStoreDispatchersAction, data});
 };
 
-export const getGroupDataAction: actionType<groupDataFnData> = ({ groupName }) => {
+export const getGroupDataAction: actionType<groupDataFnData> = ({groupName}) => {
     const data_group: groupData_Data = {
         action: 'get_group',
         group_name: groupName,
     };
     getDispatchersAction();
-    return Fetch({ action: writeToStoreGroupDataAction, data: data_group });
+    return Fetch({action: writeToStoreGroupDataAction, data: data_group});
 };
 
-export const getMessageAction: actionType<getMessageFnData> = ({ action, id, date }) => {
+export const getMessageAction: actionType<getMessageFnData> = ({action, id, date}) => {
     const data: getMessageFnData = {
         action: 'get_messages',
         id,
@@ -142,7 +144,7 @@ export const getMessageAction: actionType<getMessageFnData> = ({ action, id, dat
     if (date) {
         data.date = date;
     }
-    return Fetch({ action: writeToStoreMessagesAction, data });
+    return Fetch({action: writeToStoreMessagesAction, data});
 };
 
 export const getResponsibleAction = (id: string) => {
@@ -151,14 +153,14 @@ export const getResponsibleAction = (id: string) => {
         driver_id: id,
         // driver_phone: "+15703144444"
     };
-    return Fetch({ action: writeResponsibleDispatcherAction, data });
+    return Fetch({action: writeResponsibleDispatcherAction, data});
 };
 
 export const getActiveDispatchersAction = (company_name: string) => (dispatch: Dispatch) => {
     const data = {
         action: 'get_dispatchers',
     };
-    Ajax({ data }).then((result: any) => {
+    Ajax({data}).then((result: any) => {
         getDispatcherQueue(company_name)
             .then((data) => {
                 const dispatchersArr = filterActiveDispatcher(result, data);
@@ -167,6 +169,28 @@ export const getActiveDispatchersAction = (company_name: string) => (dispatch: D
             });
     });
 };
+
+export type getCallNotificationContent = Array<{ id: number, text: string,read:'0'| '1',date:string }>
+
+export type getCallNotificationResponse = {
+    content: getCallNotificationContent
+    unread_count:number
+}
+
+export const getCallNotificationAction = () => {
+    return (dispatch: Dispatch) => {
+        const data = {
+            action: 'get_notifications'
+        }
+        Ajax<getCallNotificationResponse>({data})
+            .then((result) => {
+                if (result.unread_count>0) {
+                    dispatch(writeToStoreIsNewCallNotificationAction(true))
+                }
+                dispatch(writeToStoreCallNotificationAction(result))
+            })
+    }
+}
 
 export type getDriversActionType = typeof getDriversAction
 export type getCallHistoryActionType = typeof getCallHistoryAction

@@ -2,7 +2,6 @@ import React, {useEffect} from 'react';
 import CallHistorySubheader from "./CallHistroySubheader/CallHistorySubheader";
 import CallHistoryItem from "./CallHistoryItem/CallHistoryItem";
 import CallHistorySubhead from "./CallHistroySubhead/CallHistorySubhead";
-import Data from '../../data.json'
 import Pagination from "../Pagination/Pagination";
 import Preloader from "../../static/Preloader/Spinner-1s-200px.gif";
 import {connectorType} from "./CallHistoryContainer";
@@ -27,14 +26,21 @@ const CallHistory: React.FC<connectorType> = (
 
     useEffect(() => {
         getCallHistoryAction({id, n})
+        fetch('')
         //--DevMod
-        // writeToStoreCallHistoryAction({pages_count:0,user:['12'],
-        //     history:[{link:'http://',
-        //         date:'25 September 2020 10:46',
-        //         number:'+15703144444',
-        //         id:12,
-        //         author:'Alex'}]})
-        //--
+        // writeToStoreCallHistoryAction({
+        //     pages_count: 0, user: ['12'],
+        //     history: [
+        //         {
+        //             link: 'http://',
+        //             date: '25 September 2020 10:46',
+        //             from: '+15703144444',
+        //             status: 'Busy',
+        //             id: 12,
+        //             to: '888'
+        //         }]
+        // })
+        // --
     }, [])
 
     useEffect(() => {

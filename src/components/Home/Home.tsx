@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { HomeContentContainer } from './HomeContent/HomeContentContainer';
 import Data from '../../data.json';
 import {connectorType} from "./HomeContainer";
-import {inspect} from "util";
 import {devMode} from "../../utils/devMode";
 
 export type ownPropsType = {

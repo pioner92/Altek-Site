@@ -4,17 +4,20 @@ import { IsAdmin } from "../../Validate/isAdmin";
 const CallHistorySubheader = () => (
     <div className="row container-wrap hide-on-medium-and-down table-head"
          style={{ paddingRight: '40px' }}>
-        <div className="header col-1"/>
+        {/*<div className="header col-1"/>*/}
         <div className="header col-3">
             Date
         </div>
         <IsAdmin flag={true}>
             <div className="header col-2">
-                Number
+                From
             </div>
         </IsAdmin>
         <div className="header col-2">
-            Dispatcher
+            To
+        </div>
+        <div className="header col-2">
+            Status
         </div>
         <div className="header col-3">
             Result

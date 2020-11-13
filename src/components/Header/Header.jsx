@@ -1,13 +1,27 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, {useEffect, useRef, useState} from 'react';
+import {Link} from 'react-router-dom';
 import searchIcon from '../../static/icons/search.svg';
+import notificationSvg from '../../static/icons/notifications.svg'
+import notificationSvgActive from '../../static/icons/notifications_active.svg'
+import {CallNotification} from "../Modals/CallNotification/CallNotification";
+import {IsAdmin} from "../Validate/isAdmin";
+import {Checkbox} from "antd";
+import {CallNotificationContainer} from "../Modals/CallNotification/CallNotificationContainer";
+
+
 
 const Header = (props) => {
+
     const [inputValue, setInputValue] = useState('');
-    const inputSelectAll = useRef();
+    const [isVisible, setIsVisible] = useState(false)
+
+
+    const inputSelectAll = useRef(null);
+
     const {
         driverFilterAction, selectDriversAllAction, inputFilterValue,
-        setIsVisibleNewSmsModal, selectedId, getDriversAction, isSelectedAll,
+        setIsVisibleNewSmsModal, selectedId, getDriversAction, isSelectedAll,isNewCallNotification,writeToStoreIsNewCallNotificationAction,
+        updateCallNotificationAction
     } = props;
 
     const onSelectAll = () => {
@@ -24,7 +38,7 @@ const Header = (props) => {
     };
     const onKeyDown = (e) => {
         if (e.keyCode === 13) {
-            getDriversAction({ inputValue });
+            getDriversAction({inputValue});
         }
     };
 
@@ -35,6 +49,16 @@ const Header = (props) => {
             alert('No selected drivers');
         }
     };
+
+    const openCallNotificationModal = () => {
+        setIsVisible(true)
+        writeToStoreIsNewCallNotificationAction(false)
+        updateCallNotificationAction({})
+    }
+    const closeCallNotificationModal = () => {
+        setIsVisible(false)
+    }
+
     useEffect(() => () => {
         setInputValue('');
         driverFilterAction('');
@@ -45,7 +69,7 @@ const Header = (props) => {
             <div className="row col-12 col-md-9 d-flex align-items-center">
                 <div className="checkbox-wrapper col-lg-2 col-md-3 col-12 checkbox_all">
                     <label className="b-contain">
-                        <span style={{ fontWeight: 500 }}>Select all</span>
+                        <span style={{fontWeight: 500}}>Select all</span>
                         <input checked={isSelectedAll} ref={inputSelectAll} onChange={onSelectAll} type="checkbox"/>
                         <div className="b-input"/>
                     </label>
@@ -69,13 +93,19 @@ const Header = (props) => {
                 </div>
             </div>
             <div className="settings-button-wrapper col-md-3 col-12">
-                <Link className="col-12" to='/settings/main'>
-                    <div id="header-settings-button">
+                <div className="col-12 d-flex" style={{alignItem: 'center'}}>
+                    <Link to='/settings/main' id="header-settings-button">
                         Settings
-                    </div>
-                </Link>
-
+                    </Link>
+                    <IsAdmin flag={true}>
+                    <img onClick={openCallNotificationModal} style={{cursor: 'pointer'}} className='col-3'
+                         src={isNewCallNotification?notificationSvgActive:notificationSvg}/>
+                    </IsAdmin>
+                </div>
             </div>
+            <CallNotificationContainer
+                isVisible={isVisible}
+                closeModal={closeCallNotificationModal}/>
         </div>
     );
 };

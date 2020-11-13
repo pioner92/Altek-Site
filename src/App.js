@@ -15,7 +15,8 @@ import { HeaderOtherContainer } from './components/Header/HeaderOtherContainer';
 import CellPhoneContainer from './components/CellPhone/CellPhoneContainer';
 
 function App({
-    checkSmsAction, isNewMessage, newMessageAction, addCallHistoryLinkAction,queueStatus
+    checkSmsAction, isNewMessage, newMessageAction, addCallHistoryLinkAction,queueStatus,writeToStoreIsNewCallNotificationAction,
+                 updateCallNotificationAction,getCallNotificationAction
 }) {
     //------
     const [isVisibleNewGroupModal, setIsVisibleNewGroupModal] = useState(false);
@@ -124,6 +125,9 @@ function App({
                                 <Route path='/callhistory/:id' exact
                                     component={CallHistoryContainer}/>
                                 <CellPhoneContainer
+                                    getCallNotificationAction={getCallNotificationAction}
+                                    updateCallNotificationAction={updateCallNotificationAction}
+                                    writeToStoreIsNewCallNotificationAction={writeToStoreIsNewCallNotificationAction}
                                     queueStatus={queueStatus}
                                     ref={cellPhoneRef}
                                     addCallHistoryLinkAction={addCallHistoryLinkAction}/>

@@ -7,12 +7,13 @@ import {
     GETGROUPDATA,
     GETGROUPS,
     GETMESSAGES,
-    GETRESPONSIBLE,
-    WRITETOSTOREACTIVEDISPATCHERS,
+    GETRESPONSIBLE, ISNEWCALLNOTIFICATION,
+    WRITETOSTOREACTIVEDISPATCHERS, WRITETOSTORECALLNOTIFICATION,
     WRITETOSTOREQUEUESTATUS,
     WRITETOSTORESELECTEDDISPATCHER,
     WRITETOSTORESELECTEDDRIVER,
 } from '../../Constants/Constant';
+import {getCallNotificationContent, getCallNotificationResponse} from "../GetDataActions/GetDataActions";
 
 export type responseDriverDataType = {
     all_read: string
@@ -54,7 +55,7 @@ export const writeToStoreDriversAction = ({ result, pages_count }: writeToStoreD
 };
 
 export type writeToStoreCallHistoryActionDataType = {
-    history: Array<{ link: string, date: string, number: string, id: number, author: string }>
+    history: Array<{ link: string, date: string, from: string, id: number, to: string, status:string }>
     user: string[]
     pages_count: number
 }
@@ -243,3 +244,22 @@ export const writeToStoreQueueStatusAction = (status: boolean): writeToStoreQueu
     type: WRITETOSTOREQUEUESTATUS,
     status,
 });
+
+export type writeToStoreIsNewCallNotificationActionType = {
+    type:typeof ISNEWCALLNOTIFICATION,
+    status:boolean
+}
+
+export const writeToStoreIsNewCallNotificationAction = (status:boolean) => ({
+    type:ISNEWCALLNOTIFICATION,
+    status
+})
+
+export type writeToStoreCallNotificationActionType = {
+    type:typeof WRITETOSTORECALLNOTIFICATION
+    content:getCallNotificationResponse
+}
+export const writeToStoreCallNotificationAction = (content:getCallNotificationResponse) => ({
+    type:WRITETOSTORECALLNOTIFICATION,
+    content
+})

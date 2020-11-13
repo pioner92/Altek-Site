@@ -7,9 +7,9 @@ import { connectorType } from './CellPhoneConnectContainer';
 import transfer_svg from '../../static/icons/transfer-call.svg';
 // @ts-ignore
 import { IsAdmin } from '../Validate/isAdmin';
-import { connectGuard } from './CellPhoneContainer';
 import { getDispatcherQueue } from '../../utils/callQueu/getDispatcherQueue';
 import { filterActiveDispatcher } from '../../utils/callQueu/filterActiveDispatchers';
+import {connectGuard} from "../../utils/AppCall/connectGuard";
 
 export type ownPropsType = {
     cellPhoneInput: string,
@@ -22,7 +22,7 @@ export type ownPropsType = {
     onClickHandler: Function
     onChangeHandler: Function
     transferFn: Function
-    connect: Connection
+    connect: Connection | null
 }
 
 const CellPhone: React.FC<connectorType> = ({
@@ -34,6 +34,7 @@ const CellPhone: React.FC<connectorType> = ({
 }) => {
     const [isVisibleList, setIsVisibleList] = useState(false);
     const refTransferBtn = useRef<HTMLDivElement>(null);
+
     const onClick = (e: React.MouseEvent<HTMLElement>) => {
         onClickHandler(e);
     };
@@ -47,7 +48,7 @@ const CellPhone: React.FC<connectorType> = ({
     const onOpenList = () => {
         // @ts-ignore
         refTransferBtn.current!.style.backgroundColor = '#85B4E7';
-        if (connectGuard(connect)) {
+        if (connectGuard(connect,'open')) {
             // @ts-ignore
             !window.is_admin && setIsVisibleList(true);
         }
