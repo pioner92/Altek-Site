@@ -37,6 +37,7 @@ type callHistoryFnData = {
     id?: string
     n?: string
     author_id?: string
+    author?:'self'
 }
 
 type historyData = {
@@ -44,6 +45,7 @@ type historyData = {
     id?: string
     page?: string
     caller?: string
+    author?:'self'
 }
 
 type groupData = {
@@ -94,7 +96,7 @@ export const getDriversAction: actionType<dataFnGetDrivers> = ({n, inputValue, f
     return Fetch({action: writeToStoreDriversAction, data});
 };
 
-export const getCallHistoryAction: actionType<callHistoryFnData> = ({id, n, author_id}) => {
+export const getCallHistoryAction: actionType<callHistoryFnData> = ({id, n, author_id,author}) => {
     const data: historyData = {
         action: 'get_call_history',
     };
@@ -106,6 +108,9 @@ export const getCallHistoryAction: actionType<callHistoryFnData> = ({id, n, auth
     }
     if (author_id) {
         data.caller = author_id;
+    }
+    if(author){
+        data.author = author
     }
     return Fetch({action: writeToStoreCallHistoryAction, data});
 };

@@ -1,23 +1,24 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import './App.css';
-import { Route } from 'react-router-dom';
+import {Route} from 'react-router-dom';
 import Settings from './components/Settings/Settings';
-import { Context } from './components/Context/Context';
+import {Context} from './components/Context/Context';
 import {HomeContainer} from './components/Home/HomeContainer';
-import { HeaderContainer } from './components/Header/HeaderContainer';
+import {HeaderContainer} from './components/Header/HeaderContainer';
 import SettingsSubheader from './components/Settings/SettingsSubheader';
-import { HomeSubheaderContainer } from './components/Home/HomeSubheader/HomeSubheaderContainer';
-import { MessengerContainer } from './components/Messenger/MessengerContainer';
-import { MessengerSubheaderContainer } from './components/Messenger/MessengerSubheader/MessengerSubheaderContainer';
-import { CallHistoryContainer } from './components/CallHistory/CallHistoryContainer';
+import {HomeSubheaderContainer} from './components/Home/HomeSubheader/HomeSubheaderContainer';
+import {MessengerContainer} from './components/Messenger/MessengerContainer';
+import {MessengerSubheaderContainer} from './components/Messenger/MessengerSubheader/MessengerSubheaderContainer';
+import {CallHistoryContainer} from './components/CallHistory/CallHistoryContainer';
 import Modals from './components/Modals/Modals';
-import { HeaderOtherContainer } from './components/Header/HeaderOtherContainer';
+import {HeaderOtherContainer} from './components/Header/HeaderOtherContainer';
 import CellPhoneContainer from './components/CellPhone/CellPhoneContainer';
+import {setClasses} from "./utils/setClasses/setClasses";
 
 function App({
-    checkSmsAction, isNewMessage, newMessageAction, addCallHistoryLinkAction,queueStatus,writeToStoreIsNewCallNotificationAction,
-                 updateCallNotificationAction,getCallNotificationAction
-}) {
+                 checkSmsAction, isNewMessage, newMessageAction, addCallHistoryLinkAction, queueStatus, writeToStoreIsNewCallNotificationAction,
+                 updateCallNotificationAction, getCallNotificationAction
+             }) {
     //------
     const [isVisibleNewGroupModal, setIsVisibleNewGroupModal] = useState(false);
     const [isVisibleDeleteGroupModal, setIsVisibleDeleteGroupModal] = useState(false);
@@ -57,6 +58,10 @@ function App({
             clearInterval(interval);
         };
     }, []);
+
+    useEffect(() => {
+        setClasses()
+    }, [])
 
     return (
         <Context.Provider value={{
@@ -106,12 +111,12 @@ function App({
                             <Route path={['/', '/page/:n?']} exact render={() => <HeaderContainer
                                 setIsVisibleNewSmsModal={setIsVisibleNewSmsModal}/>}/>
                             <Route path={['/settings/:s', '/messenger/:id', '/callhistory/:id?']}
-                                component={HeaderOtherContainer}/>
+                                   component={HeaderOtherContainer}/>
                             {/* //-- Subheader */}
                             <Route path='/messenger/:id/:action?' exact component={MessengerSubheaderContainer}/>
                             <Route path={['/settings/:name?/:page?/:n?']} exact render={() => <SettingsSubheader/>}/>
                             <Route path={['/', '/page/:n?']} exact
-                                render={(props) => <HomeSubheaderContainer {...props}/>}/>
+                                   render={(props) => <HomeSubheaderContainer {...props}/>}/>
                             {/* //-- Content */}
                             <div className='row main'>
                                 <Route path={['/', '/page/:n?']} exact render={(props) => <HomeContainer
@@ -120,10 +125,10 @@ function App({
                                 />
                                 <Route path='/settings' render={() => <Settings/>}/>
                                 <Route path='/messenger/:id?/:action?' exact
-                                    render={(props) => <MessengerContainer
-                                        setDriverId={setDriverId} {...props}/>}/>
+                                       render={(props) => <MessengerContainer
+                                           setDriverId={setDriverId} {...props}/>}/>
                                 <Route path='/callhistory/:id' exact
-                                    component={CallHistoryContainer}/>
+                                       component={CallHistoryContainer}/>
                                 <CellPhoneContainer
                                     getCallNotificationAction={getCallNotificationAction}
                                     updateCallNotificationAction={updateCallNotificationAction}

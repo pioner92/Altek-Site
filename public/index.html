@@ -51,31 +51,31 @@
 <body>
   <noscript>You need to enable JavaScript to run this app.</noscript>
   <div id="root"></div>
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      var elements = [
-        document.querySelector('#root'),
-        document.querySelector('html'),
-        document.querySelector('body'),
-        document.querySelector('.App'),
-        document.querySelector('.page'),
-        document.querySelector('.page-wrapper'),
-        document.querySelector('.container')
-      ];
+<!--  <script>-->
+<!--    document.addEventListener('DOMContentLoaded', function () {-->
+<!--      var elements = [-->
+<!--        document.querySelector('#root'),-->
+<!--        document.querySelector('html'),-->
+<!--        document.querySelector('body'),-->
+<!--        document.querySelector('.App'),-->
+<!--        document.querySelector('.page'),-->
+<!--        document.querySelector('.page-wrapper'),-->
+<!--        document.querySelector('.container')-->
+<!--      ];-->
 
-      if (window.innerHeight <= elements[1].offsetHeight) {
-        elements.forEach(function (el) {
-          el.classList.remove("h-mh-100");
-        })
-      } else {
-        elements.forEach(function (el) {
-          el.classList.add("h-mh-100");
-        })
-      }
+<!--      if (window.innerHeight <= elements[1].offsetHeight) {-->
+<!--        elements.forEach(function (el) {-->
+<!--          el.classList.remove("h-mh-100");-->
+<!--        })-->
+<!--      } else {-->
+<!--        elements.forEach(function (el) {-->
+<!--          el.classList.add("h-mh-100");-->
+<!--        })-->
+<!--      }-->
 
-      delete elements;
-    }, false);
-  </script>
+<!--      delete elements;-->
+<!--    }, false);-->
+<!--  </script>-->
 </body>
 
 </html>

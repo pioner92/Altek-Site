@@ -3,24 +3,22 @@ import {Link} from 'react-router-dom';
 import searchIcon from '../../static/icons/search.svg';
 import notificationSvg from '../../static/icons/notifications.svg'
 import notificationSvgActive from '../../static/icons/notifications_active.svg'
-import {CallNotification} from "../Modals/CallNotification/CallNotification";
 import {IsAdmin} from "../Validate/isAdmin";
-import {Checkbox} from "antd";
 import {CallNotificationContainer} from "../Modals/CallNotification/CallNotificationContainer";
-
 
 
 const Header = (props) => {
 
     const [inputValue, setInputValue] = useState('');
     const [isVisible, setIsVisible] = useState(false)
+    const [companyData,setCompanyData] = useState()
 
 
     const inputSelectAll = useRef(null);
 
     const {
         driverFilterAction, selectDriversAllAction, inputFilterValue,
-        setIsVisibleNewSmsModal, selectedId, getDriversAction, isSelectedAll,isNewCallNotification,writeToStoreIsNewCallNotificationAction,
+        setIsVisibleNewSmsModal, selectedId, getDriversAction, isSelectedAll, isNewCallNotification, writeToStoreIsNewCallNotificationAction,
         updateCallNotificationAction
     } = props;
 
@@ -62,7 +60,19 @@ const Header = (props) => {
     useEffect(() => () => {
         setInputValue('');
         driverFilterAction('');
+
     }, []);
+
+    useEffect(()=>{
+        fetch('http://localhost:8082/get_company_data/cnu')
+            .then((res)=>res.json())
+            .then((data)=>{
+                setCompanyData(data)
+                console.log('DATAAAAAAAAA')
+                console.log(data.company.voice_assistant_number)
+            })
+    },[])
+
 
     return (
         <div className="page-header row container-wrap d-flex row">
@@ -94,12 +104,17 @@ const Header = (props) => {
             </div>
             <div className="settings-button-wrapper col-md-3 col-12">
                 <div className="col-12 d-flex" style={{alignItem: 'center'}}>
+                    <div style={{width:300,display:'flex',justifyContent:'space-between'}}>
+                        <span>{`tel: ${companyData?.company?.voice_assistant_number}`}</span>
+                        <span>{`ext: ${window.number}`}</span>
+                        <span>{`fax: ${companyData?.company?.fax}`}</span>
+                    </div>
                     <Link to='/settings/main' id="header-settings-button">
                         Settings
                     </Link>
                     <IsAdmin flag={true}>
-                    <img onClick={openCallNotificationModal} style={{cursor: 'pointer'}} className='col-3'
-                         src={isNewCallNotification?notificationSvgActive:notificationSvg}/>
+                        <img onClick={openCallNotificationModal} style={{cursor: 'pointer'}} className='col-3'
+                             src={isNewCallNotification ? notificationSvgActive : notificationSvg}/>
                     </IsAdmin>
                 </div>
             </div>

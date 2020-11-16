@@ -25,8 +25,8 @@ const CallHistory: React.FC<connectorType> = (
 
 
     useEffect(() => {
-        getCallHistoryAction({id, n})
-        fetch('')
+        //@ts-ignore
+        getCallHistoryAction({id, n,author:window.is_admin?undefined:'self'})
         //--DevMod
         // writeToStoreCallHistoryAction({
         //     pages_count: 0, user: ['12'],
