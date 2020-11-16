@@ -102,7 +102,7 @@ const Header = (props) => {
             <div className="settings-button-wrapper col-md-5 col-12">
                 <div className="col-12 d-flex justify-content-end align-items-center" style={{alignItem: 'center', padding: 0}}>
                     <div className="tel-info">
-                        <p>{`tel: ${companyData?.company?.hidden_number}`}</p>
+                        <p>{`tel: ${companyData?.company?.voice_assistant_number}`}</p>
                         <p>{`fax: ${companyData?.company?.fax}`}</p>
                         <p>{`ext: ${window.number}`}</p>
                     </div>
