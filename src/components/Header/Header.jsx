@@ -104,11 +104,11 @@ const Header = (props) => {
             </div>
             <div className="settings-button-wrapper col-md-3 col-12">
                 <div className="col-12 d-flex" style={{alignItem: 'center'}}>
-                    <div style={{width:300,display:'flex',justifyContent:'space-between'}}>
-                        <span>{`tel: ${companyData?.company?.voice_assistant_number}`}</span>
-                        <span>{`ext: ${window.number}`}</span>
-                        <span>{`fax: ${companyData?.company?.fax}`}</span>
-                    </div>
+                    {/*<div style={{width:300,display:'flex',justifyContent:'space-between'}}>*/}
+                    {/*    <span>{`tel: ${companyData?.company?.voice_assistant_number}`}</span>*/}
+                    {/*    <span>{`ext: ${window.number}`}</span>*/}
+                    {/*    <span>{`fax: ${companyData?.company?.fax}`}</span>*/}
+                    {/*</div>*/}
                     <Link to='/settings/main' id="header-settings-button">
                         Settings
                     </Link>

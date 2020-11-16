@@ -56,7 +56,7 @@ const initialState = {
     callHistory: {
         history: [],
         user: [],
-        pages_count: 0
+        pages_count: 1
     } as writeToStoreCallHistoryActionDataType,
     deleteItemName: '',
     messages: [] as Array<messagesType>,
@@ -115,7 +115,7 @@ const Reducer = (state: initialStateType = initialState, action: actionsType) =>
             let pagesArrCallHistory = Array.from(Array(action.pages_count + 1).keys()).slice(1)
             return {
                 ...state,
-                callHistory: {history: [...action.history], user: [...action.user], pages_count: 0},
+                callHistory: {history: [...action.history], user: [...action.user], pages_count: action.pages_count},
                 callHistoryPageCount: [...pagesArrCallHistory]
             }
         case GETGROUPS:
