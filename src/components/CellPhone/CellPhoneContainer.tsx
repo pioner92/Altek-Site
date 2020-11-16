@@ -1,16 +1,16 @@
 import React, {forwardRef, useEffect, useImperativeHandle, useState,} from 'react';
 import socketClient from 'socket.io-client';
-import {AppCallFn} from '../../utils/AppCall/AppCall';
+import {AppCallFn} from '../../utils/appCall/AppCall';
 import Data from '../../data.json';
 import {CellPhoneConnectContainer} from './CellPhoneConnectContainer';
 import {Connection} from "twilio-client";
-import {phoneDataType} from "../../utils/AppCall/AppCallTypes";
-import { useRecordingLink} from "../../utils/AppCall/Hooks/useMessageLink";
-import {useAcceptAnimate} from "../../utils/AppCall/Hooks/useAcceptAnimate";
-import {useConnect} from "../../utils/AppCall/Hooks/useConnect";
-import {transferHandler} from "../../utils/AppCall/Handlers/Transfer/transferHandler";
-import {incomingHandlerFunction} from "../../utils/AppCall/Handlers/Incoming/incomingHandler";
-import {connectGuard} from "../../utils/AppCall/connectGuard";
+import {phoneDataType} from "../../utils/appCall/AppCallTypes";
+import { useRecordingLink} from "../../utils/appCall/hooks/useMessageLink";
+import {useAcceptAnimate} from "../../utils/appCall/hooks/useAcceptAnimate";
+import {useConnect} from "../../utils/appCall/hooks/useConnect";
+import {transferHandler} from "../../utils/appCall/handlers/transfer/transferHandler";
+import {incomingHandlerFunction} from "../../utils/appCall/handlers/incoming/incomingHandler";
+import {connectGuard} from "../../utils/appCall/connectGuard";
 import {updateCallNotificationAction} from "../../Redux/Actions/UpdateDateActions/UpdateDataActions";
 
 const socket = socketClient(Data.url);
@@ -149,7 +149,7 @@ const CellPhoneContainer: React.FC<propsType> = forwardRef(({
         if (e.target.className === 'number') {
             //@ts-ignore
             const number = e.target.dataset.value;
-            // AppCall.sendNumber(number)
+            // appCall.sendNumber(number)
             AppCall.sendNumber(number)
             if (connectGuard(connect,'open')) {
                 connect?.sendDigits(number)

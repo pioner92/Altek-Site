@@ -2,7 +2,12 @@ import React from 'react';
 import closeIcon from "../../static/icons/close.svg";
 import {Link} from "react-router-dom";
 
-const NotificationNewSms = ({close,newMessage}) => {
+type propsType = {
+    close:()=>void
+    newMessage:Array<{react_link:string}>
+}
+
+export const NotificationNewSms:React.FC<propsType> = React.memo( ({close,newMessage}) => {
     const message_link = newMessage[0]?.react_link
     return (
         <div className="sms-notification">
@@ -19,6 +24,4 @@ const NotificationNewSms = ({close,newMessage}) => {
             </div>
         </div>
     );
-};
-
-export default React.memo(NotificationNewSms, ((prevProps, nextProps) => prevProps.newMessage === nextProps.newMessage));
+});

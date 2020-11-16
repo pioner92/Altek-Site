@@ -5,7 +5,6 @@ import CloseSvg from '../../../static/icons/closeDark.svg'
 import {connectorType} from "./CallNotificationContainer";
 
 export type propsType = {
-    openModal: () => void
     closeModal: () => void
     isVisible: boolean
 }

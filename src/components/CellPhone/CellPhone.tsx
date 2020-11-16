@@ -7,7 +7,7 @@ import {connectorType} from './CellPhoneConnectContainer';
 import transfer_svg from '../../static/icons/transfer-call.svg';
 // @ts-ignore
 import {IsAdmin} from '../Validate/isAdmin';
-import {connectGuard} from "../../utils/AppCall/connectGuard";
+import {connectGuard} from "../../utils/appCall/connectGuard";
 import {useGetQueue} from "../../utils/hooks/useGetQueue";
 import {getCompanyName} from "../../utils/getCompanyName";
 

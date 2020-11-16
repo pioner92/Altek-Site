@@ -24,7 +24,7 @@ const incomingSetStatus = ({from, isAdmin}: { from: string | undefined, isAdmin?
     if ((isAdmin === undefined || isAdmin) && from) {
         return `Incoming call from: ${from}`
     } else {
-        return 'Incoming call...'
+        return 'incoming call...'
     }
 }
 

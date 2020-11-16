@@ -1,11 +1,19 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import styled from 'styled-components';
 import iconBack from '../../static/icons/back.svg';
 import logoutIcon from '../../static/icons/logout.svg';
 import logout from '../../utils/logout';
 
-const SettingsSubheader = () => {
+
+declare const window: {
+    is_admin: boolean
+    history: {
+        back: Function
+    }
+}
+
+export const SettingsSubheader = () => {
     const onClickBack = () => {
         window.history.back();
     };
@@ -16,7 +24,7 @@ const SettingsSubheader = () => {
                 <div className="col-9 row align-items-center justify-content-between container-wrap-left">
                     <div className="row col-8 align-items-center">
                         <div className="header col-2 row">
-                            <div onClick={onClickBack} className='back-btn' style={{ marginLeft: '4px' }}>
+                            <div onClick={onClickBack} className='back-btn' style={{marginLeft: '4px'}}>
                                 <img
                                     src={iconBack}/> Back
                             </div>
@@ -26,7 +34,7 @@ const SettingsSubheader = () => {
                                 <div className="header col-3 row">
                                     <div id="add-group-btn">
                                         <Link className="header-btn header-round-btn"
-                                            to='/settings/groups'><span>Add Groups</span></Link>
+                                              to='/settings/groups'><span>Add Groups</span></Link>
                                     </div>
                                 </div>
                                 <div className="header col-3 row">
@@ -72,5 +80,3 @@ const Image = styled.img`
 const LogOut = () => (
     <Image onClick={logout} src={logoutIcon} alt=""/>
 );
-
-export default SettingsSubheader;

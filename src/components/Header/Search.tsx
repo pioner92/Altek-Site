@@ -1,8 +1,15 @@
 import React, { useEffect } from 'react';
 import searchIcon from '../../static/icons/search.svg';
+import {connectorType} from "./SearchContainer";
 
-const Search = ({
-    onKeyDown, onChangeFilterInput, inputFilterValue, driverFilterAction,
+export type ownerType = {
+    onKeyDown:(e:React.KeyboardEvent)=>void
+    onChangeFilterInput:(e:React.ChangeEvent<HTMLInputElement>)=>void
+    inputFilterValue:string
+}
+
+const Search:React.FC<connectorType> = ({
+    onKeyDown, onChange, inputValue, driverFilterAction,
 }) => {
     useEffect(() => () => {
         driverFilterAction('');
@@ -15,8 +22,8 @@ const Search = ({
                 </div>
                 <input
                     onKeyDown={onKeyDown}
-                    onChange={onChangeFilterInput}
-                    value={inputFilterValue}
+                    onChange={onChange}
+                    value={inputValue}
                     type="text"
                     id="header-search-input"
                     placeholder="Search"/>

@@ -5,7 +5,7 @@ import Settings from './components/Settings/Settings';
 import {Context} from './components/Context/Context';
 import {HomeContainer} from './components/Home/HomeContainer';
 import {HeaderContainer} from './components/Header/HeaderContainer';
-import SettingsSubheader from './components/Settings/SettingsSubheader';
+import {SettingsSubheader} from './components/Settings/SettingsSubheader';
 import {HomeSubheaderContainer} from './components/Home/HomeSubheader/HomeSubheaderContainer';
 import {MessengerContainer} from './components/Messenger/MessengerContainer';
 import {MessengerSubheaderContainer} from './components/Messenger/MessengerSubheader/MessengerSubheaderContainer';

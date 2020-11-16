@@ -1,6 +1,6 @@
 import {Connection, Device} from "twilio-client";
-import {AppCallEvents} from "./AppCallEvents";
 import {booleanCallback, callback, connectCallback, DeviceType, phoneDataType,} from "./AppCallTypes";
+import {AppCallEvents} from "./AppCallEvents";
 import {connectGuard} from "./connectGuard";
 
 declare const window: {

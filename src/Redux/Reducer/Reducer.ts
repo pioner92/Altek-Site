@@ -40,7 +40,7 @@ import {
     writeToStoreCallHistoryActionDataType,
 } from "../Actions/WriteToStoreActions/WriteToStoreActions";
 import {ImportTypesData} from "./importTypes";
-import { getCallNotificationResponse} from "../Actions/GetDataActions/GetDataActions";
+import {getCallNotificationResponse} from "../Actions/GetDataActions/GetDataActions";
 
 
 const initialState = {
@@ -73,7 +73,7 @@ const initialState = {
     responsibleData: {} as writeResponsibleDispatcherActionDataType,
     queueStatus: false,
     isNewCallNotification: false,
-    callNotificationContent: {content:[],unread_count:0} as getCallNotificationResponse
+    callNotificationContent: {content: [], unread_count: 0} as getCallNotificationResponse
 }
 
 export type initialStateType = typeof initialState
@@ -83,7 +83,6 @@ type actionsType = ImportTypesData
 
 const Reducer = (state: initialStateType = initialState, action: actionsType) => {
     switch (action.type) {
-        // Init
         case  GETDRIVERS :
             let pagesArrDrivers = Array.from(Array(action.pages_count + 1).keys()).slice(1)
             return {
@@ -124,7 +123,6 @@ const Reducer = (state: initialStateType = initialState, action: actionsType) =>
             return {...state, dispatchers: [...action.dispatchers]}
         case GETMESSAGES:
             return {...state, messages: [...action.messages], messagesSubheader: {...action.subheader}}
-        // return {...state, messages: [...action.messages]}
         case DELETEITEMNAME:
             return {...state, deleteItemName: action.value}
         case CLEARDRIVERFROMDRIVERLIST:
@@ -165,7 +163,6 @@ const Reducer = (state: initialStateType = initialState, action: actionsType) =>
         case DELETECALLHISTORYITEMFROMLIST:
             const newCallHistoryList = [...state.callHistory.history]
             const callHistoryFiltered = newCallHistoryList.filter((el) => el.id !== action.id)
-            console.log(callHistoryFiltered)
             return {
                 ...state,
                 callHistory: {user: [...state.callHistory.user], history: [...callHistoryFiltered], pages_count: 0}

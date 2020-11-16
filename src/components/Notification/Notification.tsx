@@ -1,10 +1,13 @@
 import React, { useContext, useEffect } from 'react';
 import { CSSTransition } from 'react-transition-group';
-import NotificationNewSms from './NotificationNewSMS';
-import NotificationSendSms from './NotificationSendSms';
+import {NotificationNewSms} from './NotificationNewSMS';
+import {NotificationSendSms} from './NotificationSendSms';
 import { Context } from '../Context/Context';
+import {connectorType} from "./NotificationContainer";
 
-const Notification = ({ newMessage, isNewMessage, resetStatusNewMessageAction }) => {
+
+
+export const Notification:React.FC<connectorType> =React.memo( ({ newMessage, isNewMessage, resetStatusNewMessageAction }) => {
     const {
         isVisibleSentSmsNotification, setIsVisibleSentSmsNotification,
     } = useContext(Context);
@@ -60,6 +63,4 @@ const Notification = ({ newMessage, isNewMessage, resetStatusNewMessageAction })
             </CSSTransition>
         </div>
     );
-};
-
-export default React.memo(Notification, ((prevProps, nextProps) => prevProps.isNewMessage === nextProps.isNewMessage));
+});
