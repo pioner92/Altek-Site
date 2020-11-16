@@ -483,6 +483,10 @@ body {
     outline: none;
 }
 
+.page-wrapper .page-header .settings-button-wrapper {
+    padding-right: 0;
+}
+
 .page-wrapper .page-header .settings-button-wrapper  a{
     display: -webkit-box;
     display: -ms-flexbox;
@@ -1557,6 +1561,16 @@ a.header-btn-blue {
 .new-sms-modal-input {
     padding-right: 25px;
     padding-bottom: 5px;
+}
+
+.tel-info {
+   margin-right: 20px; 
+}
+
+.tel-info p {
+    font-size: 12px;
+    text-align: right;
+    white-space: nowrap;
 }
 
 @media (min-width: 991px) {

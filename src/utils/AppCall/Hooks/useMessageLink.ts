@@ -44,7 +44,7 @@ export const useRecordingLink = (socket: any, addCallHistoryLinkAction: any, set
             console.log(data)
             const {to, from, link, status, direction} = data
             //@ts-ignore
-            const id = getPhoneNumber(from, window.arrPhones) || getPhoneNumber(to, window.arrPhones).driver_id
+            const id = getPhoneNumber(from, window.arrPhones) || getPhoneNumber(to, window.arrPhones)?.driver_id
             console.log(id)
             if (numberValidate(number, from, to, direction) && link && id) {
                 console.log('Запись')

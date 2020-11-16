@@ -5,6 +5,8 @@ import notificationSvg from '../../static/icons/notifications.svg'
 import notificationSvgActive from '../../static/icons/notifications_active.svg'
 import {IsAdmin} from "../Validate/isAdmin";
 import {CallNotificationContainer} from "../Modals/CallNotification/CallNotificationContainer";
+import Data from '../../data.json'
+import {getCompanyName} from "../../utils/getCompanyName";
 
 
 const Header = (props) => {
@@ -12,7 +14,6 @@ const Header = (props) => {
     const [inputValue, setInputValue] = useState('');
     const [isVisible, setIsVisible] = useState(false)
     const [companyData,setCompanyData] = useState()
-
 
     const inputSelectAll = useRef(null);
 
@@ -23,7 +24,6 @@ const Header = (props) => {
     } = props;
 
     const onSelectAll = () => {
-        console.log(inputSelectAll.current.checked);
         selectDriversAllAction(inputSelectAll.current.checked);
     };
 
@@ -58,28 +58,25 @@ const Header = (props) => {
     }
 
     useEffect(() => () => {
+
         setInputValue('');
         driverFilterAction('');
-
     }, []);
 
     useEffect(()=>{
-        fetch('http://localhost:8082/get_company_data/cnu')
+        const company = getCompanyName()
+        fetch(`${Data.url}/get_company_data/${company}`)
             .then((res)=>res.json())
-            .then((data)=>{
-                setCompanyData(data)
-                console.log('DATAAAAAAAAA')
-                console.log(data.company.voice_assistant_number)
-            })
+            .then((data)=> setCompanyData(data))
     },[])
 
 
     return (
         <div className="page-header row container-wrap d-flex row">
-            <div className="row col-12 col-md-9 d-flex align-items-center">
-                <div className="checkbox-wrapper col-lg-2 col-md-3 col-12 checkbox_all">
+            <div className="row col-12 col-md-7 d-flex align-items-center">
+                <div className="checkbox-wrapper col-lg-2 col-md-3 col-12 checkbox_all" style={{marginRight: '10px'}}>
                     <label className="b-contain">
-                        <span style={{fontWeight: 500}}>Select all</span>
+                        <span style={{fontWeight: 500, whiteSpace: 'nowrap'}}>Select all</span>
                         <input checked={isSelectedAll} ref={inputSelectAll} onChange={onSelectAll} type="checkbox"/>
                         <div className="b-input"/>
                     </label>
@@ -102,20 +99,18 @@ const Header = (props) => {
                     </div>
                 </div>
             </div>
-            <div className="settings-button-wrapper col-md-3 col-12">
-                <div className="col-12 d-flex" style={{alignItem: 'center'}}>
-                    {/*<div style={{width:300,display:'flex',justifyContent:'space-between'}}>*/}
-                    {/*    <span>{`tel: ${companyData?.company?.voice_assistant_number}`}</span>*/}
-                    {/*    <span>{`ext: ${window.number}`}</span>*/}
-                    {/*    <span>{`fax: ${companyData?.company?.fax}`}</span>*/}
-                    {/*</div>*/}
+            <div className="settings-button-wrapper col-md-5 col-12">
+                <div className="col-12 d-flex justify-content-end align-items-center" style={{alignItem: 'center', padding: 0}}>
+                    <div className="tel-info">
+                        <p>{`tel: ${companyData?.company?.hidden_number}`}</p>
+                        <p>{`fax: ${companyData?.company?.fax}`}</p>
+                        <p>{`ext: ${window.number}`}</p>
+                    </div>
                     <Link to='/settings/main' id="header-settings-button">
                         Settings
                     </Link>
-                    <IsAdmin flag={true}>
-                        <img onClick={openCallNotificationModal} style={{cursor: 'pointer'}} className='col-3'
+                        <img onClick={openCallNotificationModal} style={{cursor: 'pointer', width: '25px', height: '25px'}} className='col-2'
                              src={isNewCallNotification ? notificationSvgActive : notificationSvg}/>
-                    </IsAdmin>
                 </div>
             </div>
             <CallNotificationContainer

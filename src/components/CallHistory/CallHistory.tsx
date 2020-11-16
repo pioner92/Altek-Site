@@ -2,12 +2,9 @@ import React, {useEffect} from 'react';
 import CallHistorySubheader from "./CallHistroySubheader/CallHistorySubheader";
 import CallHistoryItem from "./CallHistoryItem/CallHistoryItem";
 import CallHistorySubhead from "./CallHistroySubhead/CallHistorySubhead";
-// import Pagination from "../Pagination/Pagination";
 import Preloader from "../../static/Preloader/Spinner-1s-200px.gif";
 import {connectorType} from "./CallHistoryContainer";
 //@ts-ignore
-import Pagination from '@material-ui/lab/Pagination';
-import {PaginationNew} from "../Pagination/PaginationNew";
 import {match} from "assert";
 import {PaginationContainer} from "../Pagination/PaginationContainer";
 
@@ -35,18 +32,18 @@ const CallHistory: React.FC<connectorType> = (
         //@ts-ignore
         getCallHistoryAction({id, n,author:window.is_admin?undefined:'self'})
         //--DevMod
-        writeToStoreCallHistoryAction({
-            pages_count: 0, user: ['12'],
-            history: [
-                {
-                    link: 'http://',
-                    date: '25 September 2020 10:46',
-                    from: '+15703144444',
-                    status: 'Busy',
-                    id: 12,
-                    to: '888'
-                }]
-        })
+        // writeToStoreCallHistoryAction({
+        //     pages_count: 0, user: ['12'],
+        //     history: [
+        //         {
+        //             link: 'http://',
+        //             date: '25 September 2020 10:46',
+        //             from: '+15703144444',
+        //             status: 'Busy',
+        //             id: 12,
+        //             to: '888'
+        //         }]
+        // })
         // --
     }, [])
 

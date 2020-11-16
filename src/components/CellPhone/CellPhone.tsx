@@ -1,15 +1,15 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { CSSTransition } from 'react-transition-group';
+import React, {useEffect, useRef, useState} from 'react';
+import {CSSTransition} from 'react-transition-group';
 import Connection from 'twilio-client/es5/twilio/connection';
-import { NotificationContainer } from '../Notification/NotificationContainer';
-import { SearchList } from '../SearchList/SearchList';
-import { connectorType } from './CellPhoneConnectContainer';
+import {NotificationContainer} from '../Notification/NotificationContainer';
+import {SearchList} from '../SearchList/SearchList';
+import {connectorType} from './CellPhoneConnectContainer';
 import transfer_svg from '../../static/icons/transfer-call.svg';
 // @ts-ignore
-import { IsAdmin } from '../Validate/isAdmin';
-import { getDispatcherQueue } from '../../utils/callQueu/getDispatcherQueue';
-import { filterActiveDispatcher } from '../../utils/callQueu/filterActiveDispatchers';
+import {IsAdmin} from '../Validate/isAdmin';
 import {connectGuard} from "../../utils/AppCall/connectGuard";
+import {useGetQueue} from "../../utils/hooks/useGetQueue";
+import {getCompanyName} from "../../utils/getCompanyName";
 
 export type ownPropsType = {
     cellPhoneInput: string,
@@ -26,14 +26,18 @@ export type ownPropsType = {
 }
 
 const CellPhone: React.FC<connectorType> = ({
-    cellPhoneInput, Call, HungUp, status,
-    btnAcceptColor, btnDeclineColor, statusData,
-    onClickHandler, onChangeHandler,
-    getActiveDispatchersAction, activeDispatchers,
-    writeToStoreActiveDispatchersAction, dispatchers, transferFn, connect,
-}) => {
-    const [isVisibleList, setIsVisibleList] = useState(false);
+                                                cellPhoneInput, Call, HungUp, status,
+                                                btnAcceptColor, btnDeclineColor, statusData,
+                                                onClickHandler, onChangeHandler,
+                                                getActiveDispatchersAction, activeDispatchers,
+                                                writeToStoreActiveDispatchersAction, dispatchers, transferFn, connect,
+                                            }) => {
+
+    const faxInputRef = useRef<HTMLInputElement>(null)
     const refTransferBtn = useRef<HTMLDivElement>(null);
+
+    const [isVisibleList, setIsVisibleList] = useState(false);
+    const [faxMedia, setFaxMedia] = useState(null)
 
     const onClick = (e: React.MouseEvent<HTMLElement>) => {
         onClickHandler(e);
@@ -48,33 +52,51 @@ const CellPhone: React.FC<connectorType> = ({
     const onOpenList = () => {
         // @ts-ignore
         refTransferBtn.current!.style.backgroundColor = '#85B4E7';
-        if (connectGuard(connect,'open')) {
+        if (connectGuard(connect, 'open')) {
             // @ts-ignore
             !window.is_admin && setIsVisibleList(true);
         }
     };
     const onCloseListEndTransfer = (number: string) => {
-        console.log(number);
         setIsVisibleList(false);
         transferFn(number);
     };
 
     useEffect(() => {
         // @ts-ignore
-        const companyName: string = window?.location?.host?.match(/([a-z]+)./)[1];
+        const companyName: string = getCompanyName()
         if (companyName) {
             getActiveDispatchersAction(companyName);
         }
     }, []);
 
-    const disp = [{
-        email: '1212',
-        group: '1212',
-        id: 12,
-        login: 'alex',
-        name: 'alex',
-        phone: '888',
-    }];
+    // const disp = [{
+    //     email: '1212',
+    //     group: '1212',
+    //     id: 12,
+    //     login: 'alex',
+    //     name: 'alex',
+    //     phone: '888',
+    // }];
+
+    const getInputMedia = (e: React.ChangeEvent<HTMLInputElement>) => {
+        //@ts-ignore
+        setFaxMedia(e.target.files[0])
+    }
+
+
+    useEffect(() => {
+        if (faxMedia !== null) {
+            const formData = new FormData();
+            //@ts-ignore
+            formData.append('file', faxMedia, 'FAX')
+
+            fetch('http://localhost:8082/send_fax', {
+                method: 'POST',
+                body: formData
+            }).then(() => {faxInputRef!.current!.value = ''})
+        }
+    }, [faxMedia])
 
     useEffect(() => {
         if (status == 'Ready') {
@@ -83,22 +105,7 @@ const CellPhone: React.FC<connectorType> = ({
         }
     }, [status]);
 
-    useEffect(() => {
-        const interval = setInterval(() => {
-            console.log(dispatchers);
-            // @ts-ignore
-            const companyName: string = window?.location?.host?.match(/([a-z]+)./)[1];
-
-            getDispatcherQueue(companyName)
-                .then((data) => {
-                    const newData = filterActiveDispatcher(dispatchers, data);
-                    writeToStoreActiveDispatchersAction(newData);
-                });
-        }, 5000);
-        return () => {
-            clearInterval(interval);
-        };
-    }, [dispatchers]);
+    useGetQueue(dispatchers, writeToStoreActiveDispatchersAction)
 
     return (
         <div className="col-lg-3 col-12 cellphone-wrapper">
@@ -108,10 +115,10 @@ const CellPhone: React.FC<connectorType> = ({
                     <span>Name: </span><span id='cellphone-info-box_name'/>{statusData.name}<br/>
                     <span>Status: </span><span id='cellphone-info-box_status'>{status}</span><br/>
                     <div className="row">
-                        <label htmlFor="input_phone_number" style={{ width: '50%' }}>Phone number:</label>
+                        <label htmlFor="input_phone_number" style={{width: '50%'}}>Phone number:</label>
                         <input onFocus={onChange} onPaste={onChange as any} className="cinput_phone_number"
-                            onChange={onChange}
-                            value={cellPhoneInput} id='input_phone_number' type="text" style={{ width: '50%' }}/>
+                               onChange={onChange}
+                               value={cellPhoneInput} id='input_phone_number' type="text" style={{width: '50%'}}/>
                     </div>
 
                 </div>
@@ -137,15 +144,15 @@ const CellPhone: React.FC<connectorType> = ({
                         <div className="number" data-value="#">#</div>
                     </div>
                     <div className="number-row">
-                        <div style={{ backgroundColor: btnAcceptColor }} onClick={call} id="accept-call-button"><i
+                        <div style={{backgroundColor: btnAcceptColor}} onClick={call} id="accept-call-button"><i
                             className="fas fa-phone"/></div>
 
-                        <div style={{ backgroundColor: btnDeclineColor }} onClick={HungUp as any}
-                            id="decline-call-button"><i
-                                className="fas fa-phone-slash"/></div>
+                        <div style={{backgroundColor: btnDeclineColor}} onClick={HungUp as any}
+                             id="decline-call-button"><i
+                            className="fas fa-phone-slash"/></div>
 
-                        <div ref={refTransferBtn} style={{ backgroundColor: '#C7C6C5' }} onClick={onOpenList}
-                            id="decline-call-button">
+                        <div ref={refTransferBtn} style={{backgroundColor: '#C7C6C5'}} onClick={onOpenList}
+                             id="decline-call-button">
                             <img src={transfer_svg}/>
                         </div>
                     </div>
