@@ -9,7 +9,7 @@ export const PaginationNew: React.FC<connectorType> = ({callHistory}) => {
 
     return (
         <Pagination shape={'round'} variant={'text'} style={{alignSelf: 'center'}}
-                    count={callHistory?.pages_count || 10} color='standard'
+                    count={callHistory?.pages_count} color='standard'
                     renderItem={(item) => {
                         return (
                             <PaginationItem
