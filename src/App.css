@@ -671,93 +671,6 @@ body {
     background: rgba(218, 218, 219, 0.81);
 }
 
-.page-wrapper .cellphone-wrapper #cellphone #cellphone-info-box {
-    font-size: 15px;
-    font-weight: 500;
-}
-
-.page-wrapper .cellphone-wrapper #cellphone #cellphone-info-box input[type=text] {
-    border: none;
-    height: 20px;
-    border-bottom: 1px solid #000;
-}
-
-#cellphone-numpad {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    margin-top: 10px;
-    padding: 0 5px;
-}
-
-#cellphone-numpad .number-row {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: row;
-    flex-direction: row;
-    -ms-flex-pack: distribute;
-    justify-content: space-around;
-}
-
-
-.page-wrapper .cellphone-wrapper #cellphone #cellphone-numpad .number-row #accept-call-button,
-.page-wrapper .cellphone-wrapper #cellphone #cellphone-numpad .number-row #decline-call-button {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    height: 24px;
-    border-radius: 10px;
-    background: #F6F6F6;
-    font-size: 15px;
-    margin: 10px 5px 0 5px;
-    min-width: 54px;
-    cursor: pointer;
-}
-
-.page-wrapper .cellphone-wrapper #cellphone #cellphone-numpad .number-row .number:active,
-.page-wrapper .cellphone-wrapper #cellphone #cellphone-numpad .number-row #accept-call-button:active,
-.page-wrapper .cellphone-wrapper #cellphone #cellphone-numpad .number-row #decline-call-button:active {
-    background: #e6e6e6;
-}
-
-.page-wrapper .cellphone-wrapper #cellphone #cellphone-numpad .number-row #accept-call-button,
-.page-wrapper .cellphone-wrapper #cellphone #cellphone-numpad .number-row #decline-call-button {
-    margin-top: 15px;
-    min-width: 64px;
-    height: 28px;
-    color: white;
-}
-
-.page-wrapper .cellphone-wrapper #cellphone #cellphone-numpad .number-row #accept-call-button {
-    background: #7EDC5D;
-}
-
-.page-wrapper .cellphone-wrapper #cellphone #cellphone-numpad .number-row #accept-call-button:active {
-    background: #87bc72;
-}
-
-.page-wrapper .cellphone-wrapper #cellphone #cellphone-numpad .number-row #decline-call-button {
-    background: #EF7575;
-    opacity: 0.8;
-}
-
-.page-wrapper .cellphone-wrapper #cellphone #cellphone-numpad .number-row #decline-call-button:active {
-    background: #d65151;
-}
-
 .rectangle_button,
 .page-wrapper .page-header .send-sms-button-wrapper #header-send-sms-button,
 .page-wrapper .page-header .settings-button-wrapper #header-settings-button,
@@ -773,110 +686,6 @@ body {
     -ms-flex-pack: center;
     justify-content: center;
     cursor: pointer;
-}
-
-.cellphone-wrapper {
-    background-color: #F9F9F9;
-}
-
-.page-wrapper .cellphone-wrapper #cellphone {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-item-align: center;
-    align-self: center;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    margin: 10px auto;
-    max-width: 261px;
-    padding: 30px 25px;
-    min-height: 360px;
-    font-weight: 600;
-    background: #FFFFFF;
-    -webkit-box-shadow: 2px 2px 9px 12px rgba(229, 233, 243, 0.5);
-    box-shadow: 2px 2px 9px 12px rgba(229, 233, 243, 0.5);
-    border-radius: 45px;
-}
-
-.page-wrapper .cellphone-wrapper #cellphone #cellphone-info-box {
-    font-size: 15px;
-}
-
-.page-wrapper .cellphone-wrapper #cellphone #cellphone-numpad {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    margin-top: 10px;
-    padding: 0 5px;
-}
-
-.page-wrapper .cellphone-wrapper #cellphone #cellphone-numpad .number-row {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: row;
-    flex-direction: row;
-    -ms-flex-pack: distribute;
-    justify-content: space-around;
-}
-
-.page-wrapper .cellphone-wrapper #cellphone #cellphone-numpad .number-row .number,
-.page-wrapper .cellphone-wrapper #cellphone #cellphone-numpad .number-row #accept-call-button,
-.page-wrapper .cellphone-wrapper #cellphone #cellphone-numpad .number-row #decline-call-button {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    height: 24px;
-    border-radius: 10px;
-    background: #F6F6F6;
-    font-size: 15px;
-    margin: 10px 5px 0 5px;
-    min-width: 54px;
-    cursor: default;
-}
-
-.page-wrapper .cellphone-wrapper #cellphone #cellphone-numpad .number-row .number:active,
-.page-wrapper .cellphone-wrapper #cellphone #cellphone-numpad .number-row #accept-call-button:active,
-.page-wrapper .cellphone-wrapper #cellphone #cellphone-numpad .number-row #decline-call-button:active {
-    background: #e6e6e6;
-}
-
-.page-wrapper .cellphone-wrapper #cellphone #cellphone-numpad .number-row #accept-call-button,
-.page-wrapper .cellphone-wrapper #cellphone #cellphone-numpad .number-row #decline-call-button {
-    margin-top: 15px;
-    min-width: 64px;
-    height: 28px;
-    color: white;
-}
-
-.page-wrapper .cellphone-wrapper #cellphone #cellphone-numpad .number-row #accept-call-button {
-    background: #9AD685;
-}
-
-.page-wrapper .cellphone-wrapper #cellphone #cellphone-numpad .number-row #accept-call-button:active {
-    background: #87bc72;
-}
-
-.page-wrapper .cellphone-wrapper #cellphone #cellphone-numpad .number-row #decline-call-button {
-    background: #ec5454;
-}
-
-.page-wrapper .cellphone-wrapper #cellphone #cellphone-numpad .number-row #decline-call-button:active {
-    background: #d65151;
 }
 
 .container-wrap {
@@ -1573,6 +1382,257 @@ a.header-btn-blue {
     white-space: nowrap;
 }
 
+.cellphone {
+    color: #232E42;
+    background-color: #fff;
+    box-shadow: 2px 2px 9px 6px rgba(228,228,228,0.5);
+    padding: 15px;
+    border-radius: 4px;
+}
+
+.cellphone-availability{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #489FFE;
+    border-radius: 6px;
+}
+
+.cellphone-availability-btn {
+    width: 50%;
+    text-align: center;
+    padding: 7px 15px;
+    font-size: 16px;
+    font-weight: 400;
+    color: #9DA8B2;
+    cursor: pointer;
+}
+
+.cellphone-availability-btn.active {
+    background-color: #489FFE;
+    color: #fff;
+}
+
+.cellphone-info-box {
+    min-height: 100px;
+}
+
+.cellphone-info-box__status {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:  center;
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+.cellphone-info-box__status .incomming {
+    color: #FA6161;
+    font-weight: 500;
+}
+
+.cellphone-info-box__status .connected {
+    color: #68C186;
+    font-weight: 500;
+}
+
+.cellphone-info-box__member {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.cellphone-info-box__member-avatar{
+    margin-bottom: 15px;
+    filter:drop-shadow(1px 1px 6px #AACCFF) drop-shadow(-1px -1px 6px #AACCFF);
+}
+
+.cellphone-info-box__member-avatar img {
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.cellphone-info-box__member-name{
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.cellphone-info-box__member-phone{
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.cellphone-info-box__member-meta{
+    font-size: 16px;
+    font-weight: 400;
+    color: #9DA8B2;
+}
+
+.cellphone-numpad {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.cellphone-numpad__input {
+    position: relative;
+    width: 100%;
+}
+
+.cellphone-numpad__input input{
+    width: 100%;
+    background: #FFFFFF;
+    box-shadow: 1px 1px 4px #EFEFEF, -1px -1px 4px #EFEFEF;
+    border-radius: 6px;
+    color: #232E42;
+    border: none;
+    height: 40px;
+    padding: 0px 30px 0 10px;
+    font-size: 18px;
+}
+
+.cellphone-numpad__input input::placeholder {
+    color: #9DA8B2;
+}
+
+.cellphone-numpad__numpad {
+    width: 100%;
+    margin-top: 15px;
+}
+
+.cellphone-numpad__numpad .number-row{
+    display: flex;
+    justify-content: space-around;
+}
+
+.cellphone-numpad__numpad .number-row .number{
+    font-size: 26px;
+    font-weight: normal;
+    cursor: pointer;
+    padding: 10px 20px;
+}
+
+.cellphone-numpad__numpad .number-row .number:hover{
+    color: #5b6f92;
+}
+
+.numpad-clearBtn {
+    position: absolute;
+    right: 10px;
+    height: 100%;
+    top: 0;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.number-action-buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.number-action-buttons .number-action-button{
+    width: 55px;
+    height: 55px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.number-action-buttons .number-action-button.accteptBtn {
+    background-color: #68C186;
+    box-shadow: -1px -1px 10px #AAEEB9, 1px 1px 10px #AAEEB9;
+}
+
+.number-action-buttons .number-action-button.declineBtn {
+    background-color: #EC5353;
+    box-shadow: -1px -1px 10px #EEAEAA, 1px 1px 10px #EEAEAA;
+}
+
+.number-action-buttons .number-action-button:not(:first-child){
+    margin-left: 35px;
+}
+
+.cellphone-bottom-menu {
+    width: 100%;
+    border-top: 1px solid#F5F5F5;
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-around;
+    padding-top: 15px;
+}
+
+.cellphone-bottom-menu .cellphone-bottom-menu__item{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 33.33%;
+    cursor: pointer;
+    color: #828B92;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.cellphone-bottom-menu .cellphone-bottom-menu__item span{
+    margin-top: 5px;
+}
+
+.cellphone-bottom-menu .cellphone-bottom-menu__item:hover{
+    opacity: 0.9;
+}
+
+.cellphone-numpad__callActions {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.cellphone-numpad__callActions .actions-row {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.cellphone-numpad__callActions .actions-row:not(:last-child) {
+    margin-bottom: 25px;
+}
+
+.cellphone-numpad__callActions .actions-row .action{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+}
+
+.cellphone-numpad__callActions .actions-row .action .p-icon{
+    width: 52px;
+    height: 52px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background: #FFFFFF;
+    box-shadow: -1px -1px 4px #E7E7E7, 1px 1px 4px #E7E7E7;
+}
+
+.cellphone-numpad__callActions .actions-row .action span{
+    font-size: 13px;
+    font-weight: 400;
+    margin-top: 5px;
+}
+
 @media (min-width: 991px) {
     .hide-on-medium-and-up {
         display: none !important;
@@ -1636,12 +1696,6 @@ a.header-btn-blue {
         -webkit-box-pack: center;
         -ms-flex-pack: center;
         justify-content: center;
-    }
-
-    .page-wrapper .cellphone-wrapper {
-        -webkit-box-ordinal-group: 0;
-        -ms-flex-order: -1;
-        order: -1;
     }
 }
 

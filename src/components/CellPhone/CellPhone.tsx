@@ -5,6 +5,18 @@ import {NotificationContainer} from '../Notification/NotificationContainer';
 import {SearchList} from '../SearchList/SearchList';
 import {connectorType} from './CellPhoneConnectContainer';
 import transfer_svg from '../../static/icons/transfer-call.svg';
+import input_clear from '../../static/icons/input-clear.svg';
+import accept_call from '../../static/icons/accpet-call.svg';
+import decline_call from '../../static/icons/decline-call.svg';
+import phone_history from '../../static/icons/phone-history.svg';
+import phone_fax from '../../static/icons/phone-fax.svg';
+import phone_chat from '../../static/icons/phone-chat.svg';
+import microphone_icon from '../../static/icons/microphone.svg';
+import keypad_icon from '../../static/icons/keypad.svg';
+import pause_icon from '../../static/icons/pause.svg';
+import transfer_icon from '../../static/icons/transfer-call.svg';
+import add_icon from '../../static/icons/plus.svg';
+import record_icon from '../../static/icons/record.svg';
 // @ts-ignore
 import {IsAdmin} from '../Validate/isAdmin';
 import {connectGuard} from "../../utils/appCall/connectGuard";
@@ -101,7 +113,7 @@ const CellPhone: React.FC<connectorType> = ({
     useEffect(() => {
         if (status == 'Ready') {
             setIsVisibleList(false);
-            refTransferBtn.current!.style.backgroundColor = '#C7C6C5';
+            // refTransferBtn.current!.style.backgroundColor = '#C7C6C5';
         }
     }, [status]);
 
@@ -109,9 +121,35 @@ const CellPhone: React.FC<connectorType> = ({
 
     return (
         <div className="col-lg-3 col-12 cellphone-wrapper">
-            <div id="cellphone">
-                <div id="cellphone-info-box">
-                    <span>ID: </span><span id='cellphone-info-box_id'/>{statusData.id}<br/>
+            <div className="cellphone" id="cellphone">
+                <div className="cellphone-availability">
+                    <div className="cellphone-availability-btn active">
+                        <span>Available</span>
+                    </div>
+                    <div className="cellphone-availability-btn">
+                        <span>Unavailable</span>
+                    </div>
+                </div>
+                <div className="cellphone-info-box" id="cellphone-info-box">
+                    <div className="cellphone-info-box__status">
+                        <span className="incomming">Incomming call ◉</span>
+                        <span className="connected">Connected 1:32</span>
+                    </div>
+                    <div className="cellphone-info-box__member">
+                        <div className="cellphone-info-box__member-avatar">
+                            <img src="https://image.freepik.com/free-photo/happy-man-with-newspaper_23-2147694656.jpg" alt=""/>
+                        </div>
+                        <div className="cellphone-info-box__member-name">
+                            <span>Damien Jones</span>
+                        </div>
+                        <div className="cellphone-info-box__member-phone">
+                            <span>+1 823 746 3456</span>
+                        </div>
+                        <div className="cellphone-info-box__member-meta">
+                            <span>V204</span>
+                        </div>
+                    </div>
+                    {/* <span>ID: </span><span id='cellphone-info-box_id'/>{statusData.id}<br/>
                     <span>Name: </span><span id='cellphone-info-box_name'/>{statusData.name}<br/>
                     <span>Status: </span><span id='cellphone-info-box_status'>{status}</span><br/>
                     <div className="row">
@@ -119,10 +157,88 @@ const CellPhone: React.FC<connectorType> = ({
                         <input onFocus={onChange} onPaste={onChange as any} className="cinput_phone_number"
                                onChange={onChange}
                                value={cellPhoneInput} id='input_phone_number' type="text" style={{width: '50%'}}/>
-                    </div>
+                    </div> */}
 
                 </div>
-                <div onClick={onClick} id="cellphone-numpad">
+                <div className="cellphone-numpad">
+                    <div className="cellphone-numpad__input">
+                        <input type="text" placeholder="Type number or name..."/>
+                        <span className="numpad-clearBtn">
+                            <img src={input_clear} alt=""/>
+                        </span>
+                    </div>
+                    <div className="cellphone-numpad__callActions">
+                        <div className="actions-row">
+                            <div className="action">
+                                <div className="p-icon"><img src={microphone_icon} alt=""/></div>
+                                <span>Mute</span>
+                            </div>
+                            <div className="action">
+                                <div className="p-icon"><img src={keypad_icon} alt=""/></div>
+                                <span>Keypad</span>
+                            </div>
+                            <div className="action">
+                                <div className="p-icon"><img src={pause_icon} alt=""/></div>
+                                <span>Hold</span>
+                            </div>
+                        </div>
+                        <div className="actions-row">
+                            <div className="action">
+                                <div className="p-icon"><img src={transfer_icon} alt=""/></div>
+                                <span>Transfer</span>
+                            </div>
+                            <div className="action">
+                                <div className="p-icon"><img src={add_icon} alt=""/></div>
+                                <span>Add</span>
+                            </div>
+                            <div className="action">
+                                <div className="p-icon"><img src={record_icon} alt=""/></div>
+                                <span>Voicemail</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="cellphone-numpad__numpad">
+                        <div className="number-row">
+                            <div className="number" data-value="1">1</div>
+                            <div className="number" data-value="2">2</div>
+                            <div className="number" data-value="3">3</div>
+                        </div>
+                        <div className="number-row">
+                            <div className="number" data-value="4">4</div>
+                            <div className="number" data-value="5">5</div>
+                            <div className="number" data-value="6">6</div>
+                        </div>
+                        <div className="number-row">
+                            <div className="number" data-value="7">7</div>
+                            <div className="number" data-value="8">8</div>
+                            <div className="number" data-value="9">9</div>
+                        </div>
+                        <div className="number-row">
+                            <div style={{color: '#9DA8B2'}} className="number" data-value="*">*</div>
+                            <div className="number" data-value="0">0</div>
+                            <div style={{color: '#9DA8B2'}} className="number" data-value="#">#</div>
+                        </div>
+                        <div className="number-action-buttons">
+                            <div className="number-action-button accteptBtn"><img src={accept_call} alt=""/></div>
+                            <div className="number-action-button declineBtn"><img src={decline_call} alt=""/></div>
+                        </div>
+                    </div>
+                    <div className="cellphone-bottom-menu">
+                        <div className="cellphone-bottom-menu__item">
+                            <img src={phone_history} alt=""/>
+                            <span>History</span>
+                        </div>
+                        <div className="cellphone-bottom-menu__item">
+                            <img src={phone_fax} alt=""/>
+                            <span>Fax</span>
+                        </div>
+                        <div className="cellphone-bottom-menu__item">
+                            <img src={phone_chat} alt=""/>
+                            <span>Chat</span>
+                        </div>
+                    </div>
+                </div>
+                {/* <div onClick={onClick} id="cellphone-numpad">
                     <div className="number-row">
                         <div className="number" data-value="1">1</div>
                         <div className="number" data-value="2">2</div>
@@ -156,7 +272,7 @@ const CellPhone: React.FC<connectorType> = ({
                             <img src={transfer_svg}/>
                         </div>
                     </div>
-                </div>
+                </div> */}
             </div>
             <IsAdmin flag={false}>
                 <CSSTransition
