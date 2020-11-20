@@ -12,7 +12,7 @@ import {MessengerSubheaderContainer} from './components/Messenger/MessengerSubhe
 import {CallHistoryContainer} from './components/CallHistory/CallHistoryContainer';
 import Modals from './components/Modals/Modals';
 import {HeaderOtherContainer} from './components/Header/HeaderOtherContainer';
-import CellPhoneContainer from './components/CellPhone/CellPhoneContainer';
+import RightBlockContainer from './components/RightBlock/RightBlockContainer';
 import {setClasses} from "./utils/setClasses/setClasses";
 
 function App({
@@ -129,7 +129,7 @@ function App({
                                            setDriverId={setDriverId} {...props}/>}/>
                                 <Route path='/callhistory/:id' exact
                                        component={CallHistoryContainer}/>
-                                <CellPhoneContainer
+                                <RightBlockContainer
                                     getCallNotificationAction={getCallNotificationAction}
                                     updateCallNotificationAction={updateCallNotificationAction}
                                     writeToStoreIsNewCallNotificationAction={writeToStoreIsNewCallNotificationAction}

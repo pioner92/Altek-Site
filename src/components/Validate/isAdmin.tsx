@@ -5,15 +5,17 @@ type isAdminPropsType = {
     flag: boolean
 }
 
-declare const is_admin: boolean
+declare const window: {
+    is_admin:boolean
+}
 
 export const IsAdmin: React.FC<isAdminPropsType> = ({flag, children}) => {
     return (
         <>
             {
                 flag ?
-                    is_admin && children
-                    : !is_admin && children
+                    window.is_admin && children
+                    : !window.is_admin && children
             }
         </>
     )

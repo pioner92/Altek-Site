@@ -1,7 +1,7 @@
 import {Connection, Device} from "twilio-client";
-import {booleanCallback, callback, connectCallback, DeviceType, phoneDataType,} from "./AppCallTypes";
-import {AppCallEvents} from "./AppCallEvents";
-import {connectGuard} from "./connectGuard";
+import {booleanCallback, callback, connectCallback, DeviceType, phoneDataType, stringCallback,} from "./callTypes";
+import {CallEvents} from "./callEvents";
+import {connectGuard} from "../connectGuard";
 
 declare const window: {
     number: string
@@ -9,38 +9,34 @@ declare const window: {
     is_admin: boolean
 }
 
-type constructor = {
-    setConnect: connectCallback,
-    connect: Connection | null,
+export type constructorCallService = {
     setIsConnect?: booleanCallback,
     connectHandler?: callback
     disconnectHandler?: callback
-    incomingHandler?: connectCallback
-    acceptHandler?: connectCallback
+    incomingHandler?: stringCallback
+    acceptHandler?: stringCallback
     callingHandler?: callback
-    missedCallHandler?: connectCallback
+    missedCallHandler?: stringCallback
 }
 
-export class AppCallFn extends AppCallEvents {
+export class CallService extends CallEvents {
     //@ts-ignore
     private Device: DeviceType = Device;
-    private connect: Connection | null
     private connectHandler: callback | undefined
     private disconnectHandler: callback | undefined
-    private incomingHandler: connectCallback | undefined
-    private acceptHandler: connectCallback | undefined
+    private incomingHandler: stringCallback | undefined
+    private acceptHandler: stringCallback | undefined
     private callingHandler: callback | undefined
-    private missedCallHandler: connectCallback | undefined
+    private missedCallHandler: stringCallback | undefined
 
     constructor({
-                    setConnect, connect, setIsConnect,
+                    setIsConnect,
                     connectHandler, disconnectHandler, incomingHandler, acceptHandler, callingHandler, missedCallHandler
-                }: constructor) {
+                }: constructorCallService) {
 
         //@ts-ignore
-        super({Device: Device, setConnect, setIsConnect})
+        super({Device: Device, setIsConnect})
 
-        this.connect = connect                                          // connect instance
         this.connectHandler = connectHandler                            // Connect handler
         this.disconnectHandler = disconnectHandler                      // disconnect handler
         this.incomingHandler = incomingHandler                          // incoming call handler
@@ -59,7 +55,7 @@ export class AppCallFn extends AppCallEvents {
     }
 
     private _acceptHandler(connect: Connection) {
-        this.acceptHandler && this.acceptHandler(connect)
+        this.acceptHandler && this.acceptHandler(connect?.parameters?.From)
     }
 
     private _callingHandler() {
@@ -67,32 +63,34 @@ export class AppCallFn extends AppCallEvents {
     }
 
     private _incomingHandler(connect: Connection) {
-        this.incomingHandler && this.incomingHandler(connect)
+        this.incomingHandler && this.incomingHandler(connect.parameters.From)
     }
 
-    private _missedCallHandler(connect:Connection) {
-        this.missedCallHandler && this.missedCallHandler(connect)
+    private _missedCallHandler(connect: Connection) {
+        this.missedCallHandler && this.missedCallHandler(connect.parameters.From)
     }
 
     public sendNumber(number: string) {
         //@ts-ignore
         this.Device.activeConnection()?.sendDigits(number)
         console.log(this.Device.activeConnection())
-        // this.connect?.sendDigits(number)
     }
 
+    public getConnect() {
+        return super._getConnect()
+    }
 
     // pressing btn  Decline => HungUp or Reject
     public HungUp() {
         this._disconnectHandler()
         // if in call with => hangUp
-        if (connectGuard(this.connect, 'open')) {
+        if (connectGuard(this.getConnect(), 'open')) {
             this.Device.disconnectAll()
 
             // if incoming call => reject
         } else {
-            if (connectGuard(this.connect, 'pending')) {
-                this.connect?.reject()
+            if (connectGuard(this.getConnect(), 'pending')) {
+                this.getConnect()?.reject()
                 console.log('reject')
             }
         }
@@ -105,12 +103,12 @@ export class AppCallFn extends AppCallEvents {
             'from': window.number
         }
         // if incoming call
-        if (this.connect && connectGuard(this.connect, 'pending')) {
+        if (this.getConnect() && connectGuard(this.getConnect(), 'pending')) {
             this._connectHandler()
-            this.connect.accept()
-            this._acceptHandler(this.connect)
+            this.getConnect()?.accept()
+            this.getConnect() && this._acceptHandler(this.getConnect()!)
             // if calling to number
-        } else if (this.Device.status() === 'ready' || connectGuard(this.connect, 'closed')) {
+        } else if (this.Device.status() === 'ready' || connectGuard(this.getConnect(), 'closed')) {
             this.Device.connect(params)
             this._callingHandler()
             this._connectHandler()
@@ -120,20 +118,22 @@ export class AppCallFn extends AppCallEvents {
 
     // token init
     async initToken(number: string) {
-        const {token} = await fetch(`https://sms.green-node.ru/token/generate/${number}`)          // "url": "https://sms.green-node.ru",
-            .then((res) => res.json())
-            .catch((error) => console.log(error))
+        try {
+            const response = await fetch(`https://sms.green-node.ru/token/generate/${number}`)          // "url": "https://sms.green-node.ru",
+            const {token} = await response.json()
 
-        if (token) {
-            console.log(token)
-            this.Device.setup(token, {
-                debug: true,
-                sounds: {
-                    incoming: 'https://sms.green-node.ru/incoming_sound'
-                }
-            })
-        } else {
-            console.log('Token error')
+            if (token) {
+                this.Device.setup(token, {
+                    debug: true,
+                    sounds: {
+                        incoming: 'https://sms.green-node.ru/incoming_sound'
+                    }
+                })
+            } else console.log('Token is empty')
+
+        } catch (e) {
+            console.log('Get token Error')
+            console.log(e)
         }
     }
 

@@ -1,10 +1,9 @@
 import {Connection, Device} from "twilio-client";
-import {booleanCallback, callback, connectCallback, DeviceType, phoneDataType} from "./AppCallTypes";
+import {booleanCallback, callback, connectCallback, DeviceType, phoneDataType} from "./callTypes";
 
 
 type constructor = {
     Device: Device
-    setConnect: connectCallback
     setIsConnect: booleanCallback
 }
 
@@ -14,20 +13,26 @@ declare const window: {
     is_admin: boolean
 }
 
-export class AppCallEvents {
+export class CallEvents {
     private _Device: DeviceType
-    private readonly _setConnect: connectCallback
-    private readonly _setIsConnect?: booleanCallback
+    private _connect: Connection | null
+    private readonly _setIsConnect?: booleanCallback = () => {}
     private __missedCallHandler?: connectCallback
-    private __disconnectHandler: callback = () => {
-    }
-    private __incomingHandler: connectCallback = () => {
+    private __disconnectHandler: callback = () => {}
+    private __incomingHandler: connectCallback = () => {}
+
+    constructor({Device, setIsConnect}: constructor) {
+        this._Device = Device
+        this._setIsConnect = setIsConnect
+        this._connect = null
     }
 
-    constructor({Device, setConnect, setIsConnect}: constructor) {
-        this._Device = Device
-        this._setConnect = setConnect
-        this._setIsConnect = setIsConnect
+    private _setConnect(connect: Connection) {
+        this._connect = connect
+    }
+
+    protected _getConnect() {
+        return this._connect
     }
 
     protected initEventsHandler(disconnectHandler: callback, incomingHandler: connectCallback, missingCallHandler: connectCallback) {
@@ -35,7 +40,7 @@ export class AppCallEvents {
         this.__incomingHandler = incomingHandler;
         this.__missedCallHandler = missingCallHandler
 
-        // Входящий звонок
+
         this._Device.on('incoming', (connect: Connection) => {
             this._setConnect(connect);
             this.__incomingHandler(connect);
@@ -55,6 +60,7 @@ export class AppCallEvents {
             connect.disconnect();
             console.log('cancel');
         });
+
         // Событие - отключение
         this._Device.on('disconnect', (connect: Connection) => {
             this._setConnect(connect);
@@ -68,6 +74,7 @@ export class AppCallEvents {
             this._setIsConnect && this._setIsConnect(true);
             console.log('Connect');
         });
+
         // Приложение запущенно
         this._Device.on('ready', (connect: Connection) => {
             this._setConnect(connect);
@@ -76,6 +83,7 @@ export class AppCallEvents {
             this.__disconnectHandler();
             console.log('Ready');
         });
+
         this._Device.on('error', (error) => {
             console.log('Device Error')
             console.log(error)

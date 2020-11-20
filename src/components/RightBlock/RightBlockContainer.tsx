@@ -1,10 +1,9 @@
 import React, {forwardRef, useEffect, useImperativeHandle, useState,} from 'react';
 import socketClient from 'socket.io-client';
-import {AppCallFn} from '../../utils/appCall/AppCall';
 import Data from '../../data.json';
-import {CellPhoneConnectContainer} from './CellPhoneConnectContainer';
+import {RightBlockContentContainer} from './RightBlockContentContainer';
 import {Connection} from "twilio-client";
-import {phoneDataType} from "../../utils/appCall/AppCallTypes";
+import {phoneDataType} from "../../utils/appCall/app/callTypes";
 import { useRecordingLink} from "../../utils/appCall/hooks/useMessageLink";
 import {useAcceptAnimate} from "../../utils/appCall/hooks/useAcceptAnimate";
 import {useConnect} from "../../utils/appCall/hooks/useConnect";
@@ -37,7 +36,7 @@ export type statusDateType = {
 }
 
 
-const CellPhoneContainer: React.FC<propsType> = forwardRef(({
+const RightBlockContainer: React.FC<propsType> = forwardRef(({
                                                                 addCallHistoryLinkAction, queueStatus,writeToStoreIsNewCallNotificationAction,
                                                                 updateCallNotificationAction,getCallNotificationAction
                                                             }, ref) => {
@@ -100,20 +99,20 @@ const CellPhoneContainer: React.FC<propsType> = forwardRef(({
     }
 
 
-    const AppCall = new AppCallFn({
-        setConnect,
-        connect,
-        setIsConnect,
-        connectHandler,
-        disconnectHandler,
-        incomingHandler,
-        acceptHandler,
-        callingHandler,
-        missedCallHandler
-    });
+    // const AppCall = new AppCallFn({
+    //     setConnect,
+    //     connect,
+    //     setIsConnect,
+    //     connectHandler,
+    //     disconnectHandler,
+    //     incomingHandler,
+    //     acceptHandler,
+    //     callingHandler,
+    //     missedCallHandler
+    // });
 
     const Call = (number: string) => {
-        AppCall.Call(number);
+        // AppCall.Call(number);
     };
 
     const HungUp = () => {
@@ -121,7 +120,7 @@ const CellPhoneContainer: React.FC<propsType> = forwardRef(({
             id: '',
             name: '',
         });
-        AppCall.HungUp();
+        // AppCall.HungUp();
     };
 
     useImperativeHandle(ref, () => ({
@@ -150,7 +149,7 @@ const CellPhoneContainer: React.FC<propsType> = forwardRef(({
             //@ts-ignore
             const number = e.target.dataset.value;
             // appCall.sendNumber(number)
-            AppCall.sendNumber(number)
+            // AppCall.sendNumber(number)
             if (connectGuard(connect,'open')) {
                 connect?.sendDigits(number)
             }
@@ -165,7 +164,7 @@ const CellPhoneContainer: React.FC<propsType> = forwardRef(({
 
     useEffect(() => {
         setCellPhoneInput('+');
-        AppCall.initEventsListener();
+        // AppCall.initEventsListener();
         getCallNotificationAction()   // get call notification
     }, []);
 
@@ -184,12 +183,12 @@ const CellPhoneContainer: React.FC<propsType> = forwardRef(({
 
     useEffect(() => {
         //@ts-ignore
-        AppCall.initToken(window.number);
+        // AppCall.initToken(window.number);
     }, [queueStatus]);
 
 
     return (
-        <CellPhoneConnectContainer
+        <RightBlockContentContainer
             connect={connect}
             transferFn={transferFn}
             onClickHandler={onClickHandler}
@@ -205,4 +204,4 @@ const CellPhoneContainer: React.FC<propsType> = forwardRef(({
     );
 });
 
-export default CellPhoneContainer;
+export default RightBlockContainer;
