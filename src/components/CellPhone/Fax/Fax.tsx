@@ -9,9 +9,9 @@ import doc_icon from "../../../static/icons/phone-doc.svg";
 export const Fax = () => {
     return (
         <div>
-            <div className="cellphone-page-header">
-                <span className="cellphone-page-header__title">Send a fax</span>
-            </div>
+            {/*<div className="cellphone-page-header">*/}
+            {/*    <span className="cellphone-page-header__title">Send a fax</span>*/}
+            {/*</div>*/}
             <div className="cellphone-page-body" style={{paddingTop: 10}}>
                 <div className="telephony-form">
                     <div className="c-form-group">
