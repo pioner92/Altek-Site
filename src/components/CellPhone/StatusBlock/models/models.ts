@@ -1,8 +1,10 @@
 import {createEvent,createStore} from "effector";
 import {findDriverFromNumber} from "../../../../utils/appCall/findDriverFromNumber";
 import {phoneDataType} from "../../../../utils/appCall/app/callTypes";
-import moment, {Moment} from "moment";
+import {Moment} from "moment";
 import {TimeCounter} from "./counter";
+import {setInputValueCellPhone} from "../../CellPhoneInput/models";
+import {setIsVisibleKeypad} from "../../CellPhoneNumpad/models/models";
 
 
 export enum callDirection{
@@ -53,5 +55,7 @@ export const $timeCounter = createStore<Moment|string>('')
 
 resetStatusData.watch(()=>{
     setIsVisibleDirection(false)
+    setInputValueCellPhone('')
+    setIsVisibleKeypad(true)
     // setCounter(moment().startOf('day'))
 })

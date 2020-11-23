@@ -3,9 +3,9 @@ import {useStore} from "effector-react";
 import {$callDirection, $driver} from "./models";
 import {$isConnect} from "../models";
 import {$isVisibleDirection, $timeCounter} from "./models/models";
+import {ConnectedTimerCounter} from "./ConnectedTimerCounter";
 
 export const StatusBlock = () => {
-    const timer = useStore($timeCounter)
     const isConnect = useStore($isConnect)
     const isVisibleDirection = useStore($isVisibleDirection)
     const callDirection = useStore($callDirection)
@@ -15,7 +15,7 @@ export const StatusBlock = () => {
         <div className="cellphone-info-box" id="cellphone-info-box">
             <div className="cellphone-info-box__status">
                 {isVisibleDirection && <span className="incomming">{callDirection} ◉</span>}
-                {isConnect && <span className="connected">Connected {timer}</span>}
+                {isConnect && <ConnectedTimerCounter/>}
             </div>
             <div className="cellphone-info-box__member">
                 <div className="cellphone-info-box__member-avatar">
