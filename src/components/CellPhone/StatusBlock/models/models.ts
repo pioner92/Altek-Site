@@ -26,6 +26,7 @@ export const resetStatusData = createEvent()
 export const startTimer = createEvent()
 export const stopTimer = createEvent()
 export const setCounter = createEvent<Moment>()
+export const setIsVisibleDirection = createEvent<boolean>()
 
 
 export const $driver = createStore<phoneDataType|null>(null)
@@ -39,9 +40,18 @@ export const $statusNumber = createStore('')
 export const $callDirection = createStore<callDirectionType>(callDirection.incoming)
     .on(setCallDirection,(state, payload) => payload)
 
+export const $isVisibleDirection = createStore(false)
+    .on(setIsVisibleDirection,(state, payload) => payload)
+
 export const $timeCounterService = createStore(new TimeCounter())
     .on(startTimer,(state, payload) => state.start(setCounter))
-    .on(stopTimer,(state, payload) => state.stop())
+    .on(stopTimer,(state, payload) => state.stop(setCounter))
 
 export const $timeCounter = createStore<Moment|string>('')
     .on(setCounter,(state, payload) =>payload.format('mm:ss'))
+
+
+resetStatusData.watch(()=>{
+    setIsVisibleDirection(false)
+    // setCounter(moment().startOf('day'))
+})

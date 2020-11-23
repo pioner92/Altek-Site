@@ -11,10 +11,11 @@ export class TimeCounter {
         }, 1000)
     }
 
-    stop() {
+    stop(callback: (counter: Moment) => void) {
         if (this.timer) {
             clearInterval(this.timer)
         }
         this.startValue = moment().startOf('day')
+        callback(this.startValue)
     }
 }

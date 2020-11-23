@@ -10,6 +10,7 @@ export const Numpad: React.FC = () => {
         numpadNumberClick(value)
     }
 
+
     return (
         <div className="cellphone-numpad__numpad">
             <NumbersRow onClick={onClickNumber} numbers={[1, 2, 3]}/>
@@ -20,7 +21,6 @@ export const Numpad: React.FC = () => {
                 <div className="number" onClick={onClickNumber} data-value="0">0</div>
                 <div onClick={onClickNumber} style={{color: '#9DA8B2'}} className="number" data-value="#">#</div>
             </div>
-            <CallButtons/>
         </div>
     );
 };

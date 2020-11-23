@@ -5,7 +5,7 @@ import {
     callDirection,
     findDriver,
     resetStatusData,
-    setCallDirection,
+    setCallDirection, setIsVisibleDirection,
     setStatusNumber, startTimer, stopTimer,
 } from "../StatusBlock/models/models";
 import {phoneDataType} from "../../../utils/appCall/app/callTypes";
@@ -41,10 +41,12 @@ export const $callApp = createStore(new AppCall({connectHandler,incomingHandler,
 
 connectHandler.watch(()=>{
     startTimer()
+    setIsVisibleDirection(false)
 })
 
 incomingHandler.watch((number)=>{
     setCallDirection(callDirection.incoming)
+    setIsVisibleDirection(true)
     setStatusNumber(number)
     findDriver({number, arrPhones:window.arrPhones})
 })

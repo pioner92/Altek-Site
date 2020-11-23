@@ -2,23 +2,20 @@ import React, {useEffect, useState} from 'react';
 import {useStore} from "effector-react";
 import {$callDirection, $driver} from "./models";
 import {$isConnect} from "../models";
-import {$timeCounter} from "./models/models";
+import {$isVisibleDirection, $timeCounter} from "./models/models";
 
 export const StatusBlock = () => {
     const timer = useStore($timeCounter)
     const isConnect = useStore($isConnect)
+    const isVisibleDirection = useStore($isVisibleDirection)
     const callDirection = useStore($callDirection)
     const driver = useStore($driver)
 
     return (
         <div className="cellphone-info-box" id="cellphone-info-box">
             <div className="cellphone-info-box__status">
-                {isConnect &&
-                <>
-                    <span className="incomming">{callDirection} ◉</span>
-                    <span className="connected">Connected {timer}</span>
-                </>
-                }
+                {isVisibleDirection && <span className="incomming">{callDirection} ◉</span>}
+                {isConnect && <span className="connected">Connected {timer}</span>}
             </div>
             <div className="cellphone-info-box__member">
                 <div className="cellphone-info-box__member-avatar">
