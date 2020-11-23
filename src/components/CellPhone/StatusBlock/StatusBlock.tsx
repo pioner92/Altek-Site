@@ -18,9 +18,9 @@ export const StatusBlock = () => {
                 {isConnect && <ConnectedTimerCounter/>}
             </div>
             <div className="cellphone-info-box__member">
-                <div className="cellphone-info-box__member-avatar">
-                    <img src="https://image.freepik.com/free-photo/happy-man-with-newspaper_23-2147694656.jpg" alt=""/>
-                </div>
+                {/*<div className="cellphone-info-box__member-avatar">*/}
+                {/*    <img src="https://image.freepik.com/free-photo/happy-man-with-newspaper_23-2147694656.jpg" alt=""/>*/}
+                {/*</div>*/}
                 <div className="cellphone-info-box__member-name">
                     <span>{driver?.driver_name}</span>
                 </div>

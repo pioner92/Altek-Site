@@ -1,7 +1,6 @@
 import React from 'react';
 import {NumbersRow} from "./NumbersRow/NumbersRow";
-import {numpadNumberClick} from "./models/models";
-import {CallButtons} from "./CallButtons/CallButtons";
+import {numpadNumberClick} from "./models";
 
 export const Numpad: React.FC = () => {
 
@@ -10,6 +9,9 @@ export const Numpad: React.FC = () => {
         numpadNumberClick(value)
     }
 
+    const onDoubleClick = ()=>{
+        numpadNumberClick('+')
+    }
 
     return (
         <div className="cellphone-numpad__numpad">
@@ -18,7 +20,7 @@ export const Numpad: React.FC = () => {
             <NumbersRow  onClick={onClickNumber} numbers={[7, 8, 9]}/>
             <div className="number-row">
                 <div onClick={onClickNumber} style={{color: '#9DA8B2'}} className="number" data-value="*">*</div>
-                <div className="number" onClick={onClickNumber} data-value="0">0</div>
+                <div onDoubleClick={onDoubleClick}  className="number" onClick={onClickNumber} data-value="0">0</div>
                 <div onClick={onClickNumber} style={{color: '#9DA8B2'}} className="number" data-value="#">#</div>
             </div>
         </div>

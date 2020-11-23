@@ -28,7 +28,10 @@ export const SearchList:React.FC<propsType> = ({values}) => {
         }}>
             {values.map((el,index)=>{
                 return (
-                    <span onClick={onSelectDriver.bind(null,{name:el.driver_name,vehId:el.vehicle_id,number:el.driver_number})} key={el.driver_id}>{el.driver_name}</span>
+                    <span
+                        onClick={onSelectDriver.bind(null,{name:el.driver_name,vehId:el.vehicle_id,number:el.driver_number})}
+                        key={el.driver_id}>{el.driver_name}
+                    </span>
                 )
             })}
         </div>

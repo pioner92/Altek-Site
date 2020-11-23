@@ -37,5 +37,4 @@ export const Header: React.FC = () => {
     } else {
         return null
     }
-
 };

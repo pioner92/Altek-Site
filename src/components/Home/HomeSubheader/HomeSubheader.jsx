@@ -115,20 +115,20 @@ const HomeSubheader = ({
                 </CSSTransition>
 
             </div>
-                {SetQueueStatus(isInQueue, onSetQueueStatus)}
+                {/*{SetQueueStatus(isInQueue, onSetQueueStatus)}*/}
             {/*<img src={inQueue} alt=""/>*/}
         </div>
     );
 };
 
-const SetQueueStatus = (status, callback) => {
-    return (
-        <div onClick={callback} className='col-lg-3' style={{display: 'flex', cursor: 'pointer',justifyContent:'center'}}>
-            {status
-                ? <img src={inQueue} alt=""/>
-                : <img src={outOfQueue} alt=""/>}
-        </div>
-    )
-}
+// const SetQueueStatus = (status, callback) => {
+//     return (
+//         <div onClick={callback} className='col-lg-3' style={{display: 'flex', cursor: 'pointer',justifyContent:'center'}}>
+//             {status
+//                 ? <img src={inQueue} alt=""/>
+//                 : <img src={outOfQueue} alt=""/>}
+//         </div>
+//     )
+// }
 
 export default React.memo(HomeSubheader);
