@@ -6,6 +6,7 @@ import transfer_icon from "../../../../static/icons/transfer-call.svg";
 import add_icon from "../../../../static/icons/plus.svg";
 import record_icon from "../../../../static/icons/record.svg";
 import {ActionItem} from "./ActionItem";
+import {setIsVisibleKeypad} from "../models/models";
 
 export const CallActions = () => {
 
@@ -14,11 +15,15 @@ export const CallActions = () => {
 
     }
 
+    const showKeypad = () => {
+        setIsVisibleKeypad(true)
+    }
+
     return (
         <div className="cellphone-numpad__callActions">
             <div className="actions-row">
                 <ActionItem callback={onClick} icon={microphone_icon}>Mute</ActionItem>
-                <ActionItem callback={onClick} icon={keypad_icon}>Keypad</ActionItem>
+                <ActionItem callback={showKeypad} icon={keypad_icon}>Keypad</ActionItem>
                 <ActionItem callback={onClick} icon={pause_icon}>Hold</ActionItem>
             </div>
             <div className="actions-row">

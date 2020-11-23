@@ -1,4 +1,4 @@
-import {getPhoneNumber} from "../../getPhoneNumber";
+import {findDriverFromNumber} from "../../findDriverFromNumber";
 import {Connection} from "twilio-client";
 
 type arrPhones = {
@@ -37,7 +37,7 @@ export const incomingHandlerFunction = ({connect, setCellPhoneInput, connectHand
         setFrom(connect.parameters.From)
         setCellPhoneStatus(incomingSetStatus({from: connect.parameters.From, isAdmin}))
         if (arrPhones?.length) {
-            const driver = getPhoneNumber(connect.parameters.From, arrPhones)         // get driver data
+            const driver = findDriverFromNumber(connect.parameters.From, arrPhones)         // get driver data
             if (driver) {
                 setStatusData({id: driver.vehicle_id, name: driver.driver_name})
             } else {

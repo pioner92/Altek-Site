@@ -1,1 +1,1 @@
-export {$inputValueCellPhone,setInputValueCellPhone} from './models'
+export {$inputValueCellPhone,setInputValueCellPhone,clearInputValueCellPhone} from './models'

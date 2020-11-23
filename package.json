@@ -25,6 +25,7 @@
     "effector-react": "^21.0.8",
     "extends-classes": "^1.0.5",
     "jquery": "^3.5.1",
+    "moment": "^2.29.1",
     "react": "^17.0.1",
     "react-datepicker": "^3.3.0",
     "react-dom": "^17.0.1",
