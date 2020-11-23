@@ -20,11 +20,8 @@ export const CellPhoneInput: React.FC = () => {
 
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setInputValueCellPhone(e.target.value)
-
-        // setSearchValue((prevState => {
-        //     return dispatchers.filter((el)=>el.driver_name.includes(e.target.value) || el.driver_number.includes(e.target.value))
-        // }))
     }
+
     const clearInput = () => {
         clearInputValueCellPhone()
     }

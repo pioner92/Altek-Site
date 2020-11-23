@@ -7,11 +7,11 @@ import {$inputValueCellPhone} from "../../../CellPhoneInput/models";
 
 export const CallButtons = () => {
 
-    // const inputValue = useStore()
+    const inputValue = useStore($inputValueCellPhone)
     const isConnect = useStore($isConnect)
 
     const onClickAccept = () => {
-        callEvent()
+        callEvent(inputValue)
     }
 
     const onClickDecline = () => {

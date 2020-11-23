@@ -1373,7 +1373,7 @@ a.header-btn-blue {
 }
 
 .tel-info {
-   margin-right: 20px; 
+   margin-right: 20px;
 }
 
 .tel-info p {
@@ -1909,3 +1909,4 @@ a.header-btn-blue {
     transform: translateY(-700px);
     transition: 500ms ease-in-out;
 }
+

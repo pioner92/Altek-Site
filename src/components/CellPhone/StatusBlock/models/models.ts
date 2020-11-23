@@ -1,7 +1,8 @@
 import {createEvent,createStore} from "effector";
 import {findDriverFromNumber} from "../../../../utils/appCall/findDriverFromNumber";
 import {phoneDataType} from "../../../../utils/appCall/app/callTypes";
-import moment from "moment";
+import moment, {Moment} from "moment";
+import {TimeCounter} from "./counter";
 
 
 export enum callDirection{
@@ -22,6 +23,9 @@ export const setCallDirection = createEvent<callDirectionType>()
 export const setStatusNumber = createEvent<string>()
 export const findDriver = createEvent<findDriverType>()
 export const resetStatusData = createEvent()
+export const startTimer = createEvent()
+export const stopTimer = createEvent()
+export const setCounter = createEvent<Moment>()
 
 
 export const $driver = createStore<phoneDataType|null>(null)
@@ -35,3 +39,9 @@ export const $statusNumber = createStore('')
 export const $callDirection = createStore<callDirectionType>(callDirection.incoming)
     .on(setCallDirection,(state, payload) => payload)
 
+export const $timeCounterService = createStore(new TimeCounter())
+    .on(startTimer,(state, payload) => state.start(setCounter))
+    .on(stopTimer,(state, payload) => state.stop())
+
+export const $timeCounter = createStore<Moment|string>('')
+    .on(setCounter,(state, payload) =>payload.format('mm:ss'))

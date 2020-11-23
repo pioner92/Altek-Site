@@ -1,15 +1,14 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {useStore} from "effector-react";
-import {$callDirection, $driver, $statusNumber} from "./models";
+import {$callDirection, $driver} from "./models";
 import {$isConnect} from "../models";
+import {$timeCounter} from "./models/models";
 
 export const StatusBlock = () => {
-
+    const timer = useStore($timeCounter)
     const isConnect = useStore($isConnect)
     const callDirection = useStore($callDirection)
-    const number = useStore($statusNumber)
     const driver = useStore($driver)
-
 
     return (
         <div className="cellphone-info-box" id="cellphone-info-box">
@@ -17,7 +16,7 @@ export const StatusBlock = () => {
                 {isConnect &&
                 <>
                     <span className="incomming">{callDirection} ◉</span>
-                    <span className="connected">Connected </span>
+                    <span className="connected">Connected {timer}</span>
                 </>
                 }
             </div>
@@ -29,7 +28,7 @@ export const StatusBlock = () => {
                     <span>{driver?.driver_name}</span>
                 </div>
                 <div className="cellphone-info-box__member-phone">
-                    <span>{number}</span>
+                    <span>{driver?.driver_number}</span>
                 </div>
                 <div className="cellphone-info-box__member-meta">
                     <span>{driver?.vehicle_id}</span>
