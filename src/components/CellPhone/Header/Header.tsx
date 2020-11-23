@@ -26,10 +26,10 @@ export const Header: React.FC = () => {
 
     if (selectedIndex !== 0) {
         return (
-            <div className="cellphone-page-header">
-                <div onClick={onClickBack}>
+            <div style={{justifyContent:'flex-start',alignItems:'center',padding:'0px 10px 0px 10px'}} className="cellphone-page-header">
+                <div style={{width:100,display:"flex",alignItems:'center',justifyContent:'flex-start',justifySelf:'flex-start'}} onClick={onClickBack}>
                     <BackSvg/>
-                    <span>Back</span>
+                    <span style={{fontFamily:'Roboto',fontWeight:500,fontSize:14,lineHeight:16}}>Back</span>
                 </div>
                 <span className="cellphone-page-header__title">{titleGenerate()}</span>
             </div>
