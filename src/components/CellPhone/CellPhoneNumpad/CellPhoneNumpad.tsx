@@ -1,5 +1,4 @@
 import React, {useEffect} from 'react';
-import {BottomMenu} from "../BottomMenu/BottomMenu";
 import {CallActions} from "./CallActions/CallActions";
 import {Numpad} from "./Numpad/Numpad";
 import {CellPhoneInput} from "../CellPhoneInput/CellPhoneInput";
@@ -26,7 +25,7 @@ export const CellPhoneNumpad = () => {
                 ? <Numpad/>
                 : <CallActions/>
             }
-            <BottomMenu/>
+            <CellPhoneNumpad/>
         </div>
     );
 };
