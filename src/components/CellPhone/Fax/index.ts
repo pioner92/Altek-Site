@@ -1,0 +1,1 @@
+export {Fax} from './Fax'

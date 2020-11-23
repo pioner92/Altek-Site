@@ -1,18 +1,15 @@
 import React, {useEffect} from 'react';
-import {initCellPhone, initEventListeners} from "./models/models";
-import {getDispatchersQueue} from "./ToggleAvailable/models/models";
-import {Fax} from "./Fax/Fax";
-import {BottomMenu} from "./BottomMenu/BottomMenu";
+import {initCellPhone, initEventListeners} from "./models";
+import {getDispatchersQueue} from "./ToggleAvailable/models";
+import {Fax} from "./Fax";
+import {BottomMenu} from "./BottomMenu";
 import {useStore} from "effector-react";
-import {$selectedButtonIndex} from "./BottomMenu/models/models";
+import {$selectedButtonIndex} from "./BottomMenu";
 import {Main} from "./Main/Main";
 import {Header} from "./Header/Header";
 
 export const CellPhone = () => {
     const selectedIndex = useStore($selectedButtonIndex)
-
-
-
 
     useEffect(() => {
         initCellPhone('888')

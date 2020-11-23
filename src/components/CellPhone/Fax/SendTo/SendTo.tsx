@@ -14,7 +14,7 @@ export const SendTo = () => {
     }
 
     const addNumber = () => {
-        addFaxNumber(inputValue)
+        inputValue && addFaxNumber(inputValue)
     }
 
     return (
