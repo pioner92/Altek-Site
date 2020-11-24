@@ -1,23 +1,26 @@
 import React from 'react';
 import {useStore} from "effector-react";
-import {$callDirection, $driver} from "./models";
+import {$callDirection, $driver, $statusNumber} from "./models";
 import {$isConnect} from "../models";
 import {$isVisibleDirection} from "./models/models";
 import {ConnectedTimerCounter} from "./ConnectedTimerCounter";
 import {IsAdmin} from "../../Validate/isAdmin";
 import {phoneDataType} from "../../../utils/appCall/app/callTypes";
+import {$inputValueCellPhone} from "../CellPhoneInput/models";
 
-declare const window : {
-    arrPhones:Array<phoneDataType>
-    is_admin:boolean
-    number:string
+declare const window: {
+    arrPhones: Array<phoneDataType>
+    is_admin: boolean
+    number: string
 }
 
 export const StatusBlock = () => {
     const isConnect = useStore($isConnect)
+    const statusNumber = useStore($statusNumber)
     const isVisibleDirection = useStore($isVisibleDirection)
     const callDirection = useStore($callDirection)
     const driver = useStore($driver)
+    const driverNumber = driver?.driver_number
 
     return (
         <div style={{minHeight: 30}} className="cellphone-info-box" id="cellphone-info-box">
@@ -26,17 +29,21 @@ export const StatusBlock = () => {
                 {isConnect && <ConnectedTimerCounter/>}
             </div>
             <div className="cellphone-info-box__member">
-                {/*<div className="cellphone-info-box__member-avatar">*/}
-                {/*    <img src="https://image.freepik.com/free-photo/happy-man-with-newspaper_23-2147694656.jpg" alt=""/>*/}
-                {/*</div>*/}
                 <div className="cellphone-info-box__member-name">
                     <span>{driver?.driver_name}</span>
                 </div>
                 <div className="cellphone-info-box__member-phone">
                     <IsAdmin flag={true}>
-                        <span>{driver?.driver_number}</span>
+                        {driverNumber ?
+                            <span>{driverNumber}</span>
+                            : <span>{statusNumber}</span>
+                        }
                     </IsAdmin>
-
+                    <IsAdmin flag={false}>
+                        {!driverNumber &&
+                        <span>{statusNumber}</span>
+                        }
+                    </IsAdmin>
                 </div>
                 <div className="cellphone-info-box__member-meta">
                     <span>{driver?.vehicle_id}</span>
