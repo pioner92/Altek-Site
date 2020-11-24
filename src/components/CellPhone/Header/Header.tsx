@@ -1,14 +1,14 @@
 import React from 'react';
 import phone_back from "../../../static/icons/phone-back.svg";
-import {$selectedButtonIndex, setSelectedButtonIndex} from "../BottomMenu/models/models";
+import {$selectedBottomButtonIndex, setSelectedBottomButtonIndex} from "../BottomMenu/models/models";
 import {useStore} from "effector-react";
 
 export const Header: React.FC = () => {
 
-    const selectedIndex = useStore($selectedButtonIndex)
+    const selectedIndex = useStore($selectedBottomButtonIndex)
 
     const onClickBack = () => {
-        setSelectedButtonIndex(0)
+        setSelectedBottomButtonIndex(0)
     }
 
     const titleGenerate = () => {

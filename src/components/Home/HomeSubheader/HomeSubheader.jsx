@@ -23,11 +23,11 @@ const HomeSubheader = ({
         clearSelectedDrivers();
     };
 
-    const onSetQueueStatus = () => {
-        setDispatchersQueue(window.number, !isInQueue)
-            .then((res) => setIsInQueue((prevState => !prevState)))
-
-    }
+    // const onSetQueueStatus = () => {
+    //     setDispatchersQueue(window.number, !isInQueue)
+    //         .then((res) => setIsInQueue((prevState => !prevState)))
+    //
+    // }
 
     useEffect(() => {
         if (selectedId.length > 0) {

@@ -1,1 +1,1 @@
-export {setSelectedButtonIndex,$selectedButtonIndex} from './models'
+export {setSelectedBottomButtonIndex,$selectedBottomButtonIndex} from './models'

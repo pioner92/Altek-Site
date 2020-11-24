@@ -4,19 +4,21 @@ import {getDispatchersQueue} from "./ToggleAvailable/models";
 import {Fax} from "./Fax";
 import {BottomMenu} from "./BottomMenu";
 import {useStore} from "effector-react";
-import {$selectedButtonIndex} from "./BottomMenu";
+import {$selectedBottomButtonIndex} from "./BottomMenu";
 import {Main} from "./Main/Main";
 import {Header} from "./Header/Header";
 import {History} from "./History/History";
 
 export const CellPhone = () => {
-    const selectedIndex = useStore($selectedButtonIndex)
+    const selectedIndex = useStore($selectedBottomButtonIndex)
+
 
     useEffect(() => {
         initCellPhone('888')
         initEventListeners()
         getDispatchersQueue('cnu')
     }, [])
+
 
     return (
         <div className="cellphone" id="cellphone">

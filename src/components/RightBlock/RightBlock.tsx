@@ -17,24 +17,12 @@ export type ownPropsType = {
 
 export const RightBlock: React.FC<connectorType> = ({
                                                 getActiveDispatchersAction, activeDispatchers,
-                                                writeToStoreActiveDispatchersAction
+                                                writeToStoreActiveDispatchersAction,dispatchers
                                             }) => {
 
-    // const faxInputRef = useRef<HTMLInputElement>(null)
-    // const refTransferBtn = useRef<HTMLDivElement>(null);
 
     const [isVisibleList, setIsVisibleList] = useState(false);
-    // const [faxMedia, setFaxMedia] = useState(null)
-    //
-    // const onClick = (e: React.MouseEvent<HTMLElement>) => {
-    //     onClickHandler(e);
-    // };
-    // const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    //     onChangeHandler(e);
-    // };
-    // const call = () => {
-    //     Call(cellPhoneInput);
-    // };
+
     //
     // const onOpenList = () => {
     //     // @ts-ignore
@@ -58,35 +46,7 @@ export const RightBlock: React.FC<connectorType> = ({
     }, []);
 
 
-    // const getInputMedia = (e: React.ChangeEvent<HTMLInputElement>) => {
-    //     //@ts-ignore
-    //     setFaxMedia(e.target.files[0])
-    // }
-
-
-    // useEffect(() => {
-    //     if (faxMedia !== null) {
-    //         const formData = new FormData();
-    //         //@ts-ignore
-    //         formData.append('file', faxMedia, 'FAX')
-    //
-    //         fetch('http://localhost:8082/send_fax', {
-    //             method: 'POST',
-    //             body: formData
-    //         }).then(() => {
-    //             faxInputRef!.current!.value = ''
-    //         })
-    //     }
-    // }, [faxMedia])
-
-    // useEffect(() => {
-    //     if (status == 'Ready') {
-    //         setIsVisibleList(false);
-    //         // refTransferBtn.current!.style.backgroundColor = '#C7C6C5';
-    //     }
-    // }, [status]);
-
-    // useGetQueue(dispatchers, writeToStoreActiveDispatchersAction)
+    useGetQueue(dispatchers, writeToStoreActiveDispatchersAction)
 
     return (
         <div className="col-lg-3 col-12 cellphone-wrapper">

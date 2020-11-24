@@ -9,10 +9,15 @@ import {
     setStatusNumber, startTimer, stopTimer,
 } from "../StatusBlock/models/models";
 import {phoneDataType} from "../../../utils/appCall/app/callTypes";
+import {setSelectedBottomButtonIndex} from "../BottomMenu/models";
+import {onAcceptEvent, showAllCallButtons} from "../CellPhoneNumpad/Numpad/CallButtons/models";
+import {setIsVisibleKeypad} from "../CellPhoneNumpad/models/models";
 
 
-declare const window:{
+declare const window : {
     arrPhones:Array<phoneDataType>
+    is_admin:boolean
+    number:string
 }
 
 export const initCellPhone = createEvent<string>()
@@ -30,8 +35,8 @@ export const callingHandler = createEvent()
 export const missedCallHandler = createEvent<string>()
 
 export const $isConnect = createStore(false)
-    .on(disconnectHandler,(state, payload) => false)
-    .on(connectHandler,(state, payload) => true)
+    .on(disconnectHandler,() => false)
+    .on(connectHandler,() => true)
 
 export const $callApp = createStore(new AppCall({connectHandler,incomingHandler,disconnectHandler,acceptHandler,callingHandler,missedCallHandler}))
     .on(initCellPhone,(state,payload)=>{state.init(payload)})
@@ -49,12 +54,16 @@ incomingHandler.watch((number)=>{
     setIsVisibleDirection(true)
     setStatusNumber(number)
     findDriver({number, arrPhones:window.arrPhones})
+    setSelectedBottomButtonIndex(0)
+    showAllCallButtons()
+    setIsVisibleKeypad(false)
 })
 
 callEvent.watch((payload => {
     setStatusNumber(payload)
     setCallDirection(callDirection.outgoing)
     findDriver({number:payload, arrPhones:window.arrPhones})
+    onAcceptEvent()
 }))
 
 callingHandler.watch((payload)=>{

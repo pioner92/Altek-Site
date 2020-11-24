@@ -38,16 +38,13 @@ const numberValidate = (number: string, from: string, to: string, direction: str
 }
 
 
-export const useRecordingLink = (socket: any, addCallHistoryLinkAction: any, setId: (text: string) => void, number: string) => {
+export const useRecordingLink = (socket: any, addCallHistoryLinkAction: any, number: string) => {
     useEffect(() => {
         socket.on('message_link', (data: dataType) => {
-            console.log(data)
             const {to, from, link, status, direction} = data
             //@ts-ignore
             const id = findDriverFromNumber(from, window.arrPhones) || findDriverFromNumber(to, window.arrPhones)?.driver_id
-            console.log(id)
             if (numberValidate(number, from, to, direction) && link && id) {
-                console.log('Запись')
                 addCallHistoryLinkAction({
                     id,
                     link,
@@ -55,7 +52,6 @@ export const useRecordingLink = (socket: any, addCallHistoryLinkAction: any, set
                     to,
                     status: statusValidate(status)
                 });
-                setId('');
             }
         });
     }, [])

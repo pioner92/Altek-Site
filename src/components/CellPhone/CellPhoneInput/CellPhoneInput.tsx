@@ -3,14 +3,15 @@ import input_clear from "../../../static/icons/input-clear.svg";
 import {$inputValueCellPhone, clearInputValueCellPhone, setInputValueCellPhone} from "./models";
 import {useStore} from "effector-react";
 import {SearchList} from "./SearchList/SearchList";
-import {phoneDataType} from "../../../utils/appCall/app/callTypes";
 import {$isVisibleDriverList} from "./SearchList/models";
-import {$driverList, $filteredDriverList, setDriverList} from "./models/models";
+import { $filteredDriverList, setDriverList} from "./models/models";
+import {phoneDataType} from "../../../utils/appCall/app/callTypes";
 
-declare const window:{
+declare const window : {
     arrPhones:Array<phoneDataType>
+    is_admin:boolean
+    number:string
 }
-
 
 export const CellPhoneInput: React.FC = () => {
 

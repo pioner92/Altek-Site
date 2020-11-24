@@ -1,6 +1,6 @@
 import React from 'react';
 import phone_history from "../../../static/icons/phone-history.svg";
-import {$selectedButtonIndex, setSelectedButtonIndex} from "./models/models";
+import {$selectedBottomButtonIndex, setSelectedBottomButtonIndex} from "./models/models";
 import phone_fax from "../../../static/icons/phone-fax.svg";
 import phone_chat from "../../../static/icons/phone-chat.svg";
 import phone_history_active from "../../../static/icons/phone-history-active.svg";
@@ -10,13 +10,13 @@ import {useStore} from "effector-react";
 
 export const BottomMenu = () => {
 
-    const selectedIndex = useStore($selectedButtonIndex)
+    const selectedIndex = useStore($selectedBottomButtonIndex)
     const historyIndex = 1
     const faxIndex = 2
     const chatIndex = 3
 
     const onSelect = (index:number) => {
-        setSelectedButtonIndex(index)
+        setSelectedBottomButtonIndex(index)
     }
 
     const classGenerate = (index:number) =>{

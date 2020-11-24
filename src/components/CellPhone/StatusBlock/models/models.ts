@@ -33,11 +33,11 @@ export const setIsVisibleDirection = createEvent<boolean>()
 
 export const $driver = createStore<phoneDataType|null>(null)
     .on(findDriver,(state, payload) => findDriverFromNumber(payload.number,payload.arrPhones))
-    .on(resetStatusData,(state, payload) => null)
+    .on(resetStatusData,() => null)
 
 export const $statusNumber = createStore('')
     .on(setStatusNumber,(state, payload) => payload)
-    .on(resetStatusData,(state, payload) => '')
+    .on(resetStatusData,() => '')
 
 export const $callDirection = createStore<callDirectionType>(callDirection.incoming)
     .on(setCallDirection,(state, payload) => payload)
@@ -46,8 +46,8 @@ export const $isVisibleDirection = createStore(false)
     .on(setIsVisibleDirection,(state, payload) => payload)
 
 export const $timeCounterService = createStore(new TimeCounter())
-    .on(startTimer,(state, payload) => state.start(setCounter))
-    .on(stopTimer,(state, payload) => state.stop(setCounter))
+    .on(startTimer,(state) => state.start(setCounter))
+    .on(stopTimer,(state) => state.stop(setCounter))
 
 export const $timeCounter = createStore<Moment|string>('')
     .on(setCounter,(state, payload) =>payload.format('mm:ss'))
@@ -57,5 +57,4 @@ resetStatusData.watch(()=>{
     setIsVisibleDirection(false)
     setInputValueCellPhone('')
     setIsVisibleKeypad(true)
-    // setCounter(moment().startOf('day'))
 })

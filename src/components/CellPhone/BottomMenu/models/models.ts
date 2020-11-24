@@ -1,6 +1,6 @@
 import {createEvent,createStore} from "effector";
 
-export const setSelectedButtonIndex = createEvent<number>()
+export const setSelectedBottomButtonIndex = createEvent<number>()
 
-export const $selectedButtonIndex = createStore(0)
-    .on(setSelectedButtonIndex,(state, payload) => payload)
+export const $selectedBottomButtonIndex = createStore(0)
+    .on(setSelectedBottomButtonIndex,(state, payload) => payload)

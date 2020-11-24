@@ -1,8 +1,11 @@
 import {createEffect, createEvent, createStore} from "effector";
 import Data from "../../../../data.json";
+import {phoneDataType} from "../../../../utils/appCall/app/callTypes";
 
-declare const window: {
-    number: string
+declare const window : {
+    arrPhones:Array<phoneDataType>
+    is_admin:boolean
+    number:string
 }
 
 type sendIsAvailableToServerType = {
