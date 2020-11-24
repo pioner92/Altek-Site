@@ -1,12 +1,12 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import CheckBox from './HomeContentComponents/CheckBox';
 import Name from './HomeContentComponents/Name';
 import Group from './HomeContentComponents/Group';
 import Number from './HomeContentComponents/Number';
 import Text from './HomeContentComponents/Text';
-import { Context } from '../../Context/Context';
 import {responseDriverDataType} from "../../../Redux/Actions/WriteToStoreActions/WriteToStoreActions";
 import {connectorType} from "./HomeContentContainer";
+import {callEvent} from "../../CellPhone/models/models";
 
 export type ownPropsType = {
     data:responseDriverDataType
@@ -20,9 +20,7 @@ const HomeContent:React.FC<connectorType> = (props:any) => {
             is_fired, veh_id, not_working_day, not_working_time,
         },
     } = props;
-    const {
-        setStatusData, setCellPhoneInput, Call, setId,
-    } = useContext(Context);
+
 
     const selectDriver = (_id:number, isChecked:boolean) => {
         // selectDriverAction(isChecked, _id);
@@ -30,11 +28,7 @@ const HomeContent:React.FC<connectorType> = (props:any) => {
     };
 
     const onClickDriverCall = (data:{ id:number, number:string, name:string }) => {
-        setStatusData(data);
-        setId(data.id);
-        // @ts-ignore
-        window.is_admin && setCellPhoneInput(data.number);
-        Call(data.number);
+        callEvent(data.number)
     };
     return (
         <>
