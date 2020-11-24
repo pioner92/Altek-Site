@@ -5,13 +5,11 @@ import {HistoryList} from "./HistoryList/HistoryList";
 
 export const History = () => {
     return (
-        <div>
-            <div className="cellphone-page-body" style={{paddingTop: 10, minHeight: 600}}>
-                <div className="cellphone-form">
-                    <ToggleButtons/>
-                    <HistorySearchInput/>
-                    <HistoryList/>
-                </div>
+        <div className="cellphone-page-body celphone-scroll-view">
+            <div className="cellphone-form">
+                <ToggleButtons/>
+                <HistorySearchInput/>
+                <HistoryList/>
             </div>
         </div>
     );

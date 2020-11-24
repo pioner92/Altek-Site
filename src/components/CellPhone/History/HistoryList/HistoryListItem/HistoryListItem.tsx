@@ -5,6 +5,9 @@ import {Avatar} from "./Avatar";
 export const HistoryListItem = () => {
     return (
         <div className="cellphone-list__item">
+            <div style={{marginRight: 10}}>
+                <input type="checkbox"/>
+            </div>
             <Avatar/>
             <div className="cellphone-list__item_body">
                 <div className="cellphone-list__item_name">
