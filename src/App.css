@@ -1831,8 +1831,10 @@ a.header-btn-blue {
 }
 
 .celphone-searchlist {
-    height: 165px;
-    width: 100%;
+    position: absolute;
+    background-color: #fff;
+    max-height: 165px;
+    width: calc(100% - 84px);
     box-shadow:1px 1px 4px #EFEFEF, -1px -1px 4px #EFEFEF;
     overflow-y:scroll;
     border-radius:0px 0px 6px 6px;
