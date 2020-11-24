@@ -22,6 +22,4 @@ export class AppCall {
     decline() {
         this.callService.HungUp()
     }
-
-
 }

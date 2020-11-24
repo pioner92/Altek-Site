@@ -3,9 +3,10 @@ import input_clear from "../../../static/icons/input-clear.svg";
 import {$inputValueCellPhone, clearInputValueCellPhone, setInputValueCellPhone} from "./models";
 import {useStore} from "effector-react";
 import {SearchList} from "./SearchList/SearchList";
-import {$isVisibleDriverList} from "./SearchList/models";
+import {$isBlockedDriverList, $isVisibleDriverList} from "./SearchList/models";
 import { $filteredDriverList, setDriverList} from "./models/models";
 import {phoneDataType} from "../../../utils/appCall/app/callTypes";
+import {$isConnect} from "../models";
 
 declare const window : {
     arrPhones:Array<phoneDataType>
@@ -18,6 +19,7 @@ export const CellPhoneInput: React.FC = () => {
     const inputValue = useStore($inputValueCellPhone)
     const isVisibleDriverList = useStore($isVisibleDriverList)
     const drivers = useStore($filteredDriverList)
+    const isBlockedDriverList = useStore($isBlockedDriverList)
 
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setInputValueCellPhone(e.target.value)
@@ -29,7 +31,6 @@ export const CellPhoneInput: React.FC = () => {
 
     useEffect(()=>{
         setDriverList(window.arrPhones)
-        console.log(drivers)
     },[])
 
     return (
@@ -40,7 +41,7 @@ export const CellPhoneInput: React.FC = () => {
                     <img onClick={clearInput} src={input_clear} alt=""/>
                 </span>
             </div>
-            {isVisibleDriverList &&
+            {isVisibleDriverList && !isBlockedDriverList &&
             <SearchList values={drivers}/>
             }
         </div>

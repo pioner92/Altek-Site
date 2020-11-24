@@ -1,1 +1,1 @@
-export {$isVisibleDriverList,setIsVisibleDriverList} from './models'
+export {$isVisibleDriverList,setIsVisibleDriverList,setIsBlockedDriverList,$isBlockedDriverList} from './models'

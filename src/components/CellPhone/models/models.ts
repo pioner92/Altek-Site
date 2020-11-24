@@ -10,8 +10,9 @@ import {
 } from "../StatusBlock/models/models";
 import {phoneDataType} from "../../../utils/appCall/app/callTypes";
 import {setSelectedBottomButtonIndex} from "../BottomMenu/models";
-import {onAcceptEvent, showAllCallButtons} from "../CellPhoneNumpad/Numpad/CallButtons/models";
+import {onAcceptEvent, onDeclineEvent, showAllCallButtons} from "../CellPhoneNumpad/Numpad/CallButtons/models";
 import {setIsVisibleKeypad} from "../CellPhoneNumpad/models/models";
+import {setIsBlockedDriverList} from "../CellPhoneInput/SearchList/models";
 
 
 declare const window : {
@@ -47,6 +48,7 @@ export const $callApp = createStore(new AppCall({connectHandler,incomingHandler,
 connectHandler.watch(()=>{
     startTimer()
     setIsVisibleDirection(false)
+    setIsBlockedDriverList(true)
 })
 
 incomingHandler.watch((number)=>{
@@ -57,6 +59,7 @@ incomingHandler.watch((number)=>{
     setSelectedBottomButtonIndex(0)
     showAllCallButtons()
     setIsVisibleKeypad(false)
+    setIsBlockedDriverList(true)
 })
 
 callEvent.watch((payload => {
@@ -76,9 +79,12 @@ callingHandler.watch((payload)=>{
 disconnectHandler.watch(()=>{
     resetStatusData()
     stopTimer()
+    setIsBlockedDriverList(false)
 })
 
 acceptHandler.watch(()=>{
 
 })
-missedCallHandler.watch(()=>console.log('MISSED'))
+missedCallHandler.watch(()=>{
+    onDeclineEvent()
+})
