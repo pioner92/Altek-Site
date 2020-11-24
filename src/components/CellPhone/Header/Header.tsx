@@ -1,5 +1,5 @@
 import React from 'react';
-import {BackSvg} from "./BackSvg";
+import phone_back from "../../../static/icons/phone-back.svg";
 import {$selectedButtonIndex, setSelectedButtonIndex} from "../BottomMenu/models/models";
 import {useStore} from "effector-react";
 
@@ -26,10 +26,9 @@ export const Header: React.FC = () => {
 
     if (selectedIndex !== 0) {
         return (
-            <div style={{justifyContent:'flex-start',alignItems:'center',padding:'0px 10px 0px 10px'}} className="cellphone-page-header">
-                <div style={{width:100,display:"flex",alignItems:'center',justifyContent:'flex-start',justifySelf:'flex-start'}} onClick={onClickBack}>
-                    <BackSvg/>
-                    <span style={{fontFamily:'Roboto',fontWeight:500,fontSize:14,lineHeight:16}}>Back</span>
+            <div className="cellphone-page-header">
+                <div className="cellphone-page-backBtn" onClick={onClickBack}>
+                    <img src={phone_back}/>
                 </div>
                 <span className="cellphone-page-header__title">{titleGenerate()}</span>
             </div>
@@ -38,3 +37,4 @@ export const Header: React.FC = () => {
         return null
     }
 };
+

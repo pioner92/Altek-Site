@@ -9,10 +9,6 @@ export const Numpad: React.FC = () => {
         numpadNumberClick(value)
     }
 
-    const onDoubleClick = ()=>{
-        numpadNumberClick('+')
-    }
-
     return (
         <div className="cellphone-numpad__numpad">
             <NumbersRow onClick={onClickNumber} numbers={[1, 2, 3]}/>
@@ -20,7 +16,7 @@ export const Numpad: React.FC = () => {
             <NumbersRow  onClick={onClickNumber} numbers={[7, 8, 9]}/>
             <div className="number-row">
                 <div onClick={onClickNumber} style={{color: '#9DA8B2'}} className="number" data-value="*">*</div>
-                <div onDoubleClick={onDoubleClick}  className="number" onClick={onClickNumber} data-value="0">0</div>
+                <div className="number" onClick={onClickNumber} data-value="0">0</div>
                 <div onClick={onClickNumber} style={{color: '#9DA8B2'}} className="number" data-value="#">#</div>
             </div>
         </div>

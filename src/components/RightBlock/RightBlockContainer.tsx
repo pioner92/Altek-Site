@@ -41,20 +41,20 @@ const RightBlockContainer: React.FC<propsType> = forwardRef(({
                                                                 updateCallNotificationAction,getCallNotificationAction
                                                             }, ref) => {
 
-    const [cellPhoneInput, setCellPhoneInput] = useState('+');
-    const [connect, setConnect] = useState<Connection | null>(null);
-    const [btnAcceptColor, setBtnAcceptColor] = useState('');
-    const [btnDeclineColor, setBtnDeclineColor] = useState('');
-    const [celPhoneStatus, setCellPhoneStatus] = useState('');
-    const [animFlag, setAnimFlag] = useState(false)
-    const [statusData, setStatusData] = useState<statusDateType>({} as statusDateType);
-    const [isConnect, setIsConnect] = useState(false);
-    const [id, setId] = useState('');
-    const [from, setFrom] = useState('');
-    const btnAcceptActive = '#7EDC5D'
-    const btnAcceptDisable = '#AEDE9E'
-    const btnDeclineActive = '#EC5454'
-    const btnDeclineDisable = '#EF7575'
+    // const [cellPhoneInput, setCellPhoneInput] = useState('+');
+    // const [connect, setConnect] = useState<Connection | null>(null);
+    // const [btnAcceptColor, setBtnAcceptColor] = useState('');
+    // const [btnDeclineColor, setBtnDeclineColor] = useState('');
+    // const [celPhoneStatus, setCellPhoneStatus] = useState('');
+    // const [animFlag, setAnimFlag] = useState(false)
+    // const [statusData, setStatusData] = useState<statusDateType>({} as statusDateType);
+    // const [isConnect, setIsConnect] = useState(false);
+    // const [id, setId] = useState('');
+    // const [from, setFrom] = useState('');
+    // const btnAcceptActive = '#7EDC5D'
+    // const btnAcceptDisable = '#AEDE9E'
+    // const btnDeclineActive = '#EC5454'
+    // const btnDeclineDisable = '#EF7575'
 
     // const connectHandler = () => {
     //     setBtnAcceptColor(btnAcceptDisable)

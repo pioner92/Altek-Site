@@ -1373,7 +1373,7 @@ a.header-btn-blue {
 }
 
 .tel-info {
-   margin-right: 20px;
+    margin-right: 20px;
 }
 
 .tel-info p {
@@ -1566,10 +1566,9 @@ a.header-btn-blue {
 .cellphone-bottom-menu {
     width: 100%;
     border-top: 1px solid#F5F5F5;
-    margin-top: 30px;
     display: flex;
     justify-content: space-around;
-    padding-top: 15px;
+    padding: 15px 0;
 }
 
 .cellphone-bottom-menu .cellphone-bottom-menu__item{
@@ -1582,6 +1581,10 @@ a.header-btn-blue {
     color: #828B92;
     font-size: 13px;
     font-weight: 500;
+}
+
+.cellphone-bottom-menu .cellphone-bottom-menu__item.active{
+    color: #1068A8;
 }
 
 .cellphone-bottom-menu .cellphone-bottom-menu__item span{
@@ -1634,6 +1637,7 @@ a.header-btn-blue {
 }
 
 .cellphone-page-header {
+    position: relative;
     background-color: #F9FBFF;
     height: 64px;
     display: flex;
@@ -1652,45 +1656,45 @@ a.header-btn-blue {
 }
 
 .cellphone-form {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }
 
 .c-form-group{
-  margin-bottom: 20px;
-  width: 100%;
-} 
+    margin-bottom: 20px;
+    width: 100%;
+}
 
 .cellphone label.c-form-control {
-  width: 100%;
-  font-size: 18px;
-  color: #232E42;
-  font-weight: 400;
+    width: 100%;
+    font-size: 18px;
+    color: #232E42;
+    font-weight: 400;
 }
 
 .cellphone input.c-form-control {
-  width: 100%;
-  background: #FFFFFF;
-  box-shadow: 1px 1px 4px #EFEFEF, -1px -1px 4px #EFEFEF;
-  border-radius: 6px;
-  height: 40px;
-  padding: 10px 12px;
-  color: #232E42;
-  border: none;
+    width: 100%;
+    background: #FFFFFF;
+    box-shadow: 1px 1px 4px #EFEFEF, -1px -1px 4px #EFEFEF;
+    border-radius: 6px;
+    height: 40px;
+    padding: 10px 12px;
+    color: #232E42;
+    border: none;
 }
 
 .cellphone textarea.c-form-control {
-  width: 100%;
-  background: #FFFFFF;
-  box-shadow: 1px 1px 4px #EFEFEF, -1px -1px 4px #EFEFEF;
-  border-radius: 6px;
-  height: 40px;
-  padding: 10px 12px;
-  resize: none;
-  color: #232E42;
-  border: none;
-  min-height: 72px;
+    width: 100%;
+    background: #FFFFFF;
+    box-shadow: 1px 1px 4px #EFEFEF, -1px -1px 4px #EFEFEF;
+    border-radius: 6px;
+    height: 40px;
+    padding: 10px 12px;
+    resize: none;
+    color: #232E42;
+    border: none;
+    min-height: 72px;
 }
 
 .cellphone label.c-form-control.file-attach {
@@ -1715,7 +1719,7 @@ a.header-btn-blue {
 }
 
 .cellphone input.c-form-control::placeholder, .cellphone textarea.c-form-control::placeholder {
-  color: #9DA8B2;
+    color: #9DA8B2;
 }
 
 .cellphone-input_adv{
@@ -1725,10 +1729,16 @@ a.header-btn-blue {
     cursor: pointer;
 }
 
-.cellphone-input__button {
+.cellphone-input__button_right {
     position: absolute;
     position: absolute;
     right: 10px;
+}
+
+.cellphone-input__button_left {
+    position: absolute;
+    position: absolute;
+    left: 10px;
 }
 
 .file-attach-button {
@@ -1812,6 +1822,181 @@ a.header-btn-blue {
     margin-top: 30px;
 }
 
+.cellphone-page-backBtn {
+    position: absolute;
+    left: 7px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.celphone-searchlist {
+    height: 165px;
+    width: 100%;
+    box-shadow:1px 1px 4px #EFEFEF, -1px -1px 4px #EFEFEF;
+    overflow-y:scroll;
+    border-radius:0px 0px 6px 6px;
+    display:flex;
+    flex-direction:column;
+    padding: 10px;
+}
+
+.celphone-searchlist-item {
+    cursor: pointer;
+    font-size: 18px;
+    padding: 0 5px;
+    border-radius: 6px;
+}
+
+.celphone-searchlist-item:hover {
+    background-color: #EDEDED;
+}
+
+.celphone-scroll-view::-webkit-scrollbar {
+    width: 10px;
+}
+
+.celphone-scroll-view::-webkit-scrollbar-track {
+    background: #EDEDED;
+    border-radius: 4px;
+}
+
+
+.celphone-scroll-view::-webkit-scrollbar-thumb {
+    background: #AFD2F9;
+    border-radius: 4px;
+    margin: 7px 0;
+}
+
+.cellphone-switcher {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #E5F2F5;
+    border-radius: 8px;
+    height: 45px;
+    padding: 5px;
+    transition: 0.2s;
+    margin-bottom: 20px;
+}
+
+.cellphone-switcher__item {
+    width: 100%;
+    display: flex;
+    background-color: #E5F2F5;
+    align-items: center;
+    font-size: 16px;
+    height: 100%;
+    cursor: pointer;
+    font-weight: 400;
+    justify-content: center;
+    color: #5A6570;
+}
+
+.cellphone-switcher__item.active {
+    background-color: #489FFE;
+    font-weight: 500;
+    cursor: default;
+    color: #fff;
+    border-radius: 8px;
+}
+
+.cellphone-list__item_avatar{
+    width: 33px;
+    height: 33px;
+    margin-right: 5px;
+}
+
+.cellphone-list__item_avatar img{
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.cellphone-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.cellphone-list__item:not(last-child) {
+    margin-bottom: 20px;
+}
+
+.cellphone-list__item_body {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.cellphone-list__item_body::after {
+    content: "";
+    position: absolute;
+    border-bottom: 1px solid #F5F5F5;
+    width: 100%;
+    bottom: -11px;
+}
+
+.cellphone-list__item_right {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.cellphone-list__item_more {
+    margin-left: 10px;
+}
+
+.cellphone-list__item_meta {
+    color: #9DA8B2;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.cellphone-list__item {
+    display: flex;
+    align-items: center;
+}
+
+.cellphone-list__item_name {
+    line-height: 1.3;
+}
+
+.cellphone-list__item_name .title {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.cellphone-list__item_name .title.red{
+    color: #CE2234;
+}
+
+.cellphone-list__item_name .subtitle {
+    color: #94999D;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.cellphone-list__item_actions {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 25px;
+    width: 90px;
+    background: #FFFFFF;
+    box-shadow: 1px 1px 4px #EFEFEF, -1px -1px 4px #EFEFEF;
+    border-radius: 6px;
+}
+
+.cellphone-list__item_actions_item {
+    cursor: pointer;
+}
+
+.cellphone-list__item_more {
+    cursor: pointer;
+}
 
 @media (min-width: 991px) {
     .hide-on-medium-and-up {
@@ -2088,5 +2273,49 @@ a.header-btn-blue {
 .call-notification-exit-active {
     transform: translateY(-700px);
     transition: 500ms ease-in-out;
+}
+
+
+/*------------*/
+
+.cellphone-more-button-enter {
+    opacity: 0;
+    transform: scaleZ(0);
+}
+.cellphone-more-button-enter-active {
+    transform: scaleZ(1);
+    opacity: 1;
+    transition: 200ms ease-in-out;
+}
+.cellphone-more-button-exit {
+    opacity: 1;
+    transform:  scaleZ(1);
+
+}
+.cellphone-more-button-exit-active {
+    transform:  scaleZ(0);
+    opacity: 0;
+    transition: 100ms;
+}
+
+
+.cellphone-action-menu-enter {
+    opacity: 0;
+    transform:  scaleZ(0);
+}
+.cellphone-action-menu-enter-active {
+    transform: scaleZ(1);
+    opacity: 1;
+    transition: 200ms ease-in-out;
+}
+.cellphone-action-menu-exit {
+    opacity: 1;
+    transform:  scaleZ(1);
+
+}
+.cellphone-action-menu-exit-active {
+    transform: scaleZ(0);
+    opacity: 0;
+    transition: 100ms;
 }
 

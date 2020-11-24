@@ -32,11 +32,13 @@ export const CellPhoneInput: React.FC = () => {
     },[])
 
     return (
-        <div className="cellphone-numpad__input">
-            <input value={inputValue} onChange={onChange} type="text" placeholder="Type number or name..."/>
-            <span className="numpad-clearBtn">
-                <img onClick={clearInput} src={input_clear} alt=""/>
-            </span>
+        <div>
+            <div className="cellphone-numpad__input">
+                <input value={inputValue} onChange={onChange} type="text" placeholder="Type number or name..."/>
+                <span className="numpad-clearBtn">
+                    <img onClick={clearInput} src={input_clear} alt=""/>
+                </span>
+            </div>
             {isVisibleDriverList &&
             <SearchList values={drivers}/>
             }
