@@ -13,17 +13,19 @@ export const CellPhoneNumpad = () => {
 
     const isConnect = useStore($isConnect)
 
-    useEffect(()=>{
-        if(isConnect){
+    useEffect(() => {
+        if (isConnect) {
             setIsVisibleKeypad(false)
         }
-    },[isConnect])
+    }, [isConnect])
 
     return (
         <div className="cellphone-numpad">
-            <CellPhoneInput/>
-            {isVisibleKeypad
-                ? <Numpad/>
+            {isVisibleKeypad ?
+                <>
+                    <CellPhoneInput/>
+                    <Numpad/>
+                </>
                 : <CallActions/>
             }
             <CallButtons/>

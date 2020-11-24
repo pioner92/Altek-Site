@@ -1,5 +1,5 @@
 import {Connection, Device} from "twilio-client";
-import {booleanCallback, callback, connectCallback, DeviceType, phoneDataType, stringCallback,} from "./callTypes";
+import {booleanCallback, callback, DeviceType, phoneDataType, stringCallback,} from "./callTypes";
 import {CallEvents} from "./callEvents";
 import {connectGuard} from "../connectGuard";
 
