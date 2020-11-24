@@ -22,7 +22,6 @@ declare const window : {
 }
 
 export const initCellPhone = createEvent<string>()
-export const initEventListeners = createEvent()
 export const setConnect = createEvent<Connection>()
 
 export const callEvent = createEvent<string>()
@@ -80,6 +79,7 @@ disconnectHandler.watch(()=>{
     resetStatusData()
     stopTimer()
     setIsBlockedDriverList(false)
+    onDeclineEvent()
 })
 
 acceptHandler.watch(()=>{

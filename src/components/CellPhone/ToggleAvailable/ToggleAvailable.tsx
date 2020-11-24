@@ -1,8 +1,9 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {$isAvailable, setDispatcherQueue, setIsAvailable} from "./models/models";
 import {useStore} from "effector-react";
 import {ToggleComponent} from "../ToggleComponent/ToggleComponent";
 import {initCellPhone} from "../models";
+import {getCompanyName} from "../../../utils/getCompanyName";
 
 declare const window: {
     number: string
@@ -12,10 +13,11 @@ declare const window: {
 export const ToggleAvailable = () => {
 
     const isAvailable = useStore($isAvailable)
-    const companyName = window.location.host.match(/([a-z]+)./)[1]
+    const companyName = getCompanyName()
 
-    const setDispatcherQueueService = (status: boolean) => {
-        setDispatcherQueue({phone: window.number, status: status, companyName})
+    const setDispatcherQueueService = async (status: boolean) => {
+        await setDispatcherQueue({phone: window.number, status, companyName})
+        initCellPhone(status ? window.number : 'null')
     }
 
     const onClickAvailable = (status: boolean) => {
@@ -23,11 +25,6 @@ export const ToggleAvailable = () => {
         setDispatcherQueueService(status)
     }
 
-    useEffect(()=>{
-        if(isAvailable){
-            initCellPhone(window.number)
-        }
-    },[isAvailable])
 
     return (
         <ToggleComponent

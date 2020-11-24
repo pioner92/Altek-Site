@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {initCellPhone, initEventListeners} from "./models";
+import {initCellPhone} from "./models";
 import {getDispatchersQueue} from "./ToggleAvailable/models";
 import {Fax} from "./Fax";
 import {BottomMenu} from "./BottomMenu";
@@ -8,15 +8,19 @@ import {$selectedBottomButtonIndex} from "./BottomMenu";
 import {Main} from "./Main/Main";
 import {Header} from "./Header/Header";
 import {History} from "./History/History";
+import {getCompanyName} from "../../utils/getCompanyName";
+
+declare const window:{
+    number:string
+}
 
 export const CellPhone = () => {
     const selectedIndex = useStore($selectedBottomButtonIndex)
 
 
     useEffect(() => {
-        initCellPhone('888')
-        initEventListeners()
-        getDispatchersQueue('cnu')
+        initCellPhone(window.number)
+        getDispatchersQueue(getCompanyName())
     }, [])
 
 

@@ -4,4 +4,5 @@ export const getCompanyName = () => {
     if(match){
         return match[1]
     }
+    return 'null'
 }

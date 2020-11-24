@@ -1,1 +1,1 @@
-export {$isConnect,$callApp,initEventListeners,initCellPhone} from './models'
+export {$isConnect,$callApp,initCellPhone} from './models'
