@@ -2371,3 +2371,45 @@ a.header-btn-blue {
     transition: 100ms;
 }
 
+
+.call-history-edit-menu-enter {
+    /*opacity: 0;*/
+    transform:  translateX(400px) scaleY(0);
+}
+.call-history-edit-menu-enter-active {
+    transform: translateX(0px) scaleY(1);
+    /*opacity: 1;*/
+    transition: 500ms ease-in-out;
+}
+.call-history-edit-menu-exit {
+    /*opacity: 1;*/
+    transform:  translateX(0px) scaleY(1);
+
+}
+.call-history-edit-menu-exit-active {
+    transform: translateX(400px) scaleY(0);
+    /*opacity: 0;*/
+    transition: 200ms;
+}
+
+
+.call-history-checkbox-enter {
+    opacity: 0;
+    transform: scaleX(0);
+}
+.call-history-checkbox-enter-active {
+    transform: scaleX(1);
+    opacity: 1;
+    transition: 500ms ease-in-out;
+}
+.call-history-checkbox-exit {
+    opacity: 1;
+    transform:scaleX(1);
+
+}
+.call-history-checkbox-exit-active {
+    transform: scaleX(0);
+    opacity: 0;
+    transition: 200ms;
+}
+
