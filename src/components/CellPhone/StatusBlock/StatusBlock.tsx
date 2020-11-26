@@ -27,6 +27,11 @@ export const StatusBlock = () => {
             <div className="cellphone-info-box__status">
                 {isVisibleDirection && <span className="incomming">{callDirection} ◉</span>}
                 {isConnect && <ConnectedTimerCounter/>}
+                {/* <span className="error">Error: text</span>
+                <div className="transfer">
+                    <span>Transfer in progress ◉</span>
+                    <span>Don’t hang up</span>
+                </div> */}
             </div>
             <div className="cellphone-info-box__member">
                 <div className="cellphone-info-box__member-name">
