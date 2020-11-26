@@ -43,13 +43,14 @@ export const useRecordingLink = (socket: any, addCallHistoryLinkAction: any, num
         socket.on('message_link', (data: dataType) => {
             const {to, from, link, status, direction} = data
             //@ts-ignore
-            const id = findDriverFromNumber(from, window.arrPhones) || findDriverFromNumber(to, window.arrPhones)?.driver_id
+            const id = findDriverFromNumber(from, window.arrPhones)?.driver_id || findDriverFromNumber(to, window.arrPhones)?.driver_id
             if (numberValidate(number, from, to, direction) && link && id) {
                 addCallHistoryLinkAction({
                     id,
                     link,
                     from,
                     to,
+                    direction,
                     status: statusValidate(status)
                 });
             }

@@ -54,8 +54,22 @@ export const writeToStoreDriversAction = ({ result, pages_count }: writeToStoreD
     };
 };
 
+export type historyType = {
+    author: string
+    date: string
+    direction: string
+    driver_name: string
+    duration: string
+    from: string
+    id: number
+    link: string
+    number: string
+    status: string
+    to: string
+}
+
 export type writeToStoreCallHistoryActionDataType = {
-    history: Array<{ link: string, date: string, from: string, id: number, to: string, status:string }>
+    history: Array<historyType>
     user: string[]
     pages_count: number
 }

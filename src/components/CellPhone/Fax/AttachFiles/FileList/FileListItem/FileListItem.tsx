@@ -18,11 +18,11 @@ export const FileListItem:React.FC<propsType> = ({fileName,icon,size}) => {
     return (
         <div className="cellphone-form-expansion_list__item">
             <div className="cellphone-form-expansion_list__item__name">
-                <img src={icon}/>
+                <img src={icon} alt=''/>
                 <span>{fileName}</span>
                 <small>{size}</small>
             </div>
-            <img onClick={deleteFile} src={trash_icon}/>
+            <img onClick={deleteFile} src={trash_icon} alt=''/>
         </div>
     );
 };

@@ -1,4 +1,4 @@
-import {Connect, connect, ConnectedProps, ReactReduxContextValue} from 'react-redux';
+import { connect, ConnectedProps} from 'react-redux';
 import CallHistory, {ownPropsType} from './CallHistory';
 import {Fetch} from '../../Redux/Actions/OtherActions';
 import {

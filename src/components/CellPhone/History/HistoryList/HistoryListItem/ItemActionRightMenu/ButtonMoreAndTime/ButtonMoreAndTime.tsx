@@ -1,11 +1,19 @@
 import React from 'react';
 import more_icon from "../../../../../../../static/icons/more.svg";
+import moment from "moment";
 
-export const ButtonMoreAndTime = () => {
+type propsType = {
+    date:string
+}
+
+export const ButtonMoreAndTime:React.FC<propsType> = ({date}) => {
+
+    const dateFormat = moment(new Date(date)).format('DD.MM')
+
     return (
         <>
             <div className="cellphone-list__item_meta">
-                <span>15:53</span>
+                <span>{dateFormat}</span>
             </div>
             <div className="cellphone-list__item_more">
                 <img src={more_icon} alt=""/>

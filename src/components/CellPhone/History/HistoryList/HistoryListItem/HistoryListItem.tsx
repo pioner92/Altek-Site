@@ -5,10 +5,24 @@ import {CSSTransition} from "react-transition-group";
 import {useStore} from "effector-react";
 import {$isVisibleEditHistoryMenu} from "../../EditMenu/models/models";
 import {CheckBox} from "./CheckBox/CheckBox";
+import {$selectedHistoryItems, addHistoryItemToArray, deleteHistoryItemFromArray} from "../models/models";
+import {historyType} from "../../models/models";
 
-export const HistoryListItem = () => {
+
+type propsType = {
+    data:historyType
+}
+
+export const HistoryListItem: React.FC<propsType> = ({ data: {date, status, direction, driver_name, duration, id,link}}) => {
 
     const isVisibleEditHistoryMenu = useStore($isVisibleEditHistoryMenu)
+    const selectedHistoryItems = useStore($selectedHistoryItems)
+    const isChecked = selectedHistoryItems.includes(id)
+
+    const onChangeCheckBox = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const isChecked = e.target.checked
+        !isChecked ? deleteHistoryItemFromArray(id):addHistoryItemToArray(id);
+    }
 
     return (
         <div className="cellphone-list__item">
@@ -22,20 +36,20 @@ export const HistoryListItem = () => {
                 mountOnEnter
                 unmountOnExit
             >
-                <CheckBox checked={true}/>
+                <CheckBox callback={onChangeCheckBox} checked={isChecked}/>
             </CSSTransition>
 
             <Avatar/>
             <div className="cellphone-list__item_body">
                 <div className="cellphone-list__item_name">
-                    <div className="title red">
-                        <span>Damien Jones</span>
+                    <div className={`title ${status === 'Missed call' ? 'red' : ''}`}>
+                        <span>{driver_name || 'Unknown'}</span>
                     </div>
                     <div className="subtitle">
-                        <span>Outcoming (1 min)</span>
+                        <span>{direction || 'unknown'} ({duration || 0})</span>
                     </div>
                 </div>
-                <ItemActionRightMenu/>
+                <ItemActionRightMenu id={id} link={link} date={date}/>
             </div>
         </div>
     );

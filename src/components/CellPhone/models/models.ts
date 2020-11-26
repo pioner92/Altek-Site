@@ -13,6 +13,7 @@ import {setSelectedBottomButtonIndex} from "../BottomMenu/models";
 import {onAcceptEvent, onDeclineEvent, showAllCallButtons} from "../CellPhoneNumpad/Numpad/CallButtons/models";
 import {setIsVisibleKeypad} from "../CellPhoneNumpad/models/models";
 import {setIsBlockedDriverList} from "../CellPhoneInput/SearchList/models";
+import {numpadNumberClick} from "../CellPhoneNumpad/Numpad/models";
 
 
 declare const window : {
@@ -42,6 +43,7 @@ export const $callApp = createStore(new AppCall({connectHandler,incomingHandler,
     .on(initCellPhone,(state,payload)=>{state.init(payload)})
     .on(callEvent,(state, payload) => state.call(payload))
     .on(declineEvent,(state) => {state.decline()})
+    .on(numpadNumberClick,((state, payload) => state.sendDigits(payload)))
 
 
 connectHandler.watch(()=>{

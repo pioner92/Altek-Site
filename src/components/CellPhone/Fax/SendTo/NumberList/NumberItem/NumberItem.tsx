@@ -11,7 +11,7 @@ export const NumberItem:React.FC = ({children}) => {
     return (
         <div className="cellphone-form-expansion_list__item">
             <span>{children}</span>
-            <img onClick={deleteNumber} src={trash_icon}/>
+            <img onClick={deleteNumber} src={trash_icon} alt=''/>
         </div>
     );
 };

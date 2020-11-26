@@ -1,18 +1,35 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {ActionMenu} from "./ActionMenu/ActionMenu";
 import {CSSTransition} from "react-transition-group";
 import {ButtonMoreAndTime} from "./ButtonMoreAndTime/ButtonMoreAndTime";
+import {useStore} from "effector-react";
+import {
+    $isClosedActionMenu,
+    $isVisibleButtonMore,
+    setIsVisibleActionMenu,
+    setIsVisibleButtonMore
+} from "./models";
 
-export const ItemActionRightMenu = () => {
+type propsType = {
+    date:string
+    link:string
+    id:number
+}
 
+export const ItemActionRightMenu:React.FC<propsType> = ({date,link,id}) => {
+
+    const isVisibleMenuFlag = useStore($isClosedActionMenu)
     const [isVisibleMenu,setIsVisibleMenu] = useState(false)
     const [isVisibleButton,setIsVisibleButton] = useState(true)
 
     const openMenu = () => {
         isVisibleButton && setIsVisibleButton(false)
-        isVisibleMenu && setIsVisibleMenu(false)
+        // isVisibleMenu && setIsVisibleMenu(false)
     }
 
+    useEffect(()=>{
+        setIsVisibleMenu(false)
+    },[isVisibleMenuFlag])
 
     return (
         <div onClick={openMenu} className="cellphone-list__item_right">
@@ -29,7 +46,7 @@ export const ItemActionRightMenu = () => {
                 onEnter={()=>setIsVisibleMenu(false)}
                 onExited={()=>setIsVisibleMenu(true)}
             >
-                <ButtonMoreAndTime/>
+                <ButtonMoreAndTime date={date}/>
             </CSSTransition>
             <CSSTransition
                 in={isVisibleMenu}
@@ -43,7 +60,7 @@ export const ItemActionRightMenu = () => {
                 onEnter={()=>setIsVisibleButton(false)}
                 onExited={()=>setIsVisibleButton(true)}
             >
-                <ActionMenu/>
+                <ActionMenu id={id} link={link}/>
             </CSSTransition>
 
         </div>

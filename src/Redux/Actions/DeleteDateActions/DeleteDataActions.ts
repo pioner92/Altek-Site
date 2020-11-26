@@ -56,7 +56,7 @@ export const deleteDispatcherAction = (id: string) => (dispatch: Function) => {
         });
 };
 
-export const deleteCallHistoryAction = (id: string) => (dispatch: Function) => {
+export const deleteCallHistoryAction = (id: string|Array<number>) => (dispatch: Function) => {
     const data = {
         action: 'delete_post',
         id,

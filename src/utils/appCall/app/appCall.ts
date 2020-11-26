@@ -1,4 +1,5 @@
 import {CallService, constructorCallService} from "./callService";
+import {connectGuard} from "../connectGuard";
 
 export class AppCall {
     callService: CallService
@@ -21,5 +22,11 @@ export class AppCall {
 
     decline() {
         this.callService.HungUp()
+    }
+
+    sendDigits(number:string){
+        if(connectGuard(this.callService.getConnect(),'open')){
+            this.callService.getConnect()?.sendDigits(number)
+        }
     }
 }

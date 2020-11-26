@@ -1,13 +1,14 @@
 import React from 'react';
 
 type propsType = {
-    checked:boolean
+    checked:boolean,
+    callback:(e:React.ChangeEvent<HTMLInputElement>)=>void
 }
 
-export const CheckBox:React.FC<propsType> = ({checked}) => {
+export const CheckBox:React.FC<propsType> = ({checked,callback}) => {
     return (
         <div style={{marginRight: 10}}>
-            <input checked={checked} type="checkbox"/>
+            <input onChange={callback} checked={checked} type="checkbox"/>
         </div>
     );
 };

@@ -28,7 +28,7 @@ export const Header: React.FC = () => {
         return (
             <div className="cellphone-page-header">
                 <div className="cellphone-page-backBtn" onClick={onClickBack}>
-                    <img src={phone_back}/>
+                    <img src={phone_back} alt=''/>
                 </div>
                 <span className="cellphone-page-header__title">{titleGenerate()}</span>
             </div>
