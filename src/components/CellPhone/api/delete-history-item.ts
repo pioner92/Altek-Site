@@ -2,6 +2,10 @@ import {createEffect} from "effector";
 import {ajax} from "./ajax";
 import {getCallHistory} from "./get-call-history";
 
+declare const window:{
+    curr_user_id:number
+}
+
 export const deleteHistoryItems = createEffect(async (ids:Array<number>)=>{
     const data  = {
         action:'delete_post',
@@ -11,5 +15,5 @@ export const deleteHistoryItems = createEffect(async (ids:Array<number>)=>{
 })
 
 deleteHistoryItems.done.watch(()=>{
-    getCallHistory()
+    getCallHistory({id:window.curr_user_id})
 })

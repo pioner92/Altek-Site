@@ -1584,6 +1584,11 @@ a.header-btn-blue {
     box-shadow: -1px -1px 10px #EEAEAA, 1px 1px 10px #EEAEAA;
 }
 
+.number-action-buttons .number-action-button.backBtn {
+    background-color: #FFFFFF;
+    box-shadow: -1px -1px 10px #E8E8E8, 1px 1px 10px #E8E8E8;
+}
+
 .number-action-buttons .number-action-button:not(:first-child) {
     margin-left: 35px;
 }

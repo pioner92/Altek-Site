@@ -25,27 +25,6 @@ export const Numpad: React.FC = () => {
                 </div>
                 <div onClick={onClickNumber} style={{color: '#9DA8B2'}} className="number" data-value="#">#</div>
             </div>
-            {/* <div className="cellphone-numpad__callActions">
-                <div className="actions-row">
-                    <div className="action disable">
-                        <div className="p-icon">
-                            <img src={back_icon} alt=""/>
-                        </div>
-                    </div>
-                    <div className="action">
-                        <div className="p-icon">
-                            <img src={blind_transfer_icon} alt=""/>
-                        </div>
-                        <span>Warm<br></br>Transfer</span>
-                    </div>
-                    <div className="action">
-                        <div className="p-icon">
-                            <img src={headphone_icon} alt=""/>
-                        </div>
-                        <span>Blind<br></br>Transfer</span>
-                    </div>
-                </div>
-            </div> */}
         </div>
     );
 };

@@ -4,6 +4,10 @@ import {$selectedIndexHistoryButton, setSelectedIndexHistoryButton} from "./mode
 import {ToggleComponent} from "../../ToggleComponent/ToggleComponent";
 import {getCallHistory} from "../../api/get-call-history";
 
+export declare const window:{
+    curr_user_id:number
+}
+
 export const ToggleButtons = () => {
 
     const selectedIndex= useStore($selectedIndexHistoryButton)
@@ -12,11 +16,11 @@ export const ToggleButtons = () => {
 
     const onClickAll = () => {
         setSelectedIndexHistoryButton(allIndex)
-        getCallHistory()
+        getCallHistory({id:window.curr_user_id})
     }
     const onClickMissed = ()=>{
         setSelectedIndexHistoryButton(missedIndex)
-        getCallHistory('Missed call')
+        getCallHistory({id:window.curr_user_id, status:'Missed call'})
     }
 
     return (

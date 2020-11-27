@@ -10,7 +10,12 @@ import {
 } from "../StatusBlock/models/models";
 import {phoneDataType} from "../../../utils/appCall/app/callTypes";
 import {setSelectedBottomButtonIndex} from "../BottomMenu/models";
-import {onAcceptEvent, onDeclineEvent, showAllCallButtons} from "../CellPhoneNumpad/Numpad/CallButtons/models";
+import {
+    onAcceptEvent,
+    onDeclineEvent,
+    setIsVisibleBackButton,
+    showAllCallButtons
+} from "../CellPhoneNumpad/CallButtons/models";
 import {setIsVisibleKeypad} from "../CellPhoneNumpad/models/models";
 import {setIsBlockedDriverList} from "../CellPhoneInput/SearchList/models";
 import {numpadNumberClick} from "../CellPhoneNumpad/Numpad/models";
@@ -85,6 +90,7 @@ disconnectHandler.watch(()=>{
     stopTimer()
     setIsBlockedDriverList(false)
     onDeclineEvent()
+    setIsVisibleBackButton(false)
 })
 
 acceptHandler.watch(()=>{

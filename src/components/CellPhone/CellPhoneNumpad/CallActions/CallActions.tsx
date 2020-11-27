@@ -7,6 +7,7 @@ import add_icon from "../../../../static/icons/plus.svg";
 import record_icon from "../../../../static/icons/record.svg";
 import {ActionItem} from "./ActionItem";
 import {setIsVisibleKeypad} from "../models/models";
+import {setIsVisibleBackButton} from "../CallButtons/models/models";
 
 export const CallActions = () => {
 
@@ -17,6 +18,7 @@ export const CallActions = () => {
 
     const showKeypad = () => {
         setIsVisibleKeypad(true)
+        setIsVisibleBackButton(true)
     }
 
     return (

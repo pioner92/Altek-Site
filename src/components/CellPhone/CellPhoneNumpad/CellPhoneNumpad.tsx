@@ -5,7 +5,7 @@ import {CellPhoneInput} from "../CellPhoneInput/CellPhoneInput";
 import {useStore} from "effector-react";
 import {$isConnect} from "../models";
 import {$isVisibleKeypad, setIsVisibleKeypad} from "./models/models";
-import {CallButtons} from "./Numpad/CallButtons/CallButtons";
+import {CallButtons} from "./CallButtons/CallButtons";
 
 export const CellPhoneNumpad = () => {
 
