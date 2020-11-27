@@ -2476,23 +2476,23 @@ a.header-btn-blue {
 
 .call-history-edit-menu-enter {
     /*opacity: 0;*/
-    transform: scaleX(0) scaleY(0);
+    transform: translateX(400px) scaleY(0);
 }
 
 .call-history-edit-menu-enter-active {
-    transform: scaleX(1) scaleY(1);
+    transform: translateX(0px) scaleY(1);
     /*opacity: 1;*/
     transition: 500ms ease-in-out;
 }
 
 .call-history-edit-menu-exit {
     /*opacity: 1;*/
-    transform: scaleX(1) scaleY(1);
+    transform: translateX(0px) scaleY(1);
 
 }
 
 .call-history-edit-menu-exit-active {
-    transform: scaleX(0) scaleY(0);
+    transform: translateX(400px) scaleY(0);
     /*opacity: 0;*/
     transition: 200ms;
 }

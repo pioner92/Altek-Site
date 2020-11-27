@@ -12,6 +12,7 @@ export const ToggleButtons = () => {
 
     const onClickAll = () => {
         setSelectedIndexHistoryButton(allIndex)
+        getCallHistory()
     }
     const onClickMissed = ()=>{
         setSelectedIndexHistoryButton(missedIndex)
