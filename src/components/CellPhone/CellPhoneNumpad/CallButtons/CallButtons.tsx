@@ -40,20 +40,25 @@ export const CallButtons = () => {
     return (
         <div className="number-action-buttons">
             {isVisibleBackButton &&
-            <div onClick={onClickBack} className="number-action-button backBtn">
-                <img src={back} alt=""/>
+            <div className="number-action-buttons__left">
+                <div onClick={onClickBack} className="number-action-button backBtn">
+                    <img src={back} alt=""/>
+                </div>
             </div>
             }
-            {isVisibleAcceptButton &&
-            <div onClick={onClickAccept} className="number-action-button accteptBtn">
-                <img src={accept_call} alt=""/>
+
+            <div className={`number-action-buttons__right ${isVisibleBackButton ? 'justify-content-start' : ''}`}>
+                {isVisibleAcceptButton &&
+                <div onClick={onClickAccept} className="number-action-button accteptBtn">
+                    <img src={accept_call} alt=""/>
+                </div>
+                }
+                {isVisibleDeclineButton &&
+                <div onClick={onClickDecline} className="number-action-button declineBtn">
+                    <img src={decline_call} alt=""/>
+                </div>
+                }
             </div>
-            }
-            {isVisibleDeclineButton &&
-            <div onClick={onClickDecline} className="number-action-button declineBtn">
-                <img src={decline_call} alt=""/>
-            </div>
-            }
         </div>
     );
 };
