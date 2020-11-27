@@ -1560,6 +1560,7 @@ a.header-btn-blue {
 }
 
 .number-action-buttons {
+    width: 100%;
     display: flex;
     justify-content: center;
     margin-top: 20px;
@@ -2322,6 +2323,19 @@ a.header-btn-blue {
             user-select: none;
     cursor: default;
     pointer-events: none; 
+}
+
+.number-action-buttons__left {
+    display: flex;
+    width: 33.33%;
+    justify-content: center;
+}
+
+.number-action-buttons__right {
+    display: flex;
+    width: 66.66%;
+    justify-content: center;
+    padding: 0 22px;
 }
 
 @media (min-width: 991px) {

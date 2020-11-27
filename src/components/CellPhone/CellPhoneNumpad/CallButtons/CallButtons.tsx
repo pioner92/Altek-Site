@@ -37,7 +37,20 @@ export const CallButtons = () => {
 
     return (
         <div className="number-action-buttons">
-            {isVisibleBackButton &&
+            <div className="number-action-buttons__left">
+                <div onClick={onClickBack} className="number-action-button backBtn">
+                    <img src={back} alt=""/>
+                </div>
+            </div>
+            <div className="number-action-buttons__right">
+                <div onClick={onClickAccept} className="number-action-button accteptBtn">
+                    <img src={accept_call} alt=""/>
+                </div>
+                <div onClick={onClickDecline} className="number-action-button declineBtn">
+                    <img src={decline_call} alt=""/>
+                </div>
+            </div>
+            {/* {isVisibleBackButton &&
             <div onClick={onClickBack} className="number-action-button backBtn">
                 <img src={back} alt=""/>
             </div>
@@ -51,7 +64,7 @@ export const CallButtons = () => {
                 <div onClick={onClickDecline} className="number-action-button declineBtn">
                 <img src={decline_call} alt=""/>
                 </div>
-            }
+            } */}
         </div>
     );
 };
