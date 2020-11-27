@@ -2,6 +2,7 @@ import React from 'react';
 import {useStore} from "effector-react";
 import {$selectedIndexHistoryButton, setSelectedIndexHistoryButton} from "./models/models";
 import {ToggleComponent} from "../../ToggleComponent/ToggleComponent";
+import {getCallHistory} from "../../api/get-call-history";
 
 export const ToggleButtons = () => {
 
@@ -14,6 +15,7 @@ export const ToggleButtons = () => {
     }
     const onClickMissed = ()=>{
         setSelectedIndexHistoryButton(missedIndex)
+        getCallHistory('Missed call')
     }
 
     return (

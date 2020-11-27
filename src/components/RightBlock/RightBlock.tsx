@@ -49,45 +49,46 @@ export const RightBlock: React.FC<connectorType> = ({
     useGetQueue(dispatchers, writeToStoreActiveDispatchersAction)
 
     return (
-        <div className="col-lg-3 col-12 cellphone-wrapper">
+        <div style={{padding:0}}  className="col-lg-3 col-12 cellphone-wrapper">
            <CellPhone/>
-            <IsAdmin flag={false}>
-                <CSSTransition
-                    in={isVisibleList}
-                    timeout={{
-                        enter: 200,
-                        exit: 200,
-                    }}
-                    classNames='dispatcher-list'
-                    mountOnEnter
-                    unmountOnExit
-                >
-                    <SearchList
-                        listBorder={true}
-                        border={false}
-                        height='180px'
-                        width='261px'
-                        data={activeDispatchers}
-                        placeholder='Dispatcher name'
-                        selectedLineColor={'#0079FE'}
-                        outValueName='email'
-                        callback={onCloseListEndTransfer}
-                    />
-                </CSSTransition>
-            </IsAdmin>
-            <IsAdmin flag={true}>
-                <SearchList
-                    listBorder={true}
-                    border={false}
-                    height='180px'
-                    width='261px'
-                    data={activeDispatchers}
-                    placeholder='Dispatcher name'
-                    selectedLineColor={'#0079FE'}
-                    outValueName='email'
-                    callback={onCloseListEndTransfer}
-                />
-            </IsAdmin>
+           {/*<div style={{height:100}}></div>*/}
+            {/*<IsAdmin flag={false}>*/}
+            {/*    <CSSTransition*/}
+            {/*        in={isVisibleList}*/}
+            {/*        timeout={{*/}
+            {/*            enter: 200,*/}
+            {/*            exit: 200,*/}
+            {/*        }}*/}
+            {/*        classNames='dispatcher-list'*/}
+            {/*        mountOnEnter*/}
+            {/*        unmountOnExit*/}
+            {/*    >*/}
+            {/*        <SearchList*/}
+            {/*            listBorder={true}*/}
+            {/*            border={false}*/}
+            {/*            height='180px'*/}
+            {/*            width='261px'*/}
+            {/*            data={activeDispatchers}*/}
+            {/*            placeholder='Dispatcher name'*/}
+            {/*            selectedLineColor={'#0079FE'}*/}
+            {/*            outValueName='email'*/}
+            {/*            callback={onCloseListEndTransfer}*/}
+            {/*        />*/}
+            {/*    </CSSTransition>*/}
+            {/*</IsAdmin>*/}
+            {/*<IsAdmin flag={true}>*/}
+            {/*    <SearchList*/}
+            {/*        listBorder={true}*/}
+            {/*        border={false}*/}
+            {/*        height='180px'*/}
+            {/*        width='261px'*/}
+            {/*        data={activeDispatchers}*/}
+            {/*        placeholder='Dispatcher name'*/}
+            {/*        selectedLineColor={'#0079FE'}*/}
+            {/*        outValueName='email'*/}
+            {/*        callback={onCloseListEndTransfer}*/}
+            {/*    />*/}
+            {/*</IsAdmin>*/}
             <NotificationContainer/>
         </div>
     );

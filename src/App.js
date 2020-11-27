@@ -86,7 +86,7 @@ function App({
         }}>
             <div className="App">
                 <div className="page">
-                    <div className="container">
+                    <div  className="container">
                         <div className="page-wrapper">
                             {/* //-- Modals */}
                             <Modals

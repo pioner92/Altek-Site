@@ -62,16 +62,20 @@ type addCallHistoryLinkActionDataType = {
     from:string
     to:string
     status:string
+    duration:string
+    direction:string
 }
 
-export const addCallHistoryLinkAction = ({ id, link,from,to,status }:addCallHistoryLinkActionDataType) => {
+export const addCallHistoryLinkAction = ({ id, link,from,to,status,direction,duration }:addCallHistoryLinkActionDataType) => {
     const data = {
         action: 'send_link',
         id,
         link,
         from,
         to,
-        status
+        status,
+        direction,
+        duration
     };
     return (dispatch:Function) => {
         Ajax({ data }).then((newData) => {

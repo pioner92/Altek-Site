@@ -23,4 +23,4 @@ export const setCallHistory = createEvent<callHistoryArray>()
 export const $callHistory = createStore([] as callHistoryArray)
     .on(setCallHistory,(state, payload) => payload)
 
-export const $missedCallHistory = setCallHistory.map((state)=>state.filter((el)=>el.status === 'Missed call'))
+

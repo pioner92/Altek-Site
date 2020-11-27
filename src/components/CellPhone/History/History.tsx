@@ -44,7 +44,7 @@ export const History: React.FC = () => {
     ]
 
     useEffect(() => {
-        setCallHistory(history)
+        // setCallHistory(history)
         getCallHistory()
     }, [])
 

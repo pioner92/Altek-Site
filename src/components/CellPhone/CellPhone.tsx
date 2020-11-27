@@ -9,6 +9,7 @@ import {Header} from "./Header/Header";
 import {getCompanyName} from "../../utils/getCompanyName";
 import {History} from "./History/History";
 import {setIsVisibleActionMenu} from "./History/HistoryList/HistoryListItem/ItemActionRightMenu/models";
+import {getNewNotification} from "./api/get-notification";
 
 declare const window: {
     number: string
@@ -21,6 +22,7 @@ export const CellPhone = () => {
     useEffect(() => {
         initCellPhone(window.number)
         getDispatchersQueue(getCompanyName())
+        getNewNotification()
     }, [])
 
     const onClick = (e: React.MouseEvent<HTMLElement>) => {
@@ -32,7 +34,7 @@ export const CellPhone = () => {
     }
 
     return (
-        <div onClick={onClick} className="cellphone" id="cellphone">
+        <div style={{height:775}} onClick={onClick} className="cellphone" id="cellphone">
             <Header/>
             {selectedIndex === 0 && <Main/>}
             {selectedIndex === 1 && <History/>}

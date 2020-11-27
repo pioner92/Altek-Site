@@ -14,6 +14,9 @@ import {onAcceptEvent, onDeclineEvent, showAllCallButtons} from "../CellPhoneNum
 import {setIsVisibleKeypad} from "../CellPhoneNumpad/models/models";
 import {setIsBlockedDriverList} from "../CellPhoneInput/SearchList/models";
 import {numpadNumberClick} from "../CellPhoneNumpad/Numpad/models";
+import {setIsNewCallNotification} from "../BottomMenu/models/models";
+import {updateCallNotificationAction} from "../../../Redux/Actions/UpdateDateActions/UpdateDataActions";
+import {updateNotification} from "../api/update-notification";
 
 
 declare const window : {
@@ -87,6 +90,8 @@ disconnectHandler.watch(()=>{
 acceptHandler.watch(()=>{
 
 })
-missedCallHandler.watch(()=>{
+missedCallHandler.watch((payload)=>{
     onDeclineEvent()
+    setIsNewCallNotification(true)
+    updateNotification(payload)
 })

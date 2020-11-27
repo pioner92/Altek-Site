@@ -48,13 +48,8 @@ const Home:React.FC<connectorType> = (props) => {
                                 //@ts-ignore
                                 data={el}/>
                         ))
-                        // :
-                        // <div className="preloader">
-                        //     <img src={Preloader}/>
-                        // </div>
                     }
                 </div>
-                {/* <Pagination currentPage={n} data={driversPagesCount} link='/page/'/> */}
             </div>
         </>
     );
