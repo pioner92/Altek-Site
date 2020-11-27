@@ -36,7 +36,6 @@ const Home:React.FC<connectorType> = (props) => {
 
 
     return (
-        <>
             <div className="list-items-wrapper  col-lg-9 col-12">
                 <div className="scroll-view pb-5">
                     {
@@ -51,7 +50,6 @@ const Home:React.FC<connectorType> = (props) => {
                     }
                 </div>
             </div>
-        </>
     );
 };
 

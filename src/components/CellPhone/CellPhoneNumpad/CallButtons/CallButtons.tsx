@@ -2,14 +2,16 @@ import React from 'react';
 import accept_call from "../../../../static/icons/accpet-call.svg";
 import decline_call from "../../../../static/icons/decline-call.svg";
 import back from '../../../../static/icons/back-cellphone.svg'
-import { callEvent, declineEvent} from "../../models/models";
+import {callEvent, declineEvent} from "../../models/models";
 import {useStore} from "effector-react";
 import {$inputValueCellPhone} from "../../CellPhoneInput/models";
 import {
-    $isVisibleAcceptButton, $isVisibleBackButton,
+    $isVisibleAcceptButton,
+    $isVisibleBackButton,
     $isVisibleDeclineButton,
     onAcceptEvent,
-    onDeclineEvent, setIsVisibleBackButton,
+    onDeclineEvent,
+    setIsVisibleBackButton,
 } from "./models";
 import {setIsVisibleKeypad} from "../models/models";
 
@@ -48,9 +50,9 @@ export const CallButtons = () => {
             </div>
             }
             {isVisibleDeclineButton &&
-                <div onClick={onClickDecline} className="number-action-button declineBtn">
+            <div onClick={onClickDecline} className="number-action-button declineBtn">
                 <img src={decline_call} alt=""/>
-                </div>
+            </div>
             }
         </div>
     );

@@ -138,15 +138,8 @@ export const Header: React.FC<connectorType> = React.memo(
                         <Link to='/settings/main' id="header-settings-button">
                             Settings
                         </Link>
-                        <img onClick={openCallNotificationModal}
-                             style={{cursor: 'pointer', width: '25px', height: '25px'}}
-                             className='col-2'
-                             src={isNewCallNotification ? notificationSvgActive : notificationSvg}/>
                     </div>
                 </div>
-                <CallNotificationContainer
-                    isVisible={isVisible}
-                    closeModal={closeCallNotificationModal}/>
             </div>
         );
     });

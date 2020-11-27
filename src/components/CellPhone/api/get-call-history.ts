@@ -5,19 +5,18 @@ import {writeToStoreCallHistoryActionDataType} from "../../../Redux/Actions/Writ
 
 type dataType = {
     action: string
-    id:number
+    author:string
     status?: string
 }
 
 type propsType = {
-    id:number
     status?:string
 }
 
-export const getCallHistory = createEffect(async ({id, status}:propsType) => {
+export const getCallHistory = createEffect(async ({status}:propsType) => {
     const data: dataType = {
         action: 'get_call_history',
-        id
+        author:'self'
     }
     status && (data.status = status)
     return await ajax(data)

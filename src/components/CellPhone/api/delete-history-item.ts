@@ -15,5 +15,5 @@ export const deleteHistoryItems = createEffect(async (ids:Array<number>)=>{
 })
 
 deleteHistoryItems.done.watch(()=>{
-    getCallHistory({id:window.curr_user_id})
+    getCallHistory({})
 })
