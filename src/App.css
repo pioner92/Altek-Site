@@ -1542,6 +1542,7 @@ a.header-btn-blue {
     text-align: center;
     cursor: pointer;
     padding: 10px 20px;
+    user-select: none;
 }
 
 .cellphone-numpad__numpad .number-row .number:hover {
@@ -1572,6 +1573,7 @@ a.header-btn-blue {
     align-items: center;
     border-radius: 50%;
     cursor: pointer;
+    user-select: none;
 }
 
 .number-action-buttons .number-action-button.accteptBtn {
@@ -1594,26 +1596,45 @@ a.header-btn-blue {
 }
 
 .cellphone {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     height: 600px;
-    justify-content: space-between;
-    flex-direction: column;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
 }
 
 .cellphone-bottom-menu {
     height: 10%;
     width: 100%;
     border-top: 1px solid#F5F5F5;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: space-around;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
 }
 
 .cellphone-bottom-menu .cellphone-bottom-menu__item {
     position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
     width: 100%;
     cursor: pointer;
     color: #828B92;
@@ -1636,14 +1657,22 @@ a.header-btn-blue {
 .cellphone-numpad__callActions {
     margin-top: 20px;
     width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
 }
 
 .cellphone-numpad__callActions .actions-row {
     width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: space-around;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
 }
 
 .cellphone-numpad__callActions .actions-row:not(:last-child) {
@@ -1652,15 +1681,25 @@ a.header-btn-blue {
 
 .cellphone-numpad__callActions .actions-row .action {
     width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
     cursor: pointer;
 }
 
 .cellphone-numpad__callActions .actions-row .action.disable {
     cursor: default;
-    user-select: none;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
 }
 
 .cellphone-numpad__callActions .actions-row .action.disable .p-icon img,
@@ -1671,12 +1710,19 @@ a.header-btn-blue {
 .cellphone-numpad__callActions .actions-row .action .p-icon {
     width: 52px;
     height: 52px;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
     border-radius: 50%;
     background: #FFFFFF;
-    box-shadow: -1px -1px 4px #E7E7E7, 1px 1px 4px #E7E7E7;
+    -webkit-box-shadow: -1px -1px 4px #E7E7E7, 1px 1px 4px #E7E7E7;
+            box-shadow: -1px -1px 4px #E7E7E7, 1px 1px 4px #E7E7E7;
 }
 
 .cellphone-numpad__callActions .actions-row .action span {
@@ -1690,10 +1736,17 @@ a.header-btn-blue {
     position: relative;
     background-color: #F9FBFF;
     height: 10%;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0px 2px 2px #F7F7F7;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-shadow: 0px 2px 2px #F7F7F7;
+            box-shadow: 0px 2px 2px #F7F7F7;
 }
 
 .cellphone-page-header__title {
@@ -1707,8 +1760,13 @@ a.header-btn-blue {
 }
 
 .cellphone-form {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
     width: 100%;
 }
 
@@ -1727,7 +1785,8 @@ a.header-btn-blue {
 .cellphone input.c-form-control {
     width: 100%;
     background: #FFFFFF;
-    box-shadow: 1px 1px 4px #EFEFEF, -1px -1px 4px #EFEFEF;
+    -webkit-box-shadow: 1px 1px 4px #EFEFEF, -1px -1px 4px #EFEFEF;
+            box-shadow: 1px 1px 4px #EFEFEF, -1px -1px 4px #EFEFEF;
     border-radius: 6px;
     height: 40px;
     padding: 10px 12px;
@@ -1738,7 +1797,8 @@ a.header-btn-blue {
 .cellphone textarea.c-form-control {
     width: 100%;
     background: #FFFFFF;
-    box-shadow: 1px 1px 4px #EFEFEF, -1px -1px 4px #EFEFEF;
+    -webkit-box-shadow: 1px 1px 4px #EFEFEF, -1px -1px 4px #EFEFEF;
+            box-shadow: 1px 1px 4px #EFEFEF, -1px -1px 4px #EFEFEF;
     border-radius: 6px;
     height: 40px;
     padding: 10px 12px;
@@ -1751,22 +1811,49 @@ a.header-btn-blue {
 .cellphone label.c-form-control.file-attach {
     width: 100%;
     background: #FFFFFF;
-    box-shadow: 1px 1px 4px #EFEFEF, -1px -1px 4px #EFEFEF;
+    -webkit-box-shadow: 1px 1px 4px #EFEFEF, -1px -1px 4px #EFEFEF;
+            box-shadow: 1px 1px 4px #EFEFEF, -1px -1px 4px #EFEFEF;
     border-radius: 6px;
     height: 40px;
     padding: 10px 12px;
     color: #232E42;
     border: none;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     margin-bottom: 0;
-    align-items: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
 }
 
 .cellphone .file-attach-area {
     width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+
+.cellphone input.c-form-control::-webkit-input-placeholder, .cellphone textarea.c-form-control::-webkit-input-placeholder {
+    color: #9DA8B2;
+}
+
+.cellphone input.c-form-control::-moz-placeholder, .cellphone textarea.c-form-control::-moz-placeholder {
+    color: #9DA8B2;
+}
+
+.cellphone input.c-form-control:-ms-input-placeholder, .cellphone textarea.c-form-control:-ms-input-placeholder {
+    color: #9DA8B2;
+}
+
+.cellphone input.c-form-control::-ms-input-placeholder, .cellphone textarea.c-form-control::-ms-input-placeholder {
+    color: #9DA8B2;
 }
 
 .cellphone input.c-form-control::placeholder,
@@ -1776,8 +1863,12 @@ a.header-btn-blue {
 
 .cellphone-input_adv {
     position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    align-items: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
     cursor: pointer;
 }
 
@@ -1800,7 +1891,8 @@ a.header-btn-blue {
 .cellphone-form-expansion {
     width: 100%;
     background: #FFFFFF;
-    box-shadow: 1px 1px 4px #EFEFEF, -1px -1px 4px #EFEFEF;
+    -webkit-box-shadow: 1px 1px 4px #EFEFEF, -1px -1px 4px #EFEFEF;
+            box-shadow: 1px 1px 4px #EFEFEF, -1px -1px 4px #EFEFEF;
     border-radius: 6px;
     padding: 10px 12px;
     color: #232E42;
@@ -1808,14 +1900,25 @@ a.header-btn-blue {
 }
 
 .cellphone-form-expansion__list {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
 }
 
 .cellphone-form-expansion_list__item {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
 }
 
 .cellphone-form-expansion_list__item:not(:last-child) {
@@ -1836,8 +1939,12 @@ a.header-btn-blue {
 
 .cellphone-form-expansion_list__item__name {
     font-size: 15px;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    align-items: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
 }
 
 .cellphone-form-expansion_list__item__name span {
@@ -1854,16 +1961,23 @@ a.header-btn-blue {
 .cellphone button.c-form-control {
     width: 100%;
     background: #FFFFFF;
-    box-shadow: 1px 1px 4px #EFEFEF, -1px -1px 4px #EFEFEF;
+    -webkit-box-shadow: 1px 1px 4px #EFEFEF, -1px -1px 4px #EFEFEF;
+            box-shadow: 1px 1px 4px #EFEFEF, -1px -1px 4px #EFEFEF;
     border-radius: 6px;
     padding: 10px 12px;
     height: 43px;
     color: #232E42;
     border: none;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    align-items: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
     cursor: pointer;
-    justify-content: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
 }
 
 .cellphone button.c-form-control.large-btn {
@@ -1877,8 +1991,12 @@ a.header-btn-blue {
 .cellphone-page-backBtn {
     position: absolute;
     left: 7px;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    align-items: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
     cursor: pointer;
 }
 
@@ -1887,11 +2005,17 @@ a.header-btn-blue {
     background-color: #fff;
     max-height: 165px;
     width: calc(100% - 70px);
-    box-shadow: 1px 1px 4px #EFEFEF, -1px -1px 4px #EFEFEF;
+    -webkit-box-shadow: 1px 1px 4px #EFEFEF, -1px -1px 4px #EFEFEF;
+            box-shadow: 1px 1px 4px #EFEFEF, -1px -1px 4px #EFEFEF;
     overflow-y: scroll;
     border-radius: 0px 0px 6px 6px;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
     padding: 10px;
     z-index: 9;
 }
@@ -1929,27 +2053,41 @@ a.header-btn-blue {
 }
 
 .cellphone-switcher {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
     background-color: #E5F2F5;
     border-radius: 8px;
     height: 45px;
     padding: 5px;
+    -webkit-transition: 0.2s;
+    -o-transition: 0.2s;
     transition: 0.2s;
     margin-bottom: 20px;
 }
 
 .cellphone-switcher__item {
     width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     background-color: #E5F2F5;
-    align-items: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
     font-size: 16px;
     height: 100%;
     cursor: pointer;
     font-weight: 400;
-    justify-content: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
     color: #5A6570;
 }
 
@@ -1971,12 +2109,18 @@ a.header-btn-blue {
     border-radius: 50%;
     width: 30px;
     height: 30px;
-    object-fit: cover;
+    -o-object-fit: cover;
+       object-fit: cover;
 }
 
 .cellphone-list {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
 }
 
 .cellphone-list__item:not(last-child) {
@@ -1986,9 +2130,15 @@ a.header-btn-blue {
 .cellphone-list__item_body {
     position: relative;
     width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
 }
 
 .cellphone-list__item_body::after {
@@ -2000,9 +2150,15 @@ a.header-btn-blue {
 }
 
 .cellphone-list__item_right {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
 }
 
 .cellphone-list__item_more {
@@ -2016,8 +2172,12 @@ a.header-btn-blue {
 }
 
 .cellphone-list__item {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    align-items: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
 }
 
 .cellphone-list__item_name {
@@ -2040,13 +2200,19 @@ a.header-btn-blue {
 }
 
 .cellphone-list__item_actions {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: space-around;
-    align-items: center;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
     height: 25px;
     width: 90px;
     background: #FFFFFF;
-    box-shadow: 1px 1px 4px #EFEFEF, -1px -1px 4px #EFEFEF;
+    -webkit-box-shadow: 1px 1px 4px #EFEFEF, -1px -1px 4px #EFEFEF;
+            box-shadow: 1px 1px 4px #EFEFEF, -1px -1px 4px #EFEFEF;
     border-radius: 6px;
 }
 
@@ -2059,31 +2225,45 @@ a.header-btn-blue {
 }
 
 .cellphone-history-all-actions {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
     margin-bottom: 20px;
 }
 
 .cellphone-history-all-actions__item {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     height: 30px;
     font-size: 12px;
     font-weight: 400;
     white-space: nowrap;
     padding: 5px 10px;
-    align-items: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
     cursor: pointer;
-    justify-content: space-between;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
     width: 100%;
     background: #FFFFFF;
-    box-shadow: 1px 1px 4px #EFEFEF, -1px -1px 4px #EFEFEF;
+    -webkit-box-shadow: 1px 1px 4px #EFEFEF, -1px -1px 4px #EFEFEF;
+            box-shadow: 1px 1px 4px #EFEFEF, -1px -1px 4px #EFEFEF;
     border-radius: 6px;
 }
 
 .cellphone-history-all-actions__item.active {
     color: #489FFE;
-    box-shadow: 1px 1px 4px #A0CEFF, -1px -1px 4px #A0CEFF;
+    -webkit-box-shadow: 1px 1px 4px #A0CEFF, -1px -1px 4px #A0CEFF;
+            box-shadow: 1px 1px 4px #A0CEFF, -1px -1px 4px #A0CEFF;
 }
 
 .cellphone-history-all-actions__item:nth-child(2) {
@@ -2092,7 +2272,8 @@ a.header-btn-blue {
 
 .cellphone-history-all-actions__item:nth-child(3).active {
     color: #C63434;
-    box-shadow: 1px 1px 4px #C63434, -1px -1px 4px #C63434;
+    -webkit-box-shadow: 1px 1px 4px #C63434, -1px -1px 4px #C63434;
+            box-shadow: 1px 1px 4px #C63434, -1px -1px 4px #C63434;
 }
 
 .cellphone .plus-under-zero {
@@ -2103,6 +2284,8 @@ a.header-btn-blue {
 }
 
 .cellphone-bottom-menu .cellphone-bottom-menu__item .c-badge {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     position: absolute;
     top: -2px;
@@ -2129,6 +2312,16 @@ a.header-btn-blue {
 
 .c-checkmark-container input:checked ~ .c-checkmark {
     background-image: url('/src/static/icons/c-checkbox-active.svg') !important;
+}
+
+.emptiness{
+    opacity: 0;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+    cursor: default;
+    pointer-events: none; 
 }
 
 @media (min-width: 991px) {
