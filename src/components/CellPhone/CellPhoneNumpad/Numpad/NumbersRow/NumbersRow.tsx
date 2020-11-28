@@ -1,5 +1,5 @@
 import React from 'react';
-import {numpadNumberClick} from "../models/models";
+import {driverNumpadClick} from "../models/models";
 
 type propsType = {
     numbers: Array<number>

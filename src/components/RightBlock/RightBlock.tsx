@@ -8,7 +8,7 @@ import {connectorType} from './RightBlockContentContainer';
 // @ts-ignore
 import {IsAdmin} from '../Validate/isAdmin';
 import {connectGuard} from "../../utils/appCall/connectGuard";
-import {useGetQueue} from "../../utils/hooks/useGetQueue";
+import {useGetDispatcherQueue} from "../../utils/hooks/useGetDispatcherQueue";
 import {getCompanyName} from "../../utils/getCompanyName";
 import {CellPhone} from "../CellPhone/CellPhone";
 
@@ -46,7 +46,7 @@ export const RightBlock: React.FC<connectorType> = ({
     }, []);
 
 
-    useGetQueue(dispatchers, writeToStoreActiveDispatchersAction)
+    useGetDispatcherQueue(dispatchers, writeToStoreActiveDispatchersAction)
 
     return (
         <div style={{padding:0}}  className="col-lg-3 col-12 cellphone-wrapper">

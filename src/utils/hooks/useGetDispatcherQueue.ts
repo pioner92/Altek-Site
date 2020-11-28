@@ -2,7 +2,7 @@ import {useEffect} from "react";
 import {getDispatcherQueue} from "../callQueu/getDispatcherQueue";
 import {filterActiveDispatcher} from "../callQueu/filterActiveDispatchers";
 
-export const useGetQueue = (dispatchers:any,callback:Function) => {
+export const useGetDispatcherQueue = (dispatchers:any, callback:Function) => {
     return useEffect(()=>{
         const interval = setInterval(() => {
             // @ts-ignore

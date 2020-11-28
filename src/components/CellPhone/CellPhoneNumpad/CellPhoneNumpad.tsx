@@ -1,11 +1,13 @@
 import React, {useEffect} from 'react';
 import {CallActions} from "./CallActions/CallActions";
 import {Numpad} from "./Numpad/Numpad";
-import {CellPhoneInput} from "../CellPhoneInput/CellPhoneInput";
+import {CellPhoneDriverInput} from "../CellPhoneDriverInput/CellPhoneDriverInput";
 import {useStore} from "effector-react";
 import {$isConnect} from "../models";
 import {$isVisibleKeypad, setIsVisibleKeypad} from "./models/models";
 import {CallButtons} from "./CallButtons/CallButtons";
+import {driverNumpadClick} from "./Numpad/models";
+
 
 export const CellPhoneNumpad = () => {
 
@@ -23,8 +25,8 @@ export const CellPhoneNumpad = () => {
         <div className="cellphone-numpad">
             {isVisibleKeypad ?
                 <>
-                    <CellPhoneInput/>
-                    <Numpad/>
+                    <CellPhoneDriverInput/>
+                    <Numpad callback={driverNumpadClick}/>
                 </>
                 : <CallActions/>
             }

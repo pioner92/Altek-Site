@@ -1,15 +1,15 @@
 import React from 'react';
 import {NumbersRow} from "./NumbersRow/NumbersRow";
-import back_icon from "../../../../static/icons/phone-numpad-back.svg"
-import blind_transfer_icon from "../../../../static/icons/phone-blind-transfer.svg"
-import headphone_icon from "../../../../static/icons/phone-headphone.svg"
-import {numpadNumberClick} from "./models";
 
-export const Numpad: React.FC = () => {
+type propsType = {
+    callback:(value:string)=>void
+}
+
+export const Numpad: React.FC<propsType> = ({callback}) => {
 
     const onClickNumber = (e: React.MouseEvent<HTMLDivElement>) => {
         const value = e.currentTarget.dataset.value as string
-        numpadNumberClick(value)
+        callback(value)
     }
 
     return (

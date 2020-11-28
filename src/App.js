@@ -13,7 +13,8 @@ import {CallHistoryContainer} from './components/CallHistory/CallHistoryContaine
 import Modals from './components/Modals/Modals';
 import {HeaderOtherContainer} from './components/Header/HeaderOtherContainer';
 import RightBlockContainer from './components/RightBlock/RightBlockContainer';
-import {setClasses} from "./utils/setClasses/setClasses";
+import {setClasses} from "./utils/setClasses";
+import Notifications from "react-push-notification";
 
 function App({
                  checkSmsAction, isNewMessage, newMessageAction, addCallHistoryLinkAction, queueStatus, writeToStoreIsNewCallNotificationAction,

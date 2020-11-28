@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import styled from 'styled-components';
 import iconBack from '../../static/icons/back.svg';
 import logoutIcon from '../../static/icons/logout.svg';
-import logout from '../../utils/logout';
+import {logOut} from '../../utils/logout';
 
 
 declare const window: {
@@ -78,5 +78,5 @@ const Image = styled.img`
 `;
 
 const LogOut = () => (
-    <Image onClick={logout} src={logoutIcon} alt=""/>
+    <Image onClick={logOut} src={logoutIcon} alt=""/>
 );

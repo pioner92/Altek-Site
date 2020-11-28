@@ -5,7 +5,7 @@ type propsType = {
     to:string
     from:string
     myExt:string
-    callback:()=>void
+    callback?:()=>void
 }
 
 export const transferHandler = ({to,myExt,from,callback}:propsType) => {
@@ -16,5 +16,5 @@ export const transferHandler = ({to,myExt,from,callback}:propsType) => {
             },
             body: JSON.stringify({from}),
         })
-            .then((res) => callback());
+            .then((res) => callback && callback());
 }

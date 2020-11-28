@@ -1,14 +1,15 @@
 import React from 'react';
-import {phoneDataType} from "../../../../utils/appCall/app/callTypes";
+import {phoneDataType} from "../../../../utils/appCall/app/types";
 import {setInputValueCellPhone} from "../models";
 import {callEvent} from "../../models/models";
 import {setIsVisibleDriverList} from "./models";
+import {SearchList} from "../../ui/SearchList/SearchList";
 
 type propsType = {
     values: Array<phoneDataType>
 }
 
-export const SearchList: React.FC<propsType> = ({values}) => {
+export const DriverSearchList: React.FC<propsType> = ({values}) => {
 
     const onSelectDriver = ({name, vehId, number}: { name: string, vehId: string, number: string }) => {
         setInputValueCellPhone(`${name} ${vehId}`)
@@ -17,7 +18,7 @@ export const SearchList: React.FC<propsType> = ({values}) => {
     }
 
     return (
-        <div className="celphone-searchlist celphone-scroll-view">
+        <SearchList >
             {values.map((el, index) => {
                 return (
                     <span className="celphone-searchlist-item" onClick={onSelectDriver.bind(null, {
@@ -27,6 +28,6 @@ export const SearchList: React.FC<propsType> = ({values}) => {
                     })} key={el.driver_id}>{el.driver_name}</span>
                 )
             })}
-        </div>
+        </SearchList>
     );
 };

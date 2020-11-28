@@ -1,12 +1,11 @@
-import React, {useEffect, useState} from 'react';
-import input_clear from "../../../static/icons/input-clear.svg";
+import React, {useEffect} from 'react';
 import {$inputValueCellPhone, clearInputValueCellPhone, setInputValueCellPhone} from "./models";
 import {useStore} from "effector-react";
-import {SearchList} from "./SearchList/SearchList";
+import {DriverSearchList} from "./SearchList/DriverSearchList";
 import {$isBlockedDriverList, $isVisibleDriverList} from "./SearchList/models";
 import { $filteredDriverList, setDriverList} from "./models/models";
-import {phoneDataType} from "../../../utils/appCall/app/callTypes";
-import {$isConnect} from "../models";
+import {phoneDataType} from "../../../utils/appCall/app/types";
+import {Input} from "../ui/Input/Input";
 
 declare const window : {
     arrPhones:Array<phoneDataType>
@@ -14,7 +13,7 @@ declare const window : {
     number:string
 }
 
-export const CellPhoneInput: React.FC = () => {
+export const CellPhoneDriverInput: React.FC = () => {
 
     const inputValue = useStore($inputValueCellPhone)
     const isVisibleDriverList = useStore($isVisibleDriverList)
@@ -35,14 +34,9 @@ export const CellPhoneInput: React.FC = () => {
 
     return (
         <div>
-            <div className="cellphone-numpad__input">
-                <input value={inputValue} onChange={onChange} type="text" placeholder="Type number or name..."/>
-                <span className="numpad-clearBtn">
-                    <img onClick={clearInput} src={input_clear} alt=""/>
-                </span>
-            </div>
+            <Input value={inputValue} onChange={onChange} clearInput={clearInput} placeholder={'Type number or name...'}/>
             {isVisibleDriverList && !isBlockedDriverList &&
-            <SearchList values={drivers}/>
+            <DriverSearchList values={drivers}/>
             }
         </div>
     );

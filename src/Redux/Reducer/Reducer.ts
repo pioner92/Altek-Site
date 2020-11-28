@@ -91,7 +91,7 @@ const Reducer = (state: initialStateType = initialState, action: actionsType) =>
                 driversList: [...action.result],
                 driversPagesCount: [...pagesArrDrivers]
             }
-        // Change Filter input
+        // Change Filter Input
         case DRIVERFILTER:
             let driverListFilter = [...state.drivers].filter((el) => el?.id?.toString().includes(action?.text?.toString()) ||
                 el?.name?.toLowerCase().includes(action.text.toLowerCase()))

@@ -131,12 +131,12 @@
     display: block;
 }
 
-/* .b-contain:hover input~.b-input,
-.b-contain input:focus~.b-input {
+/* .b-contain:hover Input~.b-Input,
+.b-contain Input:focus~.b-Input {
     background: #e7eef3;
 } */
 
-/* .b-contain input:focus~.b-input {
+/* .b-contain Input:focus~.b-Input {
     box-shadow: 0 0 0 2px rgba(52, 144, 220, 0.5);
 } */
 
@@ -1566,7 +1566,7 @@ a.header-btn-blue {
     margin-top: 20px;
 }
 
-.number-action-buttons .number-action-button {
+.number-action-buttons .number-action-button  {
     width: 55px;
     height: 55px;
     display: flex;
@@ -2322,7 +2322,7 @@ a.header-btn-blue {
         -ms-user-select: none;
             user-select: none;
     cursor: default;
-    pointer-events: none; 
+    pointer-events: none;
 }
 
 .number-action-buttons__left {

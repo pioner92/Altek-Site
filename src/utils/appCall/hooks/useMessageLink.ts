@@ -14,7 +14,7 @@ type dataType = {
     to: string,
     status: statusType
     direction: directionEnum.incoming | directionEnum.outgoing
-    duration:string
+    duration: string
 }
 
 
@@ -42,24 +42,17 @@ const numberValidate = (number: string, from: string, to: string, direction: str
 export const useRecordingLink = (socket: any, addCallHistoryLinkAction: any, number: string) => {
     useEffect(() => {
         socket.on('message_link', (data: dataType) => {
-            const {to, from, link, status, direction,duration} = data
-            console.log('MESSAGE DATA')
-            console.log(data)
+            const {to, from, link, status, direction, duration} = data
             //@ts-ignore
             const id = findDriverFromNumber(from, window.arrPhones)?.driver_id || findDriverFromNumber(to, window.arrPhones)?.driver_id
-            console.log('ID')
-            console.log(id)
-            console.log('VALIDATE STATUS')
-            console.log(statusValidate(status))
             if (numberValidate(number, from, to, direction) && id) {
-                console.log('ЗАПИСЬ')
                 addCallHistoryLinkAction({
                     id,
                     link,
                     from,
                     to,
                     direction,
-                    duration:duration.toString(),
+                    duration: duration.toString(),
                     status: statusValidate(status)
                 });
             }

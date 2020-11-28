@@ -1,7 +1,7 @@
 import {createEvent, createStore} from "effector";
-import {numpadNumberClick} from "../../CellPhoneNumpad/Numpad/models/models";
+import {driverNumpadClick} from "../../CellPhoneNumpad/Numpad/models/models";
 import {setIsVisibleDriverList} from "../SearchList/models";
-import {phoneDataType} from "../../../../utils/appCall/app/callTypes";
+import {phoneDataType} from "../../../../utils/appCall/app/types";
 
 declare const window : {
     arrPhones:Array<phoneDataType>
@@ -18,7 +18,7 @@ export const setDriverList = createEvent<Array<phoneDataType>>()
 
 export const $inputValueCellPhone = createStore('')
     .on(setInputValueCellPhone, (_, payload) => payload)
-    .on(numpadNumberClick, (state, payload) => state + payload)
+    .on(driverNumpadClick, (state, payload) => state + payload)
     .on(clearInputValueCellPhone, () => '')
 
 export const $driverList = createStore<Array<phoneDataType>>([])
@@ -29,7 +29,6 @@ export const $filteredDriverList = createStore($driverList.getState())
     .on(setDriverList, (state, payload) => payload)
     .on(searchDriverFromCellPhoneInput, (state, payload) =>
         $driverList.getState().filter((el) =>
-
             window.is_admin && el.driver_number.startsWith(payload) ||
             el.driver_name.toLowerCase().startsWith(payload.toLowerCase()) ||
             el.vehicle_id.toLowerCase().startsWith(payload.toLowerCase())
@@ -39,13 +38,5 @@ export const $filteredDriverList = createStore($driverList.getState())
 
 $inputValueCellPhone.watch((state => {
     setIsVisibleDriverList(!!state)
-}))
-
-
-// setInputValueCellPhone.watch((payload => {
-//     searchDriverFromCellPhoneInput(payload)
-// }))
-
-$inputValueCellPhone.watch((state => {
     searchDriverFromCellPhoneInput(state)
 }))

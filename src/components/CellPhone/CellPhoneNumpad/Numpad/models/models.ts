@@ -1,4 +1,5 @@
 import {createEvent} from "effector";
 
-export const numpadNumberClick = createEvent<string>()
+export const driverNumpadClick = createEvent<string>()
+export const dispatcherNumpadClick = createEvent<string>()
 

@@ -4,7 +4,7 @@ import Data from '../../data.json';
 import {RightBlockContentContainer} from './RightBlockContentContainer';
 import { useRecordingLink} from "../../utils/appCall/hooks/useMessageLink";
 import {updateCallNotificationAction} from "../../Redux/Actions/UpdateDateActions/UpdateDataActions";
-import {phoneDataType} from "../../utils/appCall/app/callTypes";
+import {phoneDataType} from "../../utils/appCall/app/types";
 
 declare const window : {
     arrPhones:Array<phoneDataType>

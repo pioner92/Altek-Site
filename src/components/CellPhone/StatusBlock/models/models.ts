@@ -1,9 +1,9 @@
 import {createEvent,createStore} from "effector";
 import {findDriverFromNumber} from "../../../../utils/appCall/findDriverFromNumber";
-import {phoneDataType} from "../../../../utils/appCall/app/callTypes";
+import {phoneDataType} from "../../../../utils/appCall/app/types";
 import {Moment} from "moment";
 import {TimeCounter} from "./counter";
-import {setInputValueCellPhone} from "../../CellPhoneInput/models";
+import {setInputValueCellPhone} from "../../CellPhoneDriverInput/models";
 import {setIsVisibleKeypad} from "../../CellPhoneNumpad/models/models";
 
 

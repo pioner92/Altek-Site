@@ -8,7 +8,7 @@ import {
     setCallDirection, setIsVisibleDirection,
     setStatusNumber, startTimer, stopTimer,
 } from "../StatusBlock/models/models";
-import {phoneDataType} from "../../../utils/appCall/app/callTypes";
+import {phoneDataType} from "../../../utils/appCall/app/types";
 import {setSelectedBottomButtonIndex} from "../BottomMenu/models";
 import {
     onAcceptEvent,
@@ -17,10 +17,9 @@ import {
     showAllCallButtons
 } from "../CellPhoneNumpad/CallButtons/models";
 import {setIsVisibleKeypad} from "../CellPhoneNumpad/models/models";
-import {setIsBlockedDriverList} from "../CellPhoneInput/SearchList/models";
-import {numpadNumberClick} from "../CellPhoneNumpad/Numpad/models";
+import {setIsBlockedDriverList} from "../CellPhoneDriverInput/SearchList/models";
+import {driverNumpadClick} from "../CellPhoneNumpad/Numpad/models";
 import {setIsNewCallNotification} from "../BottomMenu/models/models";
-import {updateCallNotificationAction} from "../../../Redux/Actions/UpdateDateActions/UpdateDataActions";
 import {updateNotification} from "../api/update-notification";
 
 
@@ -42,6 +41,7 @@ export const disconnectHandler = createEvent()
 export const acceptHandler = createEvent<string>()
 export const callingHandler = createEvent()
 export const missedCallHandler = createEvent<string>()
+export const setCallingFrom = createEvent<string>()
 
 export const $isConnect = createStore(false)
     .on(disconnectHandler,() => false)
@@ -51,8 +51,11 @@ export const $callApp = createStore(new AppCall({connectHandler,incomingHandler,
     .on(initCellPhone,(state,payload)=>{state.init(payload)})
     .on(callEvent,(state, payload) => state.call(payload))
     .on(declineEvent,(state) => {state.decline()})
-    .on(numpadNumberClick,((state, payload) => state.sendDigits(payload)))
+    .on(driverNumpadClick,((state, payload) => state.sendDigits(payload)))
 
+
+export const $callingFrom = createStore('')
+    .on(setCallingFrom,(state, payload) => payload)
 
 connectHandler.watch(()=>{
     startTimer()
@@ -63,7 +66,7 @@ connectHandler.watch(()=>{
 incomingHandler.watch((number)=>{
     setCallDirection(callDirection.incoming)
     setIsVisibleDirection(true)
-    setStatusNumber(number)
+    setStatusNumber(number==='000'?'':number)
     findDriver({number, arrPhones:window.arrPhones})
     setSelectedBottomButtonIndex(0)
     showAllCallButtons()

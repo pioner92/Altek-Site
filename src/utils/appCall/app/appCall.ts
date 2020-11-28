@@ -24,6 +24,18 @@ export class AppCall {
         this.callService.HungUp()
     }
 
+    mute(status:boolean){
+        if(connectGuard(this.callService.getConnect(),'open')){
+            this.callService.getConnect()?.mute(status)
+        }
+    }
+
+    isMuted(){
+        if(connectGuard(this.callService.getConnect(),'open')){
+            return this.callService.getConnect()?.isMuted()
+        }
+    }
+
     sendDigits(number:string){
         if(connectGuard(this.callService.getConnect(),'open')){
             this.callService.getConnect()?.sendDigits(number)

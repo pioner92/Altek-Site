@@ -10,6 +10,10 @@ import {getCompanyName} from "../../utils/getCompanyName";
 import {History} from "./History/History";
 import {setIsVisibleActionMenu} from "./History/HistoryList/HistoryListItem/ItemActionRightMenu/models";
 import {getNewNotification} from "./api/get-notification";
+import {setDispatchersList} from "./TransferAndConference/models";
+import { Notifications } from 'react-push-notification';
+import {getDispatchers} from "./api/get-dispatchers";
+
 
 declare const window: {
     number: string
@@ -23,6 +27,7 @@ export const CellPhone = () => {
         initCellPhone(window.number)
         getDispatchersQueue(getCompanyName())
         getNewNotification()
+        getDispatchers()
     }, [])
 
     const onClick = (e: React.MouseEvent<HTMLElement>) => {
@@ -32,6 +37,27 @@ export const CellPhone = () => {
             setIsVisibleActionMenu()
         }
     }
+
+    // useEffect(()=>{
+    //     setDispatchersList([
+    //         {
+    //             id:1,
+    //             email:'alex@test.ri',
+    //             name:'Alex',
+    //             phone:'888',
+    //             group:'test',
+    //             login:'alex'
+    //         },
+    //         {
+    //             id:2,
+    //             email:'alex@test.ru',
+    //             name:'Hanna',
+    //             phone:'333',
+    //             group:'test',
+    //             login:'alex'
+    //         }
+    //     ])
+    // },[])
 
     return (
         <div style={{height:775}} onClick={onClick} className="cellphone" id="cellphone">

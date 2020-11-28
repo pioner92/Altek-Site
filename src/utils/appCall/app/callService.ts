@@ -1,7 +1,10 @@
 import {Connection, Device} from "twilio-client";
-import {booleanCallback, callback, DeviceType, phoneDataType, stringCallback,} from "./callTypes";
+import {booleanCallback, callback, DeviceType, phoneDataType, stringCallback,} from "./types";
 import {CallEvents} from "./callEvents";
 import {connectGuard} from "../connectGuard";
+import addNotification from 'react-push-notification'
+
+
 
 declare const window: {
     number: string
@@ -63,7 +66,15 @@ export class CallService extends CallEvents {
     }
 
     private _incomingHandler(connect: Connection) {
+        addNotification({
+            title: `Incoming call from : ${connect.parameters.Fom}`,
+            subtitle: `Incoming call from : ${connect.parameters.Fom}`,
+            message: `Incoming call from : ${connect.parameters.Fom}`,
+            theme: 'darkblue',
+            native: true // when using native, your OS will handle theming.
+        });
         this.incomingHandler && this.incomingHandler(connect.parameters.From)
+
     }
 
     private _missedCallHandler(connect: Connection) {

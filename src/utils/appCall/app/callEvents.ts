@@ -1,5 +1,5 @@
 import {Connection, Device} from "twilio-client";
-import {booleanCallback, callback, connectCallback, DeviceType, phoneDataType} from "./callTypes";
+import {booleanCallback, callback, connectCallback, DeviceType, phoneDataType} from "./types";
 
 
 type constructor = {

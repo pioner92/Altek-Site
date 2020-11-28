@@ -1,6 +1,6 @@
 import {createEffect, createEvent, createStore} from "effector";
 import Data from "../../../../data.json";
-import {phoneDataType} from "../../../../utils/appCall/app/callTypes";
+import {phoneDataType} from "../../../../utils/appCall/app/types";
 
 declare const window : {
     arrPhones:Array<phoneDataType>

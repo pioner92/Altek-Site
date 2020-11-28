@@ -3,7 +3,7 @@ import MessageItem from './MessageItem/MessageItem';
 import Preloader from '../../../static/Preloader/Spinner-1s-200px.gif';
 import { sendSMSFn } from '../../../utils/sendSMSFn';
 import attachIcon from '../../../static/icons/attach.svg';
-import { getFileUrl } from "../../../utils/getFileUrl/getFileUrl";
+import { getFileUrl } from "../../../utils/getFileUrl";
 
 const MessengerContent = ({
     messages, id, sendSmsAction, isFetching,

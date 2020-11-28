@@ -7,6 +7,7 @@ import {useStore} from "effector-react";
 import {$isVisibleEditHistoryMenu} from "./EditMenu/models/models";
 import {CSSTransition} from "react-transition-group";
 import {getCallHistory} from "../api/get-call-history";
+import {setCallHistory} from "./models";
 
 declare const window:{
     curr_user_id:number

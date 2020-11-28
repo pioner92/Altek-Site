@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {sendSMSFn} from '../../../utils/sendSMSFn';
 import {closeModalAndClearSelectedId} from '../../../utils/closeModals';
-import {getFileUrl} from '../../../utils/getFileUrl/getFileUrl';
+import {getFileUrl} from '../../../utils/getFileUrl';
 import attachIcon from '../../../static/icons/attach.svg';
 import trashIcon from '../../../static/icons/trash.svg';
 

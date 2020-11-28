@@ -5,19 +5,14 @@ import {$isConnect} from "../models";
 import {$isVisibleDirection} from "./models/models";
 import {ConnectedTimerCounter} from "./ConnectedTimerCounter";
 import {IsAdmin} from "../../Validate/isAdmin";
-import {phoneDataType} from "../../../utils/appCall/app/callTypes";
-import {$inputValueCellPhone} from "../CellPhoneInput/models";
+import {$isVisibleTransfer} from "../TransferAndConference/models";
 
-declare const window: {
-    arrPhones: Array<phoneDataType>
-    is_admin: boolean
-    number: string
-}
 
 export const StatusBlock = () => {
     const isConnect = useStore($isConnect)
     const statusNumber = useStore($statusNumber)
     const isVisibleDirection = useStore($isVisibleDirection)
+    const isVisibleTransfer = useStore($isVisibleTransfer)
     const callDirection = useStore($callDirection)
     const driver = useStore($driver)
     const driverNumber = driver?.driver_number
@@ -29,31 +24,36 @@ export const StatusBlock = () => {
                 {isConnect && <ConnectedTimerCounter/>}
                 {/* <span className="error">Error: text</span>
                 <div className="transfer">
-                    <span>Transfer in progress ◉</span>
+                    <span>TransferAndConference in progress ◉</span>
                     <span>Don’t hang up</span>
                 </div> */}
             </div>
             <div className="cellphone-info-box__member">
-                <div className="cellphone-info-box__member-name">
-                    <span>{driver?.driver_name}</span>
-                </div>
-                <div className="cellphone-info-box__member-phone">
-                    <IsAdmin flag={true}>
-                        {driverNumber ?
-                            <span>{driverNumber}</span>
-                            : <span>{statusNumber}</span>
-                        }
-                    </IsAdmin>
-                    <IsAdmin flag={false}>
-                        {!driverNumber &&
-                        <span>{statusNumber}</span>
-                        }
-                    </IsAdmin>
-                </div>
-                <div className="cellphone-info-box__member-meta">
-                    <span>{driver?.vehicle_id}</span>
-                </div>
+                {!isVisibleTransfer &&
+                <>
+                    <div className="cellphone-info-box__member-name">
+                        <span>{driver?.driver_name}</span>
+                    </div>
+                    <div className="cellphone-info-box__member-phone">
+                        <IsAdmin flag={true}>
+                            {driverNumber ?
+                                <span>{driverNumber}</span>
+                                : <span>{statusNumber}</span>
+                            }
+                        </IsAdmin>
+                        <IsAdmin flag={false}>
+                            {!driverNumber &&
+                            <span>{statusNumber}</span>
+                            }
+                        </IsAdmin>
+                    </div>
+                    <div className="cellphone-info-box__member-meta">
+                        <span>{driver?.vehicle_id}</span>
+                    </div>
+                </>
+                }
             </div>
+
         </div>
     );
 };
