@@ -5,7 +5,7 @@ import {closeModal} from '../../../utils/closeModals';
 import {connectorType} from "./EditProfileModalContainer";
 
 export type ownProps = {
-    setVisible: Function
+    setVisible: (state:boolean)=>void
     driverId: string
 }
 

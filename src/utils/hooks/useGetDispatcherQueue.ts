@@ -1,21 +1,23 @@
 import {useEffect} from "react";
-import {getDispatcherQueue} from "../callQueu/getDispatcherQueue";
 import {filterActiveDispatcher} from "../callQueu/filterActiveDispatchers";
+import {getDispatcherQueue} from "../../components/CellPhone/api/get-active-dispatchers";
 
-export const useGetDispatcherQueue = (dispatchers:any, callback:Function) => {
-    return useEffect(()=>{
+export const useGetDispatcherQueue = (dispatchers: any, callback: Function) => {
+    return useEffect(() => {
         const interval = setInterval(() => {
             // @ts-ignore
             const companyName: string = window?.location?.host?.match(/([a-z]+)./)[1];
 
             getDispatcherQueue(companyName)
                 .then((data) => {
-                    const newData = filterActiveDispatcher(dispatchers, data);
-                    callback(newData);
+                    if (data) {
+                        const newData = filterActiveDispatcher(dispatchers, data);
+                        callback(newData);
+                    }
                 });
         }, 5000);
         return () => {
             clearInterval(interval);
         };
-    },[dispatchers])
+    }, [dispatchers])
 }

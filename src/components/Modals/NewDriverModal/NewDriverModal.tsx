@@ -3,7 +3,7 @@ import { closeModal } from '../../../utils/closeModals';
 import {addNewDriverActionType} from "../../../Redux/Actions/AddDataActions/AddDataActions";
 
 type newDriverModalPropsType = {
-    setVisible:Function
+    setVisible:(state:boolean)=>void
     addNewDriverAction:addNewDriverActionType
 }
 

@@ -3,6 +3,7 @@ import {booleanCallback, callback, DeviceType, phoneDataType, stringCallback,} f
 import {CallEvents} from "./callEvents";
 import {connectGuard} from "../connectGuard";
 import addNotification from 'react-push-notification'
+import Data from '../../../data.json'
 
 
 
@@ -29,7 +30,7 @@ export class CallService extends CallEvents {
     private disconnectHandler: callback | undefined
     private incomingHandler: stringCallback | undefined
     private acceptHandler: stringCallback | undefined
-    private callingHandler: callback | undefined
+    private callingHandler: stringCallback | undefined
     private missedCallHandler: stringCallback | undefined
 
     constructor({
@@ -61,8 +62,8 @@ export class CallService extends CallEvents {
         this.acceptHandler && this.acceptHandler(connect?.parameters?.From)
     }
 
-    private _callingHandler() {
-        this.callingHandler && this.callingHandler()
+    private _callingHandler(number:string) {
+        this.callingHandler && this.callingHandler(number)
     }
 
     private _incomingHandler(connect: Connection) {
@@ -97,7 +98,6 @@ export class CallService extends CallEvents {
         // if in call with => hangUp
         if (connectGuard(this.getConnect(), 'open')) {
             this.Device.disconnectAll()
-
             // if incoming call => reject
         } else {
             if (connectGuard(this.getConnect(), 'pending')) {
@@ -121,7 +121,7 @@ export class CallService extends CallEvents {
             // if calling to number
         } else if (this.Device.status() === 'ready' || connectGuard(this.getConnect(), 'closed')) {
             this.Device.connect(params)
-            this._callingHandler()
+            this._callingHandler(params.phoneNumber)
             this._connectHandler()
         }
     }
@@ -130,7 +130,7 @@ export class CallService extends CallEvents {
     // token init
     async initToken(number: string) {
         try {
-            const response = await fetch(`https://sms.green-node.ru/token/generate/${number}`)          // "url": "https://sms.green-node.ru",
+            const response = await fetch(`${Data.url}/token/generate/${number}`)          // "url": "https://sms.green-node.ru",
             const {token} = await response.json()
 
             if (token) {

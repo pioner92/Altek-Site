@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {initCellPhone} from "./models";
+import {$isConnect, initCellPhone} from "./models";
 import {getDispatchersQueue} from "./ToggleAvailable/models";
 import {Fax} from "./Fax";
 import {$selectedBottomButtonIndex, BottomMenu} from "./BottomMenu";
@@ -10,8 +10,6 @@ import {getCompanyName} from "../../utils/getCompanyName";
 import {History} from "./History/History";
 import {setIsVisibleActionMenu} from "./History/HistoryList/HistoryListItem/ItemActionRightMenu/models";
 import {getNewNotification} from "./api/get-notification";
-import {setDispatchersList} from "./TransferAndConference/models";
-import { Notifications } from 'react-push-notification';
 import {getDispatchers} from "./api/get-dispatchers";
 
 
@@ -21,7 +19,7 @@ declare const window: {
 
 export const CellPhone = () => {
     const selectedIndex = useStore($selectedBottomButtonIndex)
-
+    const isConnect = useStore($isConnect)
 
     useEffect(() => {
         initCellPhone(window.number)
@@ -44,7 +42,7 @@ export const CellPhone = () => {
     //             id:1,
     //             email:'alex@test.ri',
     //             name:'Alex',
-    //             phone:'888',
+    //             phone:'887',
     //             group:'test',
     //             login:'alex'
     //         },
@@ -60,7 +58,7 @@ export const CellPhone = () => {
     // },[])
 
     return (
-        <div style={{height:775}} onClick={onClick} className="cellphone" id="cellphone">
+        <div style={{height:775}} onClick={onClick} className={`cellphone ${isConnect?'active':''}`} id="cellphone">
             <Header/>
             {selectedIndex === 0 && <Main/>}
             {selectedIndex === 1 && <History/>}

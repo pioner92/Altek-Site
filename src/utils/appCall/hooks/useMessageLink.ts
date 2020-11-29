@@ -1,5 +1,5 @@
 import {useEffect} from "react";
-import {findDriverFromNumber} from "../findDriverFromNumber";
+import {getDriverFromNumber} from "../findDriverFromNumber";
 
 type statusType = 'queued' | 'ringing' | 'in-progress' | 'completed' | 'busy' | 'failed' | 'no-answer' | 'canceled'
 
@@ -44,7 +44,7 @@ export const useRecordingLink = (socket: any, addCallHistoryLinkAction: any, num
         socket.on('message_link', (data: dataType) => {
             const {to, from, link, status, direction, duration} = data
             //@ts-ignore
-            const id = findDriverFromNumber(from, window.arrPhones)?.driver_id || findDriverFromNumber(to, window.arrPhones)?.driver_id
+            const id = getDriverFromNumber(from, window.arrPhones)?.driver_id || getDriverFromNumber(to, window.arrPhones)?.driver_id
             if (numberValidate(number, from, to, direction) && id) {
                 addCallHistoryLinkAction({
                     id,

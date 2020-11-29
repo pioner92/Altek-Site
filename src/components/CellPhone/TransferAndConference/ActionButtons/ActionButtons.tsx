@@ -22,6 +22,7 @@ export const ActionButtons = () => {
     const from = useStore($callingFrom)
 
     const call = ({myExt, callback}: { myExt: boolean, callback?: () => void }) => {
+        console.log(from)
         selectedDispatcher && transferHandler({
             to: selectedDispatcher,
             from,

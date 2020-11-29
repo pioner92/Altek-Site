@@ -9,6 +9,8 @@ type propsType = {
 }
 
 export const transferHandler = ({to,myExt,from,callback}:propsType) => {
+    console.log('FROM')
+    console.log(from)
         fetch(`${Data.url}/call_to_dispatcher/${to}/${myExt}/agent`, {
             method: 'POST',
             headers: {

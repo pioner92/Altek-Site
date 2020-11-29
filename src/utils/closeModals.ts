@@ -1,3 +1,5 @@
+import React from "react";
+
 
 export const closeModalAndClearSelectedId = (e:React.MouseEvent<HTMLElement>, setVisible:(status:boolean)=>void, selectedId:string, clearSelectedDrivers:()=>void) => {
     //@ts-ignore

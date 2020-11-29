@@ -1,12 +1,9 @@
 import React, {useContext, useEffect, useState} from 'react';
-import DispatcherItem from './DispatcherItem/DispatcherItem';
 import {Context} from '../Context/Context';
-import Data from "../../data.json";
 import {filterActiveDispatcher} from "../../utils/callQueu/filterActiveDispatchers";
-import {getDispatcherQueue} from "../../utils/callQueu/getDispatcherQueue";
 import {setDispatchersQueue} from "../../utils/callQueu/setDispatchersQueue";
-import {writeToStoreDispatchersAction} from "../../Redux/Actions/WriteToStoreActions/WriteToStoreActions";
 import {DispatcherItemContainer} from "./DispatcherItem/DispatchersItemContainer";
+import {getDispatcherQueue} from "../CellPhone/api/get-active-dispatchers";
 
 const Dispatchers = ({
                          dispatchers, getDispatchersAction,
@@ -29,6 +26,7 @@ const Dispatchers = ({
         const company_name = window.location.host.match(/([a-z]+)./)[1]
         if (company_name) {
             getDispatcherQueue(company_name).then((data) => {
+                if(data)
                 setNumbers(data)
                 writeToStoreActiveDispatchersAction(filterActiveDispatcher(dispatchers, data))
             })

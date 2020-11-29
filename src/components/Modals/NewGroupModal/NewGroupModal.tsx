@@ -3,7 +3,7 @@ import { closeModal } from '../../../utils/closeModals';
 import {addNewGroupActionType} from "../../../Redux/Actions/AddDataActions/AddDataActions";
 
 type NewGroupModalPropsType = {
-    setVisible:Function
+    setVisible:(state:boolean)=>void
     addNewGroupAction:addNewGroupActionType
 }
 

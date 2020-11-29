@@ -3,9 +3,8 @@ import {Connection} from "twilio-client";
 import {AppCall} from "../../../utils/appCall/app/appCall";
 import {
     callDirection,
-    findDriver,
     resetStatusData,
-    setCallDirection, setIsVisibleDirection,
+    setCallDirection, setIsVisibleDirection, setStatusData,
     setStatusNumber, startTimer, stopTimer,
 } from "../StatusBlock/models/models";
 import {phoneDataType} from "../../../utils/appCall/app/types";
@@ -21,6 +20,7 @@ import {setIsBlockedDriverList} from "../CellPhoneDriverInput/SearchList/models"
 import {driverNumpadClick} from "../CellPhoneNumpad/Numpad/models";
 import {setIsNewCallNotification} from "../BottomMenu/models/models";
 import {updateNotification} from "../api/update-notification";
+import {getUserFromNumber} from "../../../utils/getUserFromNumber";
 
 
 declare const window : {
@@ -39,7 +39,7 @@ export const connectHandler = createEvent()
 export const incomingHandler = createEvent<string>()
 export const disconnectHandler = createEvent()
 export const acceptHandler = createEvent<string>()
-export const callingHandler = createEvent()
+export const callingHandler = createEvent<string>()
 export const missedCallHandler = createEvent<string>()
 export const setCallingFrom = createEvent<string>()
 
@@ -67,25 +67,22 @@ incomingHandler.watch((number)=>{
     setCallDirection(callDirection.incoming)
     setIsVisibleDirection(true)
     setStatusNumber(number==='000'?'':number)
-    findDriver({number, arrPhones:window.arrPhones})
+    setStatusData(getUserFromNumber(number))
     setSelectedBottomButtonIndex(0)
     showAllCallButtons()
     setIsVisibleKeypad(false)
     setIsBlockedDriverList(true)
+    setCallingFrom(number)
 })
 
 callEvent.watch((payload => {
     setStatusNumber(payload)
     setCallDirection(callDirection.outgoing)
-    findDriver({number:payload, arrPhones:window.arrPhones})
     onAcceptEvent()
 }))
 
 callingHandler.watch((payload)=>{
-    // const number = $inputValueCellPhone.getState()
-    // setCallDirection(callDirection.outgoing)
-    // setStatusNumber(number)
-    // findDriver({number, arrPhones:window.arrPhones})
+    setStatusData(getUserFromNumber(payload))
 })
 
 disconnectHandler.watch(()=>{

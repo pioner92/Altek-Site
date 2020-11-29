@@ -1,5 +1,4 @@
 import React from 'react';
-import pause_icon from "../../../../static/icons/pause.svg";
 
 type propsType = {
     icon:string

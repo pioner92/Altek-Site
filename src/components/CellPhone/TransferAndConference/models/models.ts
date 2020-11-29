@@ -1,5 +1,7 @@
 import {createEvent,createStore} from "effector";
 import {$inputValueDispatcherTransfer} from "../CellPhoneDispatcherInput/models";
+import {getDispatcherQueue} from "../../api/get-active-dispatchers";
+import {getCompanyName} from "../../../../utils/getCompanyName";
 
 type dispatchersItem = {
     email: string
@@ -15,6 +17,7 @@ export type dispatchersList = Array<dispatchersItem>
 export const setIsVisibleTransfer = createEvent<boolean>()
 export const setIsVisibleConference = createEvent<boolean>()
 export const setDispatchersList = createEvent<dispatchersList>()
+export const setActiveDispatcherList = createEvent<dispatchersList>()
 export const setFilteredDispatchersList = createEvent<dispatchersList>()
 export const searchDispatcher = createEvent<string>()
 export const setSelectedDispatcherNumber = createEvent<string>()
@@ -29,10 +32,13 @@ export const $isVisibleConference = createStore(false)
 export const $dispatchersList = createStore([] as dispatchersList)
     .on(setDispatchersList,(state, payload) => payload)
 
+export const $activeDispatcherList = createStore([] as dispatchersList)
+    .on(setActiveDispatcherList,(state, payload) => payload)
+
 export const $filteredDispatchersList = createStore([] as dispatchersList)
     .on(setFilteredDispatchersList,(state, payload) => payload)
     .on(searchDispatcher,(state, payload) => {
-        return $dispatchersList.getState().filter((el)=>
+        return $activeDispatcherList.getState().filter((el)=>
             el.phone.startsWith(payload)
             || el.name.toLowerCase().startsWith(payload.toLowerCase())
         )
@@ -45,6 +51,7 @@ export const $selectedDispatcherNumber = createStore('')
 
 setDispatchersList.watch(payload => {
     setFilteredDispatchersList(payload)
+    getDispatcherQueue(getCompanyName())
 })
 
 $inputValueDispatcherTransfer.watch(state => {

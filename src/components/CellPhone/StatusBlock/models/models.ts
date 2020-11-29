@@ -1,5 +1,5 @@
 import {createEvent,createStore} from "effector";
-import {findDriverFromNumber} from "../../../../utils/appCall/findDriverFromNumber";
+import {getDriverFromNumber} from "../../../../utils/appCall/findDriverFromNumber";
 import {phoneDataType} from "../../../../utils/appCall/app/types";
 import {Moment} from "moment";
 import {TimeCounter} from "./counter";
@@ -19,21 +19,25 @@ type findDriverType = {
     number:string
     arrPhones:Array<phoneDataType>
 }
-
+type statusDataType = {
+    name:string
+    phone:string
+    id:string
+}
 
 export const setCallDirection = createEvent<callDirectionType>()
 export const setStatusNumber = createEvent<string>()
-export const findDriver = createEvent<findDriverType>()
 export const resetStatusData = createEvent()
+export const setStatusData = createEvent<statusDataType>()
 export const startTimer = createEvent()
 export const stopTimer = createEvent()
 export const setCounter = createEvent<Moment>()
 export const setIsVisibleDirection = createEvent<boolean>()
 
 
-export const $driver = createStore<phoneDataType|null>(null)
-    .on(findDriver,(state, payload) => findDriverFromNumber(payload.number,payload.arrPhones))
-    .on(resetStatusData,() => null)
+export const $statusData = createStore({name:'',phone:'',id:''} as statusDataType)
+    .on(setStatusData,(state, payload) => payload)
+    .on(resetStatusData,state => ({name:'',phone:'',id:''}))
 
 export const $statusNumber = createStore('')
     .on(setStatusNumber,(state, payload) => payload)

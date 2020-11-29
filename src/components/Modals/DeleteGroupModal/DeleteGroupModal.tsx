@@ -2,16 +2,16 @@ import React from 'react';
 import { closeModal } from '../../../utils/closeModals';
 import {
     deleteGroupActionType,
-    deleteItemNameActionFn
 } from "../../../Redux/Actions/DeleteDateActions/DeleteDataActions";
 
 type deleteGroupModalPropsType = {
-    setVisible:Function,
+    setVisible:(state:boolean)=>void,
     deleteGroupAction:deleteGroupActionType
     deleteItemName:string
 }
 
 const DeleteGroupModal:React.FC<deleteGroupModalPropsType> = ({ setVisible, deleteGroupAction, deleteItemName }) => {
+
     const deleteGroup = () => {
         deleteGroupAction(deleteItemName);
         setVisible(false);

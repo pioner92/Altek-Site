@@ -1,1 +1,1 @@
-export {$driver,$statusNumber,setStatusNumber,setCallDirection,resetStatusData,$callDirection} from './models'
+export {$statusNumber,setStatusNumber,setCallDirection,resetStatusData,$callDirection} from './models'

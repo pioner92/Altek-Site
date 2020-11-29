@@ -1,8 +1,8 @@
 import React from 'react';
 import {useStore} from "effector-react";
-import {$callDirection, $driver, $statusNumber} from "./models";
+import {$callDirection, $statusNumber} from "./models";
 import {$isConnect} from "../models";
-import {$isVisibleDirection} from "./models/models";
+import {$isVisibleDirection, $statusData} from "./models/models";
 import {ConnectedTimerCounter} from "./ConnectedTimerCounter";
 import {IsAdmin} from "../../Validate/isAdmin";
 import {$isVisibleTransfer} from "../TransferAndConference/models";
@@ -14,8 +14,8 @@ export const StatusBlock = () => {
     const isVisibleDirection = useStore($isVisibleDirection)
     const isVisibleTransfer = useStore($isVisibleTransfer)
     const callDirection = useStore($callDirection)
-    const driver = useStore($driver)
-    const driverNumber = driver?.driver_number
+    const statusData = useStore($statusData)
+    console.log(statusData)
 
     return (
         <div style={{minHeight: 30}} className="cellphone-info-box" id="cellphone-info-box">
@@ -32,23 +32,23 @@ export const StatusBlock = () => {
                 {!isVisibleTransfer &&
                 <>
                     <div className="cellphone-info-box__member-name">
-                        <span>{driver?.driver_name}</span>
+                        <span>{statusData.name}</span>
                     </div>
                     <div className="cellphone-info-box__member-phone">
                         <IsAdmin flag={true}>
-                            {driverNumber ?
-                                <span>{driverNumber}</span>
+                            {statusData.phone ?
+                                <span>{statusData.phone}</span>
                                 : <span>{statusNumber}</span>
                             }
                         </IsAdmin>
                         <IsAdmin flag={false}>
-                            {!driverNumber &&
+                            {!statusData.phone &&
                             <span>{statusNumber}</span>
                             }
                         </IsAdmin>
                     </div>
                     <div className="cellphone-info-box__member-meta">
-                        <span>{driver?.vehicle_id}</span>
+                        <span>{statusData.id}</span>
                     </div>
                 </>
                 }

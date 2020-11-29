@@ -3,7 +3,7 @@ import {closeModal} from '../../../utils/closeModals';
 import {addNewDispatcherActionType} from "../../../Redux/Actions/AddDataActions/AddDataActions";
 
 type newDispatcherModalPropsType = {
-    setVisible: Function
+    setVisible: (state:boolean)=>void
     addNewDispatcherAction: addNewDispatcherActionType
 }
 
