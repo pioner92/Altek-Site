@@ -23,7 +23,7 @@ export const SendTo = () => {
             <div className="cellphone-input_adv">
                 <input onChange={onChange} value={inputValue} id="send_to" type="text"
                        className="c-form-control with-expansion" placeholder="Phone number"/>
-                <img onClick={addNumber} className="cellphone-input__button" src={plus_icon} alt=''/>
+                <img onClick={addNumber} className="cellphone-input__button_right" src={plus_icon} alt=''/>
             </div>
             <NumberList/>
         </div>

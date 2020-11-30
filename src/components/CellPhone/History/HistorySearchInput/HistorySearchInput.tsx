@@ -13,7 +13,7 @@ export const HistorySearchInput = () => {
     }
     return (
         <>
-            <div className="c-form-group">
+            <div className="c-form-group mb-1">
                 <div className="c-form-control">
                     <div className="d-flex align-items-center">
                         <div className="cellphone-input_adv w-100">

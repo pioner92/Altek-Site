@@ -9,7 +9,7 @@ export const HistoryList = () => {
     const callHistory = useStore($callHistory)
 
     return (
-        <div className="cellphone-list">
+        <div style={{height: 445, paddingTop: 10}} className="cellphone-list celphone-scroll-view">
             {callHistory?.map((el)=>{
                 return (
                     <HistoryListItem

@@ -33,7 +33,7 @@ export const CellPhoneDriverInput: React.FC = () => {
     },[])
 
     return (
-        <div>
+        <div className="pos-relative">
             <Input value={inputValue} onChange={onChange} clearInput={clearInput} placeholder={'Type number or name...'}/>
             {isVisibleDriverList && !isBlockedDriverList &&
             <DriverSearchList values={drivers}/>

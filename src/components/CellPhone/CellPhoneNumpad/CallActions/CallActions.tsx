@@ -1,10 +1,19 @@
 import React from 'react';
+
 import microphone_icon from "../../../../static/icons/microphone.svg";
 import keypad_icon from "../../../../static/icons/keypad.svg";
 import pause_icon from "../../../../static/icons/pause.svg";
 import transfer_icon from "../../../../static/icons/transfer-call.svg";
 import add_icon from "../../../../static/icons/plus.svg";
 import record_icon from "../../../../static/icons/record.svg";
+
+import microphone_icon_active from "../../../../static/icons/microphone-active.svg";
+import keypad_icon_active from "../../../../static/icons/keypad-active.svg";
+import pause_icon_active from "../../../../static/icons/pause-active.svg";
+import transfer_icon_active from "../../../../static/icons/transfer-call-active.svg";
+import add_icon_active from "../../../../static/icons/plus-active.svg";
+import record_icon_active from "../../../../static/icons/record-active.svg";
+
 import {ActionItem} from "./ActionItem";
 import {setIsVisibleKeypad} from "../models/models";
 import {setIsVisibleBackButton} from "../CallButtons/models/models";

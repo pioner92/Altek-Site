@@ -53,7 +53,7 @@ export const History: React.FC = () => {
     }, [])
 
     return (
-        <div className="cellphone-page-body celphone-scroll-view">
+        <div className="cellphone-page-body">
             <div className="cellphone-form">
                 <ToggleButtons/>
                 <HistorySearchInput/>

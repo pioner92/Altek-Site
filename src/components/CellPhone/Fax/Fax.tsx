@@ -23,9 +23,9 @@ export const Fax = () => {
 
 
     return (
-        <div>
+        <>
             <div className="cellphone-page-body" style={{paddingTop: 10}}>
-                <div className="telephony-form">
+                <div style={{height: 600}} className="telephony-form celphone-scroll-view">
                     <SendTo/>
                     <CoverPageNotes/>
                     <AttachFiles/>
@@ -34,6 +34,6 @@ export const Fax = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </>
     );
 };
