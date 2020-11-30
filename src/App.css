@@ -2110,6 +2110,7 @@ a.header-btn-blue {
     width: 33px;
     height: 33px;
     margin-right: 5px;
+    cursor: pointer;
 }
 
 .cellphone-list__item_avatar img {
@@ -2199,6 +2200,7 @@ a.header-btn-blue {
 .cellphone-list__item_name .title {
     font-size: 14px;
     font-weight: 500;
+    cursor: pointer;
 }
 
 .cellphone-list__item_name .title.red {

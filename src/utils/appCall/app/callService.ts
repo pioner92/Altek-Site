@@ -88,7 +88,7 @@ export class CallService extends CallEvents {
         console.log(this.Device.activeConnection())
     }
 
-    public getConnect() {
+    public getConnect():Connection|null {
         return super._getConnect()
     }
 

@@ -82,7 +82,7 @@ callEvent.watch((payload => {
 }))
 
 callingHandler.watch((payload)=>{
-    setStatusData(getUserFromNumber(payload))
+    setSelectedBottomButtonIndex(0)
 })
 
 disconnectHandler.watch(()=>{

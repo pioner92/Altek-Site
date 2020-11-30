@@ -41,7 +41,7 @@ export const History: React.FC = () => {
             from: "888",
             id: 143128,
             link: "https://api.twilio.com/2010-04-01/Accounts/ACea92366cacdea08cdc099ce743379dcb/Recordings/RE6da21cf7339f9555e911a2dd64aa4dc2",
-            number: "+12676660389",
+            number: "+34698779553",
             status: "Missed call",
             to: "+12676660389",
         }

@@ -30,10 +30,11 @@ export class AppCall {
         }
     }
 
-    isMuted(){
-        if(connectGuard(this.callService.getConnect(),'open')){
-            return this.callService.getConnect()?.isMuted()
+    isMuted():boolean{
+        if(this.callService.getConnect() && connectGuard(this.callService.getConnect(),'open')){
+           return !!this.callService.getConnect()!.isMuted()
         }
+        return false
     }
 
     sendDigits(number:string){
