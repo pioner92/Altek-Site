@@ -85,6 +85,10 @@ callingHandler.watch((payload)=>{
     setSelectedBottomButtonIndex(0)
 })
 
+declineEvent.watch(()=>{
+    onDeclineEvent()
+})
+
 disconnectHandler.watch(()=>{
     resetStatusData()
     stopTimer()

@@ -4,17 +4,9 @@ import decline_call from "../../../../static/icons/decline-call.svg";
 import back from '../../../../static/icons/back-cellphone.svg'
 import {callEvent, declineEvent} from "../../models/models";
 import {useStore} from "effector-react";
-import {$inputValueCellPhone} from "../../CellPhoneDriverInput/models";
-import {
-    $isVisibleAcceptButton,
-    $isVisibleBackButton,
-    $isVisibleDeclineButton,
-    onAcceptEvent,
-    onDeclineEvent,
-    setIsVisibleBackButton,
-} from "./models";
+import {$inputValueCellPhone, setInputValueCellPhone} from "../../CellPhoneDriverInput/models";
+import {$isVisibleAcceptButton, $isVisibleBackButton, $isVisibleDeclineButton, setIsVisibleBackButton,} from "./models";
 import {setIsVisibleKeypad} from "../models/models";
-import plus from "../../../../static/icons/plus.svg";
 
 export const CallButtons = () => {
 
@@ -24,13 +16,17 @@ export const CallButtons = () => {
     const isVisibleBackButton = useStore($isVisibleBackButton)
 
     const onClickAccept = () => {
-        callEvent(inputValue)
-        onAcceptEvent()
+        if (inputValue.length === 10) {
+            const value = '+1' + inputValue
+            setInputValueCellPhone(value)
+            callEvent(value)
+        } else {
+            callEvent(inputValue)
+        }
     }
 
     const onClickDecline = () => {
         declineEvent()
-        onDeclineEvent()
     }
 
     const onClickBack = () => {
