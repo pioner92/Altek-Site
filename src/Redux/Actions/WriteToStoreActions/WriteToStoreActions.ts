@@ -114,8 +114,8 @@ export type writeToStoreMessagesActionType = {
 }
 
 export type messagesType = {
-    link: string
-    media: string
+    link:Array<string> | string
+    media: Array<string> | string
     message: string
     published: string
     read_by: string

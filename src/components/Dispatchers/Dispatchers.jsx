@@ -4,6 +4,7 @@ import {filterActiveDispatcher} from "../../utils/callQueu/filterActiveDispatche
 import {setDispatchersQueue} from "../../utils/callQueu/setDispatchersQueue";
 import {DispatcherItemContainer} from "./DispatcherItem/DispatchersItemContainer";
 import {getDispatcherQueue} from "../CellPhone/api/get-active-dispatchers";
+import {getCompanyName} from "../../utils/getCompanyName";
 
 const Dispatchers = ({
                          dispatchers, getDispatchersAction,
@@ -23,7 +24,7 @@ const Dispatchers = ({
     }, []);
 
     useEffect(() => {
-        const company_name = window.location.host.match(/([a-z]+)./)[1]
+        const company_name = getCompanyName()
         if (company_name) {
             getDispatcherQueue(company_name).then((data) => {
                 if(data)

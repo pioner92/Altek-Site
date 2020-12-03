@@ -44,7 +44,7 @@ export type clearSelectDriversType = {
 }
 
 export type setResponsibleActionDataType = {
-    driver_id: string
+    driver_id: number
     dispatcher_id: string
 }
 

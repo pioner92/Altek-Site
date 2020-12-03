@@ -9,7 +9,7 @@ import {EditDispatcherModal} from "./EditDispathcerModal/EditDispatcherModal";
 import {EditDispatcherModalContainer} from "./EditDispathcerModal/EditDispatcherModalContainer";
 
 const Modals = ({
-    driverId, isVisibleNewGroupModal, setIsVisibleNewGroupModal,
+     isVisibleNewGroupModal, setIsVisibleNewGroupModal,
     isVisibleDeleteGroupModal, setIsVisibleDeleteGroupModal, isVisibleNewDriverModal,
     setIsVisibleNewDriverModal, isVisibleNewDispatcherModal, setIsVisibleNewDispatcherModal,
     isVisibleNewSmsModal, setIsVisibleSentSmsNotification, setIsVisibleNewSmsModal,
@@ -34,7 +34,6 @@ const Modals = ({
                 setVisible={setIsVisibleNewSmsModal}/>}
         {isVisibleEditProfileModal
             && <EditProfileModalContainer
-                driverId={driverId}
                 setVisible={setIsVisibleEditProfileModal}/>}
         {isVisibleEditDispatcherModal
         && <EditDispatcherModalContainer

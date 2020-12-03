@@ -60,7 +60,7 @@ const initialState = {
     } as writeToStoreCallHistoryActionDataType,
     deleteItemName: '',
     messages: [] as Array<messagesType>,
-    messagesSubheader: {id: '', name: '', phone_number: ''} as messageSubheaderType,
+    messagesSubheader: {} as messageSubheaderType,
     driversList: [] as Array<responseDriverDataType>,
     inputFilterValue: '',
     selectedId: [],

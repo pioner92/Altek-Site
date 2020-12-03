@@ -14,7 +14,7 @@ import Modals from './components/Modals/Modals';
 import {HeaderOtherContainer} from './components/Header/HeaderOtherContainer';
 import RightBlockContainer from './components/RightBlock/RightBlockContainer';
 import {setClasses} from "./utils/setClasses";
-import Notifications from "react-push-notification";
+import {getNotificationPermission} from "./utils/notification/getNotificationPermission";
 
 function App({
                  checkSmsAction, isNewMessage, newMessageAction, addCallHistoryLinkAction, queueStatus, writeToStoreIsNewCallNotificationAction,
@@ -30,8 +30,6 @@ function App({
     const [isVisibleEditDispatcherModal, setIsVisibleEditDispatcherModal] = useState(false);
 
     const [isVisibleSentSmsNotification, setIsVisibleSentSmsNotification] = useState(false);
-
-    const [driverId, setDriverId] = useState('');
 
     const cellPhoneRef = useRef();
 
@@ -58,9 +56,12 @@ function App({
         return () => {
             clearInterval(interval);
         };
+
     }, []);
 
+
     useEffect(() => {
+        getNotificationPermission()
         setClasses()
     }, [])
 
@@ -82,8 +83,7 @@ function App({
             setStatusData,
             Call,
             setCellPhoneInput,
-            setId,
-            setDriverId
+            setId
         }}>
             <div className="App">
                 <div className="page">
@@ -91,7 +91,6 @@ function App({
                         <div className="page-wrapper">
                             {/* //-- Modals */}
                             <Modals
-                                driverId={driverId}
                                 isVisibleNewGroupModal={isVisibleNewGroupModal}
                                 setIsVisibleNewGroupModal={setIsVisibleNewGroupModal}
                                 isVisibleDeleteGroupModal={isVisibleDeleteGroupModal}
@@ -126,8 +125,7 @@ function App({
                                 />
                                 <Route path='/settings' render={() => <Settings/>}/>
                                 <Route path='/messenger/:id?/:action?' exact
-                                       render={(props) => <MessengerContainer
-                                           setDriverId={setDriverId} {...props}/>}/>
+                                       render={(props) => <MessengerContainer {...props}/>}/>
                                 <Route path='/callhistory/:id' exact
                                        component={CallHistoryContainer}/>
                                 <RightBlockContainer

@@ -10,13 +10,13 @@ export type ownProps = {
     data: responseDriverDataType
 };
 
-export var DriverItem: React.FC<connectorType> = function ({
-                                                               writeToStoreSelectedDriver, deleteDriverAction,
-                                                               data: {
-                                                                   id, name, email, number, veh_id, ...data
-                                                               },
-                                                           }) {
-    const {setIsVisibleEditProfileModal, setDriverId} = useContext(Context);
+export var DriverItem: React.FC<connectorType> = function (
+    {
+        writeToStoreSelectedDriver, deleteDriverAction,
+        data: {id, name, email, number, veh_id, ...data}
+    }
+) {
+    const {setIsVisibleEditProfileModal} = useContext(Context);
 
     const deleteDriver = () => {
         deleteDriverAction(id);
@@ -24,10 +24,7 @@ export var DriverItem: React.FC<connectorType> = function ({
 
     const updateDriver = () => {
         setIsVisibleEditProfileModal(true);
-        writeToStoreSelectedDriver({
-            id, name, email, number, veh_id, ...data,
-        });
-        setDriverId(id);
+        writeToStoreSelectedDriver({id, name, email, number, veh_id, ...data});
     };
 
     return (

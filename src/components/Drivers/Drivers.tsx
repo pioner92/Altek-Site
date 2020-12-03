@@ -1,15 +1,23 @@
-import React, { useContext, useEffect } from 'react';
-import { DriverItem } from './DriverItem/DriverItem';
-import { Context } from '../Context/Context';
+import React, {useContext, useEffect} from 'react';
+import {Context} from '../Context/Context';
 import Pagination from '../Pagination/Pagination';
-import { IsAdmin } from '../Validate/isAdmin';
-import { DriverItemContainer } from './DriverItem/DriverItemContainer';
+import {IsAdmin} from '../Validate/isAdmin';
+import {DriverItemContainer} from './DriverItem/DriverItemContainer';
+import {connectorType} from "./DriversContainer";
 
-const Drivers = function (props) {
+export type propsType = {
+    match: {
+        params: {
+            n: string
+        }
+    }
+}
+
+const Drivers: React.FC<connectorType> = function (props) {
     const {
-        drivers, getDriversAction, driversPagesCount, match: { params: { n } },
+        drivers, getDriversAction, driversPagesCount, match: {params: {n}}
     } = props;
-    const { setIsVisibleNewDriverModal } = useContext(Context);
+    const {setIsVisibleNewDriverModal} = useContext(Context);
 
     useEffect(() => {
         if (!drivers.length) {
@@ -19,7 +27,7 @@ const Drivers = function (props) {
 
     useEffect(() => {
         if (n && !drivers.length) {
-            getDriversAction({ n });
+            getDriversAction({n});
         }
     }, [n]);
 
@@ -42,7 +50,7 @@ const Drivers = function (props) {
                 </div>
 
                 <div className="row table-head hide-on-medium-and-down"
-                     style={{ paddingLeft: '80px' }}>
+                     style={{paddingLeft: '80px'}}>
                     <div className="header col-2 d-flex justify-content-start">
                         ID
                     </div>
@@ -60,7 +68,7 @@ const Drivers = function (props) {
 
                 </div>
                 <div className="table-content">
-                    <div className="scroll-view" style={{ paddingLeft: '80px' }}>
+                    <div className="scroll-view" style={{paddingLeft: '80px'}}>
                         {drivers.map((el) => (
                             <DriverItemContainer
                                 key={el.id}

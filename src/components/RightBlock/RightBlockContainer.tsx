@@ -35,19 +35,6 @@ const RightBlockContainer: React.FC<propsType> = forwardRef(({
                                                                 updateCallNotificationAction,getCallNotificationAction
                                                             }, ref) => {
 
-    // const acceptHandler = (connect: Connection) => {
-    //     setAnimFlag(false)
-    //     writeToStoreIsNewCallNotificationAction(false)
-    // }
-    //
-    // const callingHandler = () => {
-    //     setCellPhoneStatus('Calling...')
-    // }
-    // const missedCallHandler = (connect:Connection) => {
-    //     writeToStoreIsNewCallNotificationAction(true)
-    //     updateCallNotificationAction({content:connect.parameters.From})
-    // }
-
     useRecordingLink( socket, addCallHistoryLinkAction,window.number)
 
     return (

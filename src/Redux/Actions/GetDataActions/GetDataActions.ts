@@ -152,7 +152,7 @@ export const getMessageAction: actionType<getMessageFnData> = ({action, id, date
     return Fetch({action: writeToStoreMessagesAction, data});
 };
 
-export const getResponsibleAction = (id: string) => {
+export const getResponsibleAction = (id: number) => {
     const data = {
         action: 'get_responsible',
         driver_id: id,

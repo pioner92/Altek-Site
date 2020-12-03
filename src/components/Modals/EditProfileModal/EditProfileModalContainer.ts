@@ -1,7 +1,7 @@
 import {connect, ConnectedProps} from 'react-redux';
 import EditProfileModal, {ownProps} from './EditProfileModal';
 import { setResponsibleAction, updateDriverAction } from '../../../Redux/Actions/UpdateDateActions/UpdateDataActions';
-import { deleteDriverAction, deleteItemNameAction } from '../../../Redux/Actions/DeleteDateActions/DeleteDataActions';
+import { deleteDriverAction } from '../../../Redux/Actions/DeleteDateActions/DeleteDataActions';
 import { getDispatchersAction, getResponsibleAction } from '../../../Redux/Actions/GetDataActions/GetDataActions';
 import {ReducerReturnType} from "../../../Redux/Reducer/Reducer";
 

@@ -1,9 +1,10 @@
 import Data from '../../data.json';
+import {getCompanyName} from "../getCompanyName";
 
 export const setDispatchersQueue = (phone:string, status:boolean) => {
   const data = {
     // @ts-ignore
-    name: window.location.host.match(/([a-z]+)./)[1],
+    name: getCompanyName(),
     number: phone,
     action: 'deleteDispatcher',
   };

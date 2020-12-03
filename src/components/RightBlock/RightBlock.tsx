@@ -11,12 +11,13 @@ import {connectGuard} from "../../utils/appCall/connectGuard";
 import {useGetDispatcherQueue} from "../../utils/hooks/useGetDispatcherQueue";
 import {getCompanyName} from "../../utils/getCompanyName";
 import {CellPhone} from "../CellPhone/CellPhone";
+import {useRecordingLink} from "../../utils/appCall/hooks/useMessageLink";
 
 export type ownPropsType = {
 }
 
 export const RightBlock: React.FC<connectorType> = ({
-                                                getActiveDispatchersAction, activeDispatchers,
+                                                getActiveDispatchersAction,
                                                 writeToStoreActiveDispatchersAction,dispatchers
                                             }) => {
 
@@ -47,6 +48,7 @@ export const RightBlock: React.FC<connectorType> = ({
 
 
     useGetDispatcherQueue(dispatchers, writeToStoreActiveDispatchersAction)
+
 
     return (
         <div style={{padding:0}}  className="col-lg-3 col-12 cellphone-wrapper">

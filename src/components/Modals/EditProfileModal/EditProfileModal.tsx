@@ -5,37 +5,33 @@ import {closeModal} from '../../../utils/closeModals';
 import {connectorType} from "./EditProfileModalContainer";
 
 export type ownProps = {
-    setVisible: (state:boolean)=>void
+    setVisible: (state: boolean) => void
     driverId: string
 }
 
 const EditProfileModal: React.FC<connectorType> = ({
-                                                       selectedDriver,messagesSubheader,
-                                                       setVisible, updateDriverAction, driverId, deleteDriverAction,
+                                                       selectedDriver, messagesSubheader,
+                                                       setVisible, updateDriverAction, deleteDriverAction,
                                                        getDispatchersAction, getResponsibleAction, dispatchers, setResponsibleAction,
                                                        responsibleData, ...props
                                                    }) => {
     const [phone, setPhone] = useState<string>(selectedDriver.number);
-    const [name, setName]   = useState<string>(selectedDriver.name);
-    const [veh_id, setVehId] =  useState<string>(selectedDriver.veh_id);
+    const [name, setName] = useState<string>(selectedDriver.name);
+    const [veh_id, setVehId] = useState<string>(selectedDriver.veh_id);
     const [dispatcherId, setDispatcherId] = useState<string>('')
 
     const selectRef = useRef<HTMLSelectElement>(null);
 
-    console.log(props);
 
     const onClickSave = () => {
-        if (driverId) {
-            setVisible(false);
-            if('id' in messagesSubheader){
-                updateDriverAction({id: +messagesSubheader.id, name, phone, veh_id});
-            }
-            else {
+        if ('id' in messagesSubheader) {
+            updateDriverAction({id: +messagesSubheader.id, name, phone, veh_id});
+        } else if (selectedDriver?.id?.toString()) {
             updateDriverAction({id: selectedDriver.id, name, phone, veh_id});
-            }
         } else {
             alert('Error with data !');
         }
+        setVisible(false);
     };
 
     const onChangePhone = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -59,20 +55,18 @@ const EditProfileModal: React.FC<connectorType> = ({
     };
 
     const onSetResponsible = () => {
-        setResponsibleAction({driver_id: driverId, dispatcher_id: dispatcherId});
+        setResponsibleAction({driver_id: selectedDriver.id, dispatcher_id: dispatcherId});
     }
 
     useEffect(() => {
         getDispatchersAction();
-        getResponsibleAction(driverId);
+        getResponsibleAction(selectedDriver.id);
     }, []);
 
     useEffect(() => {
         if (responsibleData.id && selectRef.current) {
-            console.log(responsibleData)
-            setDispatcherId(responsibleData.id.toString())
+            setDispatcherId(`${responsibleData?.id}`)
         }
-        console.log('SELECT после if')
     }, [responsibleData])
 
     return (
@@ -102,7 +96,7 @@ const EditProfileModal: React.FC<connectorType> = ({
                             <select onChange={onChangeSelect} ref={selectRef} style={{width: '60%'}}>
                                 {dispatchers.map((el) => (
                                     <option selected={+dispatcherId === el.id} key={el.id}
-                                            id={el.id.toString()}>{el.email}</option>
+                                            id={el.id?.toString()}>{el.email}</option>
                                 ))}
                             </select>
                         </div>

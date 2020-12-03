@@ -928,12 +928,19 @@ a.header-btn-blue {
     padding-top: 20px;
     padding-bottom: 20px;
     position: absolute;
-    bottom: -100px;
+    bottom: -120px;
     left: 0;
     width: 100%;
 }
 
-.messenger-chat-input input {
+/*.messenger-chat-input input {*/
+/*    width: 100%;*/
+/*    background: #FFFFFF;*/
+/*    border-radius: 20px;*/
+/*    padding: 20px 65px 20px 25px;*/
+/*    border: none;*/
+/*}*/
+.messenger-chat-input textarea {
     width: 100%;
     background: #FFFFFF;
     border-radius: 20px;
@@ -941,25 +948,28 @@ a.header-btn-blue {
     border: none;
 }
 
-.messenger-chat-input input::-webkit-input-placeholder {
+/* replaced input to textarea */
+
+.messenger-chat-input textarea::-webkit-input-placeholder {
     color: #959497;
 }
 
-.messenger-chat-input input::-moz-placeholder {
+.messenger-chat-input textarea::-moz-placeholder {
     color: #959497;
 }
 
-.messenger-chat-input input:-ms-input-placeholder {
+.messenger-chat-input textarea:-ms-input-placeholder {
     color: #959497;
 }
 
-.messenger-chat-input input::-ms-input-placeholder {
+.messenger-chat-input textarea::-ms-input-placeholder {
     color: #959497;
 }
 
-.messenger-chat-input input::placeholder {
+.messenger-chat-input textarea::placeholder {
     color: #959497;
 }
+/* End editing*/
 
 .mymodal .mymodal-bg-blur {
     display: -webkit-box;
@@ -1333,10 +1343,11 @@ a.header-btn-blue {
     cursor: default;
 }
 
+/* Replaced top 20px => 35px */
 .messenger-chat-attach {
     position: absolute;
     right: 35px;
-    top: 20px;
+    top: 35px;
     cursor: pointer;
 }
 

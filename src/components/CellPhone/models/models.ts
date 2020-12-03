@@ -21,6 +21,7 @@ import {driverNumpadClick} from "../CellPhoneNumpad/Numpad/models";
 import {setIsNewCallNotification} from "../BottomMenu/models/models";
 import {updateNotification} from "../api/update-notification";
 import {getUserFromNumber} from "../../../utils/getUserFromNumber";
+import {makePushNotification} from "../../../utils/notification/makeNotification";
 
 
 declare const window : {
@@ -104,4 +105,5 @@ missedCallHandler.watch((payload)=>{
     onDeclineEvent()
     setIsNewCallNotification(true)
     updateNotification(payload)
+    makePushNotification(payload)
 })

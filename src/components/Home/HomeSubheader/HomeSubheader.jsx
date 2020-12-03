@@ -8,6 +8,7 @@ import {InQueueValidate} from "../../../utils/callQueu/InQueueValidate";
 import burgerIcon from '../../../static/icons/burger.svg';
 import inQueue from '../../../static/icons/in_the_queue.svg'
 import outOfQueue from '../../../static/icons/out_of_queue.svg'
+import {getCompanyName} from "../../../utils/getCompanyName";
 
 
 const HomeSubheader = ({
@@ -40,7 +41,7 @@ const HomeSubheader = ({
 
 
     useEffect(()=>{
-        const company_name = window.location.host.match(/([a-z]+)./)[1]
+        const company_name = getCompanyName()
         const number = window.number
         setIsInQueue(InQueueValidate(activeDispatchers,number))
     },[activeDispatchers])
