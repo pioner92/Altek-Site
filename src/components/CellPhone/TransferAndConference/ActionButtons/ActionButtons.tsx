@@ -5,10 +5,11 @@ import warm_transfer from "../../../../static/icons/warm-transfer.svg";
 import blind_transfer from "../../../../static/icons/phone-blind-transfer.svg";
 import {useStore} from "effector-react";
 import {$isVisibleConference, setIsVisibleTransfer} from "../models";
-import {transferHandler} from "../../../../utils/appCall/handlers/transfer/transferHandler";
 import {$callingFrom, declineEvent} from "../../models/models";
 import {$selectedDispatcherNumber, setSelectedDispatcherNumber} from "../models/models";
 import {setInputValueDispatcherTransfer} from "../CellPhoneDispatcherInput/models";
+import {transfer} from "../../api/transfer";
+import {getCompanyName} from "../../../../utils/getCompanyName";
 
 declare const window: {
     number: string
@@ -21,9 +22,9 @@ export const ActionButtons = () => {
 
     const from = useStore($callingFrom)
 
-    const call = ({myExt, callback}: { myExt: boolean, callback?: () => void }) => {
-        console.log(from)
-        selectedDispatcher && transferHandler({
+    const call = async ({myExt, callback}: { myExt: boolean, callback?: () => void }) => {
+        selectedDispatcher && transfer({
+            companyName:getCompanyName(),
             to: selectedDispatcher,
             from,
             myExt: myExt ? window.number : '000',

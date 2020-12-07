@@ -3,7 +3,7 @@ import {Context} from '../Context/Context';
 import {filterActiveDispatcher} from "../../utils/callQueu/filterActiveDispatchers";
 import {setDispatchersQueue} from "../../utils/callQueu/setDispatchersQueue";
 import {DispatcherItemContainer} from "./DispatcherItem/DispatchersItemContainer";
-import {getDispatcherQueue} from "../CellPhone/api/get-active-dispatchers";
+import {getActiveDispatchers} from "../CellPhone/api/get-active-dispatchers";
 import {getCompanyName} from "../../utils/getCompanyName";
 
 const Dispatchers = ({
@@ -26,7 +26,7 @@ const Dispatchers = ({
     useEffect(() => {
         const company_name = getCompanyName()
         if (company_name) {
-            getDispatcherQueue(company_name).then((data) => {
+            getActiveDispatchers(company_name).then((data) => {
                 if(data)
                 setNumbers(data)
                 writeToStoreActiveDispatchersAction(filterActiveDispatcher(dispatchers, data))

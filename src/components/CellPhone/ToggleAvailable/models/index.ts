@@ -1,1 +1,1 @@
-export {setIsAvailable,setDispatcherQueue,$isAvailable,getDispatchersQueue} from './models'
+export {setIsAvailable,$isAvailable} from './models'

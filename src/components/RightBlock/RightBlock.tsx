@@ -1,97 +1,44 @@
-import React, {useEffect, useRef, useState} from 'react';
-import {CSSTransition} from 'react-transition-group';
-import Connection from 'twilio-client/es5/twilio/connection';
+import React from 'react';
 import {NotificationContainer} from '../Notification/NotificationContainer';
-import {SearchList} from '../SearchList/SearchList';
 import {connectorType} from './RightBlockContentContainer';
-
-// @ts-ignore
-import {IsAdmin} from '../Validate/isAdmin';
-import {connectGuard} from "../../utils/appCall/connectGuard";
 import {useGetDispatcherQueue} from "../../utils/hooks/useGetDispatcherQueue";
 import {getCompanyName} from "../../utils/getCompanyName";
 import {CellPhone} from "../CellPhone/CellPhone";
 import {useRecordingLink} from "../../utils/appCall/hooks/useMessageLink";
+import socketClient from "socket.io-client";
+import Data from "../../data.json";
+import {phoneDataType} from "../../utils/appCall/app/types";
+import {$dispatchersList, setActiveDispatcherList} from "../CellPhone/TransferAndConference/models/models";
+import {useStore} from "effector-react";
 
-export type ownPropsType = {
+declare const window: {
+    arrPhones: Array<phoneDataType>
+    is_admin: boolean
+    number: string
 }
 
-export const RightBlock: React.FC<connectorType> = ({
-                                                getActiveDispatchersAction,
-                                                writeToStoreActiveDispatchersAction,dispatchers
-                                            }) => {
+export type ownPropsType = {
+    addCallHistoryLinkAction: Function
+}
 
+const socket = socketClient(Data.url, {query: {number: window.number, company: getCompanyName()}});
 
-    const [isVisibleList, setIsVisibleList] = useState(false);
+socket.on('connect', () => {
+    console.log('CONNECT')
+})
 
-    //
-    // const onOpenList = () => {
-    //     // @ts-ignore
-    //     refTransferBtn.current!.style.backgroundColor = '#85B4E7';
-    //     if (connectGuard(connect, 'open')) {
-    //         // @ts-ignore
-    //         !window.is_admin && setIsVisibleList(true);
-    //     }
-    // };
-    const onCloseListEndTransfer = (number: string) => {
-        setIsVisibleList(false);
-        // transferFn(number);
-    };
+export const RightBlock: React.FC<connectorType> = React.memo(({addCallHistoryLinkAction}) => {
 
-    useEffect(() => {
-        // @ts-ignore
-        const companyName: string = getCompanyName()
-        if (companyName) {
-            getActiveDispatchersAction(companyName);
-        }
-    }, []);
+    const dispatchers = useStore($dispatchersList)
 
-
-    useGetDispatcherQueue(dispatchers, writeToStoreActiveDispatchersAction)
+    useGetDispatcherQueue(dispatchers, setActiveDispatcherList)
+    useRecordingLink(socket, addCallHistoryLinkAction, window.number)
 
 
     return (
-        <div style={{padding:0}}  className="col-lg-3 col-12 cellphone-wrapper">
-           <CellPhone/>
-           {/*<div style={{height:100}}></div>*/}
-            {/*<IsAdmin flag={false}>*/}
-            {/*    <CSSTransition*/}
-            {/*        in={isVisibleList}*/}
-            {/*        timeout={{*/}
-            {/*            enter: 200,*/}
-            {/*            exit: 200,*/}
-            {/*        }}*/}
-            {/*        classNames='dispatcher-list'*/}
-            {/*        mountOnEnter*/}
-            {/*        unmountOnExit*/}
-            {/*    >*/}
-            {/*        <SearchList*/}
-            {/*            listBorder={true}*/}
-            {/*            border={false}*/}
-            {/*            height='180px'*/}
-            {/*            width='261px'*/}
-            {/*            data={activeDispatchers}*/}
-            {/*            placeholder='Dispatcher name'*/}
-            {/*            selectedLineColor={'#0079FE'}*/}
-            {/*            outValueName='email'*/}
-            {/*            callback={onCloseListEndTransfer}*/}
-            {/*        />*/}
-            {/*    </CSSTransition>*/}
-            {/*</IsAdmin>*/}
-            {/*<IsAdmin flag={true}>*/}
-            {/*    <SearchList*/}
-            {/*        listBorder={true}*/}
-            {/*        border={false}*/}
-            {/*        height='180px'*/}
-            {/*        width='261px'*/}
-            {/*        data={activeDispatchers}*/}
-            {/*        placeholder='Dispatcher name'*/}
-            {/*        selectedLineColor={'#0079FE'}*/}
-            {/*        outValueName='email'*/}
-            {/*        callback={onCloseListEndTransfer}*/}
-            {/*    />*/}
-            {/*</IsAdmin>*/}
+        <div style={{padding: 0}} className="col-lg-3 col-12 cellphone-wrapper">
+            <CellPhone/>
             <NotificationContainer/>
         </div>
     );
-};
+});

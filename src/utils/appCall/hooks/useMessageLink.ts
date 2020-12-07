@@ -42,6 +42,8 @@ const numberValidate = (number: string, from: string, to: string, direction: str
 export const useRecordingLink = (socket: any, addCallHistoryLinkAction: any, number: string) => {
     useEffect(() => {
         socket.on('message_link', (data: dataType) => {
+            console.log('DATA')
+            console.log(data)
             const {to, from, link, status, direction, duration} = data
             //@ts-ignore
             const id = getDriverFromNumber(from, window.arrPhones)?.driver_id || getDriverFromNumber(to, window.arrPhones)?.driver_id

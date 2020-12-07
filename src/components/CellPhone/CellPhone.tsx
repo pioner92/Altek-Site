@@ -1,31 +1,30 @@
 import React, {useEffect} from 'react';
 import {$isConnect, initCellPhone} from "./models";
-import {getDispatchersQueue} from "./ToggleAvailable/models";
 import {Fax} from "./Fax";
 import {$selectedBottomButtonIndex, BottomMenu} from "./BottomMenu";
 import {useStore} from "effector-react";
 import {Main} from "./Main/Main";
 import {Header} from "./Header/Header";
-import {getCompanyName} from "../../utils/getCompanyName";
 import {History} from "./History/History";
 import {setIsVisibleActionMenu} from "./History/HistoryList/HistoryListItem/ItemActionRightMenu/models";
 import {getNewNotification} from "./api/get-notification";
 import {getDispatchers} from "./api/get-dispatchers";
+import {getActiveDispatchers} from "./api/get-active-dispatchers";
 
 
 declare const window: {
     number: string
 }
 
-export const CellPhone = () => {
+export const CellPhone = React.memo(() => {
     const selectedIndex = useStore($selectedBottomButtonIndex)
     const isConnect = useStore($isConnect)
 
     useEffect(() => {
         initCellPhone(window.number)
-        getDispatchersQueue(getCompanyName())
-        getNewNotification()
         getDispatchers()
+        getNewNotification()
+        getActiveDispatchers()
     }, [])
 
     const onClick = (e: React.MouseEvent<HTMLElement>) => {
@@ -67,4 +66,4 @@ export const CellPhone = () => {
             <BottomMenu/>
         </div>
     );
-};
+});

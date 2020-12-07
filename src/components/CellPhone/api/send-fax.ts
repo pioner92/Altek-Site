@@ -1,5 +1,6 @@
 import {createEffect} from "effector";
-import Data from '../../../data.json'
+import {makeRequest} from "../../../api/make-request";
+import {urls} from "./urls/urls";
 
 type sendFaxProps = {
     files: Array<HTMLInputElement>
@@ -18,11 +19,7 @@ export const sendFaxToServer = createEffect(async ({files, note, numbers}: sendF
         formData.append('note', note)
         formData.append('numbers', numbers.toString())
 
-        const response = await fetch(`${Data.url}/send_fax`,{
-            method: 'POST',
-            body: formData
-        })
-        return await response.json()
+        return  await makeRequest(urls.sendFax(),'POST',formData)
 
     } catch (error) {
         console.log('Send fax error ' + error)

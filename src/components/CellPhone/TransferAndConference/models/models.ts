@@ -1,6 +1,6 @@
 import {createEvent,createStore} from "effector";
 import {$inputValueDispatcherTransfer} from "../CellPhoneDispatcherInput/models";
-import {getDispatcherQueue} from "../../api/get-active-dispatchers";
+import {getActiveDispatchers} from "../../api/get-active-dispatchers";
 import {getCompanyName} from "../../../../utils/getCompanyName";
 
 type dispatchersItem = {
@@ -51,7 +51,7 @@ export const $selectedDispatcherNumber = createStore('')
 
 setDispatchersList.watch(payload => {
     setFilteredDispatchersList(payload)
-    getDispatcherQueue(getCompanyName())
+    getActiveDispatchers()
 })
 
 $inputValueDispatcherTransfer.watch(state => {

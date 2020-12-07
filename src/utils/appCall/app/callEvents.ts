@@ -42,6 +42,7 @@ export class CallEvents {
 
 
         this._Device.on('incoming', (connect: Connection) => {
+            console.log(connect)
             this._setConnect(connect);
             this.__incomingHandler(connect);
             console.log('incoming');

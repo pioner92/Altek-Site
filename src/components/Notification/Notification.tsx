@@ -63,4 +63,4 @@ export const Notification:React.FC<connectorType> =React.memo( ({ newMessage, is
             </CSSTransition>
         </div>
     );
-});
+},(prevProps,nexProps)=>prevProps.isNewMessage === nexProps.isNewMessage);

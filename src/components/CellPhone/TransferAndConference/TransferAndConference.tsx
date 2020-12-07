@@ -15,7 +15,6 @@ export const TransferAndConference = () => {
         setIsVisibleTransfer(false)
     }
 
-
     return (
         <div>
             <CellPhoneDispatcherInput/>

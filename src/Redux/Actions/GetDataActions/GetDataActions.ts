@@ -13,7 +13,7 @@ import {
 } from '../WriteToStoreActions/WriteToStoreActions';
 import {Ajax, Fetch} from '../OtherActions';
 import {filterActiveDispatcher} from '../../../utils/callQueu/filterActiveDispatchers';
-import {getDispatcherQueue} from "../../../components/CellPhone/api/get-active-dispatchers";
+import {getActiveDispatchers} from "../../../components/CellPhone/api/get-active-dispatchers";
 
 export type dataFnGetDrivers = {
     n?: string
@@ -166,7 +166,7 @@ export const getActiveDispatchersAction = (company_name: string) => (dispatch: D
         action: 'get_dispatchers',
     };
     Ajax({data}).then((result: any) => {
-        getDispatcherQueue(company_name)
+        getActiveDispatchers()
             .then((data) => {
                 if(data){
                     const dispatchersArr = filterActiveDispatcher(result, data);

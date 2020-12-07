@@ -4,13 +4,11 @@ import { clearSelectedDrivers, setDriverStatusAction } from '../../../Redux/Acti
 import {ReducerReturnType} from "../../../Redux/Reducer/Reducer";
 import {writeToStoreQueueStatusAction} from "../../../Redux/Actions/WriteToStoreActions/WriteToStoreActions";
 
-const mapStateToProps = ({ selectedId,activeDispatchers }:ReducerReturnType) => ({
+const mapStateToProps = ({ selectedId }:ReducerReturnType) => ({
     selectedId,
-    activeDispatchers
 });
 
 export const HomeSubheaderContainer = connect(mapStateToProps, {
     setDriverStatusAction,
     clearSelectedDrivers,
-    writeToStoreQueueStatusAction
 })(HomeSubheader);

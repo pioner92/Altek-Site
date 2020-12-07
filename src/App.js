@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './App.css';
 import {Route} from 'react-router-dom';
 import Settings from './components/Settings/Settings';
@@ -12,9 +12,9 @@ import {MessengerSubheaderContainer} from './components/Messenger/MessengerSubhe
 import {CallHistoryContainer} from './components/CallHistory/CallHistoryContainer';
 import Modals from './components/Modals/Modals';
 import {HeaderOtherContainer} from './components/Header/HeaderOtherContainer';
-import RightBlockContainer from './components/RightBlock/RightBlockContainer';
 import {setClasses} from "./utils/setClasses";
 import {getNotificationPermission} from "./utils/notification/getNotificationPermission";
+import {RightBlockContentContainer} from "./components/RightBlock/RightBlockContentContainer";
 
 function App({
                  checkSmsAction, isNewMessage, newMessageAction, addCallHistoryLinkAction, queueStatus, writeToStoreIsNewCallNotificationAction,
@@ -31,23 +31,6 @@ function App({
 
     const [isVisibleSentSmsNotification, setIsVisibleSentSmsNotification] = useState(false);
 
-    const cellPhoneRef = useRef();
-
-    const setCellPhoneInput = (data) => {
-        cellPhoneRef.current.setInput(data);
-    };
-
-    const Call = (number) => {
-        cellPhoneRef.current.Call(number);
-    };
-
-    const setStatusData = (data) => {
-        cellPhoneRef.current.setStatusData(data);
-    };
-
-    const setId = (id) => {
-        cellPhoneRef.current.setId(id);
-    };
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -56,7 +39,6 @@ function App({
         return () => {
             clearInterval(interval);
         };
-
     }, []);
 
 
@@ -79,11 +61,7 @@ function App({
             setIsVisibleNewSmsModal,
             isNewMessage,
             newMessageAction,
-            setIsVisibleEditProfileModal,
-            setStatusData,
-            Call,
-            setCellPhoneInput,
-            setId
+            setIsVisibleEditProfileModal
         }}>
             <div className="App">
                 <div className="page">
@@ -128,12 +106,11 @@ function App({
                                        render={(props) => <MessengerContainer {...props}/>}/>
                                 <Route path='/callhistory/:id' exact
                                        component={CallHistoryContainer}/>
-                                <RightBlockContainer
+                                <RightBlockContentContainer
                                     getCallNotificationAction={getCallNotificationAction}
                                     updateCallNotificationAction={updateCallNotificationAction}
                                     writeToStoreIsNewCallNotificationAction={writeToStoreIsNewCallNotificationAction}
                                     queueStatus={queueStatus}
-                                    ref={cellPhoneRef}
                                     addCallHistoryLinkAction={addCallHistoryLinkAction}/>
                             </div>
                         </div>

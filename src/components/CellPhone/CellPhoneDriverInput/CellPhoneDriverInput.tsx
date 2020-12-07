@@ -20,8 +20,8 @@ export const CellPhoneDriverInput: React.FC = () => {
     const drivers = useStore($filteredDriverList)
     const isBlockedDriverList = useStore($isBlockedDriverList)
 
-    const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setInputValueCellPhone(e.target.value)
+    const onChange = (number:string) => {
+        setInputValueCellPhone(number)
     }
 
     const clearInput = () => {
@@ -34,7 +34,7 @@ export const CellPhoneDriverInput: React.FC = () => {
 
     return (
         <div className="pos-relative">
-            <Input value={inputValue} onChange={onChange} clearInput={clearInput} placeholder={'Type number or name...'}/>
+            <Input  value={inputValue} onChange={onChange}  clearInput={clearInput} placeholder={'Type number or name...'}/>
             {isVisibleDriverList && !isBlockedDriverList &&
             <DriverSearchList values={drivers}/>
             }

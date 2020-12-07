@@ -1,9 +1,10 @@
 import React from 'react';
-import {$isAvailable, setDispatcherQueue, setIsAvailable} from "./models/models";
+import {$isAvailable, setIsAvailable} from "./models/models";
 import {useStore} from "effector-react";
 import {ToggleComponent} from "../ToggleComponent/ToggleComponent";
 import {initCellPhone} from "../models";
 import {getCompanyName} from "../../../utils/getCompanyName";
+import {setActiveDispatchers} from "../api/set-active-dispatchers";
 
 declare const window: {
     number: string
@@ -16,7 +17,7 @@ export const ToggleAvailable = () => {
     const companyName = getCompanyName()
 
     const setDispatcherQueueService = async (status: boolean) => {
-        await setDispatcherQueue({phone: window.number, status, companyName})
+        await setActiveDispatchers({phone: window.number, status, companyName})
         initCellPhone(status ? window.number : 'null')
     }
 

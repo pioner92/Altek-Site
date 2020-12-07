@@ -12,9 +12,8 @@ import {getCompanyName} from "../../../utils/getCompanyName";
 
 
 const HomeSubheader = ({
-                           selectedId, setDriverStatusAction,writeToStoreQueueStatusAction, activeDispatchers, clearSelectedDrivers, match: {params: {n}},
+                           selectedId, setDriverStatusAction, clearSelectedDrivers, match: {params: {n}},
                        }) => {
-    const [isInQueue, setIsInQueue] = useState(false)
     const checkbox = useRef();
     const [toggle, setToggle] = useState(false);
     const [toggleFilterMenu, setToggleFilterMenu] = useState(false);
@@ -24,11 +23,6 @@ const HomeSubheader = ({
         clearSelectedDrivers();
     };
 
-    // const onSetQueueStatus = () => {
-    //     setDispatchersQueue(window.number, !isInQueue)
-    //         .then((res) => setIsInQueue((prevState => !prevState)))
-    //
-    // }
 
     useEffect(() => {
         if (selectedId.length > 0) {
@@ -39,16 +33,6 @@ const HomeSubheader = ({
         }
     }, [selectedId]);
 
-
-    useEffect(()=>{
-        const company_name = getCompanyName()
-        const number = window.number
-        setIsInQueue(InQueueValidate(activeDispatchers,number))
-    },[activeDispatchers])
-
-    useEffect(()=>{
-        writeToStoreQueueStatusAction(isInQueue)
-    },[isInQueue])
 
     return (
         <div style={{display:'flex'}} className="hide-on-medium-and-down subhead-wrapper">
@@ -65,10 +49,6 @@ const HomeSubheader = ({
                                id="checkdbox_row"
                                type="checkbox"/>
                         </label>
-
-                        {/*<div class="burger-menu-btn">*/}
-                        {/*    <img src={burgerIcon} alt="menu"/>*/}
-                        {/*</div>*/}
                         <div id="63211" className="b-input"/>
                     </label>
                 </div>
@@ -116,20 +96,8 @@ const HomeSubheader = ({
                 </CSSTransition>
 
             </div>
-                {/*{SetQueueStatus(isInQueue, onSetQueueStatus)}*/}
-            {/*<img src={inQueue} alt=""/>*/}
         </div>
     );
 };
-
-// const SetQueueStatus = (status, callback) => {
-//     return (
-//         <div onClick={callback} className='col-lg-3' style={{display: 'flex', cursor: 'pointer',justifyContent:'center'}}>
-//             {status
-//                 ? <img src={inQueue} alt=""/>
-//                 : <img src={outOfQueue} alt=""/>}
-//         </div>
-//     )
-// }
 
 export default React.memo(HomeSubheader);

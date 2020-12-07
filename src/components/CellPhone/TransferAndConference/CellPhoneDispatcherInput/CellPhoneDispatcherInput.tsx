@@ -12,8 +12,8 @@ export const CellPhoneDispatcherInput = () => {
     const dispatchers = useStore($filteredDispatchersList)
     const isVisibleDispatcherList = useStore($isVisibleDispatcherList)
 
-    const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setInputValueDispatcherTransfer(e.target.value)
+    const onChange = (number:string) => {
+        setInputValueDispatcherTransfer(number)
     }
 
     const clearInput = () => {

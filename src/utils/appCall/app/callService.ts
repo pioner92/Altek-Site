@@ -4,6 +4,9 @@ import {CallEvents} from "./callEvents";
 import {connectGuard} from "../connectGuard";
 import addNotification from 'react-push-notification'
 import Data from '../../../data.json'
+import {makeRequest} from "../../../api/make-request";
+import {urls} from "../../../components/CellPhone/api/urls/urls";
+import {getCompanyName} from "../../getCompanyName";
 
 
 
@@ -130,8 +133,9 @@ export class CallService extends CallEvents {
     // token init
     async initToken(number: string) {
         try {
-            const response = await fetch(`${Data.url}/token/generate/${number}`)          // "url": "https://sms.green-node.ru",
-            const {token} = await response.json()
+            const result = await makeRequest(urls.getToken(getCompanyName(),number))
+
+            const {token} = result || {}
 
             if (token) {
                 this.Device.setup(token, {
