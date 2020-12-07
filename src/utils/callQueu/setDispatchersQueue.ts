@@ -11,7 +11,7 @@ export const setDispatchersQueue = (phone:string, status:boolean) => {
   if (status) {
     data.action = 'addDispatcher';
   }
-  return fetch(`${Data.url}/add_delete_dispatcher`, {
+  return fetch(`${Data.url}/set_dispatchers_list`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

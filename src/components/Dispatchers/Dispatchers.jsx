@@ -5,6 +5,7 @@ import {setDispatchersQueue} from "../../utils/callQueu/setDispatchersQueue";
 import {DispatcherItemContainer} from "./DispatcherItem/DispatchersItemContainer";
 import {getActiveDispatchers} from "../CellPhone/api/get-active-dispatchers";
 import {getCompanyName} from "../../utils/getCompanyName";
+import {setActiveDispatchers} from "../CellPhone/api/set-active-dispatchers";
 
 const Dispatchers = ({
                          dispatchers, getDispatchersAction,
@@ -15,7 +16,7 @@ const Dispatchers = ({
     const [isChecked, setIsChecked] = useState(false)
 
     const onChangeCheckBox = (phone, status) => {
-        setDispatchersQueue(phone, status)
+        setActiveDispatchers({phone, status,companyName:getCompanyName()})
             .then((res) => setIsChecked((prevState => !prevState)))
     };
 
